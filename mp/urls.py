@@ -14,14 +14,14 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import view,home,detail,form,login,order,pay
+from . import view,home,detail,form,login,order,pay,index
 
 from django.contrib import admin
 import settings  
  
 urlpatterns = [
     url(r'^$',view.index),
-    url(r'^index$', home.index),
+    url(r'^index$', index.index),
     url(r'^hello$', pay.test),
     url(r'^admin/', admin.site.urls),
     url(r'^detail$', detail.index),
