@@ -12,31 +12,56 @@ def dictfetchall(cursor):
     	for row in cursor.fetchall()
     	]
 def index(request):
-	cursor = connections['default'].cursor()	    
-    #return HttpResponse("Hello world ! ")
-	sno = request.GET['sno']
-	cursor.execute("select Seller.sno,sname,sgender,sage,sheight,sweight,sxz,sschool,smajor,sgrade,stime,srange,swage,sinfo,simg,slike,scharm,snum from Seller where Seller.sno = %s",(sno,))
+
+	hno = request.GET['hno']
+
+	cursor = connections['default'].cursor()
+	cursor.execute("select * from house where house.hno = %s",(hno,))
 	raw = dictfetchall(cursor)
 	cursor.close()
 
 	lcursor = connections['default'].cursor()
-	lcursor.execute("select lno,lname from Seller,Seller_label where Seller.sno = Seller_label.sno and Seller_label.sno = %s",(sno,))
+	lcursor.execute("select lno,lname from house_label where hno = %s",(hno,))
 	raw[0]['labels'] = dictfetchall(lcursor)
 	lcursor.close()
 
+	pcursor = connections['default'].cursor()
+	pcursor.execute("select pno,purl from house_pic where hno = %s",(hno,))
+	raw[0]['images'] = dictfetchall(pcursor)
+	pcursor.close()
+
 	icursor = connections['default'].cursor()
-	icursor.execute("select ino,iurl from Seller,Seller_image where Seller.sno = Seller_image.sno and Seller_image.sno = %s",(sno,))
-	raw[0]['images'] = dictfetchall(icursor)
-		#rawitem['arr'] = arr
-	#snoraw = fetchall(cursor)
-	#for item in snoraw:
-		#sno  = snoraw[0]
-		#cursor.execute()
-	icursor.close()			
+	icursor.execute(
+		"select iname,iurl from icon,house_icon where house_icon.ino = icon.ino and house_icon.hno = %s", (hno,))
+	raw[0]['icons'] = dictfetchall(lcursor)
+	lcursor.close()
+
+	mcursor = connections['default'].cursor()
+	mcursor.execute(
+		"select murl from house_memory where hno = %s", (hno,))
+	raw[0]['memory'] = dictfetchall(lcursor)
+	mcursor.close()
+
+	equips = {}
+	ecursor = connections['default'].cursor()
+	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s and "
+					"equip.eno = house_equip.eno and tno = 1", (hno,))
+	equips['videos'] = dictfetchall(pcursor)
+	ecursor = connections['default'].cursor()
+	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s "
+		"and equip.eno = house_equip.eno and tno = 2",(hno,))
+	equips['game'] = dictfetchall(pcursor)
+	ecursor = connections['default'].cursor()
+	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s "
+		"and equip.eno = house_equip.eno and tno = 3",(hno,))
+	equips['meal'] = dictfetchall(pcursor)
+	ecursor.close()
+
+	raw[0]['equip'] = equips
 	response = HttpResponse(json.dumps(raw),content_type="application/json")	
 	return response
 
-
+'''
 def like(request):
 	scursor = connections['default'].cursor()
 	scursor.execute("select * from Seller_like where sno = %s and bno = %s",(request.GET['sno'],request.GET['bno'],))
@@ -59,3 +84,4 @@ def like(request):
 	data['status'] = 0
 	response = HttpResponse(json.dumps(data),content_type="application/json")
 	return response
+'''
