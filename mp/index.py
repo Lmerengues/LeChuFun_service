@@ -13,7 +13,7 @@ def dictfetchall(cursor):
 def index(request):
     cursor = connections['default'].cursor()
     cursor.execute(
-        "select house.hno,htitle1,htitle2,hprice,htype,hpic from house,house_display where house.hno = house_display.hno and house_display.flag = 1")
+        "select house.hno,htitle1,htitle2,hprice,htype,hpic from house,house_display where house.hno = house_display.hno and house_display.hflag = 1")
     raw = dictfetchall(cursor)
     cursor.close()
     for rawitem in raw:
