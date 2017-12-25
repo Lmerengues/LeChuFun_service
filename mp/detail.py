@@ -33,28 +33,28 @@ def index(request):
 	icursor = connections['default'].cursor()
 	icursor.execute(
 		"select iname,iurl from icon,house_icon where house_icon.ino = icon.ino and house_icon.hno = %s", (hno,))
-	raw[0]['icons'] = dictfetchall(lcursor)
+	raw[0]['icons'] = dictfetchall(icursor)
 	lcursor.close()
 
 	mcursor = connections['default'].cursor()
 	mcursor.execute(
 		"select murl from house_memory where hno = %s", (hno,))
-	raw[0]['memory'] = dictfetchall(lcursor)
+	raw[0]['memory'] = dictfetchall(mcursor)
 	mcursor.close()
 
 	equips = {}
 	ecursor = connections['default'].cursor()
 	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s and "
 					"equip.eno = house_equip.eno and tno = 1", (hno,))
-	equips['videos'] = dictfetchall(pcursor)
+	equips['videos'] = dictfetchall(ecursor)
 	ecursor = connections['default'].cursor()
 	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s "
 		"and equip.eno = house_equip.eno and tno = 2",(hno,))
-	equips['game'] = dictfetchall(pcursor)
+	equips['game'] = dictfetchall(ecursor)
 	ecursor = connections['default'].cursor()
 	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s "
 		"and equip.eno = house_equip.eno and tno = 3",(hno,))
-	equips['meal'] = dictfetchall(pcursor)
+	equips['meal'] = dictfetchall(ecursor)
 	ecursor.close()
 
 	raw[0]['equip'] = equips
