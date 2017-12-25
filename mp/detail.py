@@ -61,7 +61,7 @@ def index(request):
 	response = HttpResponse(json.dumps(raw),content_type="application/json")	
 	return response
 
-'''
+
 def like(request):
 	scursor = connections['default'].cursor()
 	scursor.execute("select * from Seller_like where sno = %s and bno = %s",(request.GET['sno'],request.GET['bno'],))
@@ -84,4 +84,3 @@ def like(request):
 	data['status'] = 0
 	response = HttpResponse(json.dumps(data),content_type="application/json")
 	return response
-'''
