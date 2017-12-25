@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'mp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  #or mysql.connector.django
-        'NAME': 'mtm',
+        'NAME': 'pp',
         'USER': 'root',
         'PASSWORD': '233180txy',
         'HOST':'localhost',
