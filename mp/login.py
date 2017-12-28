@@ -18,7 +18,7 @@ def login(res):
 
     url = "https://api.weixin.qq.com/sns/jscode2session"
 
-    querystring = {"appid":"wx96cd401177282448","secret":"3bd6456f8d335d62ce361fe17bbef3c2","js_code":res.GET['code'],"grant_type":"authorization_code"}
+    querystring = {"appid":"wx08912a543bda29bc","secret":"0b0d2c8666c0504d696c5cddd342ba17","js_code":res.GET['code'],"grant_type":"authorization_code"}
 
     headers = {
     'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36",
