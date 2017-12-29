@@ -162,7 +162,7 @@ def notify(request):
 
 
 		jucursor = connections['default'].cursor()
-		jucursor.execute("select oid,uno,ototal,otime,prepay_id from orders where oid = %s ",(dict_data['out_trade_no'],))
+		jucursor.execute("select oid,uno,ototal,otime,prepay_id,htitle1,htitle2 from orders,house where oid = %s and house.hno = orders.hno ",(dict_data['out_trade_no'],))
 		raw = dictfetchall(jucursor)
 
 		jucursor.close()
@@ -201,7 +201,7 @@ def notify(request):
 			llcursor.close()
 
 			url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token="+access_token
-			tmpdata={"touser":raw[0]['uno'],"template_id":"r2-xlRvYeETDndxslsDy44ReOf01wV5xVOjYZCT8Rw8","form_id":raw[0]['prepay_id'],"data":{"keyword1": {"value": json_serial(raw[0]['otime']), "color": "#000000"}, "keyword2": {"value": dict_data['out_trade_no'], "color": "#000000"}, "keyword3": {"value": str(int(raw[0]['ototal'])/100)+"元", "color": "#000000"} , "keyword4": {"value": "test", "color": "#000000"}}}
+			tmpdata={"touser":raw[0]['uno'],"template_id":"r2-xlRvYeETDndxslsDy44ReOf01wV5xVOjYZCT8Rw8","form_id":raw[0]['prepay_id'],"data":{"keyword1": {"value": json_serial(raw[0]['otime']), "color": "#000000"}, "keyword2": {"value": dict_data['out_trade_no'], "color": "#000000"}, "keyword3": {"value": str(int(raw[0]['ototal'])/100)+"元", "color": "#000000"} , "keyword4": {"value": raw[0]['htitle1']+"·"+raw[0]['htitle2'], "color": "#000000"}}}
 
 			req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
 			result = urllib2.urlopen(req, timeout=30).read()
