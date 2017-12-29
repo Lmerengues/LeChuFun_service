@@ -162,7 +162,7 @@ def notify(request):
 
 
 		jucursor = connections['default'].cursor()
-		jucursor.execute("select oid,uno,ototal,otime,prepay_id from Orders where oid = %s ",(dict_data['out_trade_no'],))
+		jucursor.execute("select oid,uno,ototal,otime,prepay_id from orders where oid = %s ",(dict_data['out_trade_no'],))
 		raw = dictfetchall(jucursor)
 
 		jucursor.close()
@@ -183,7 +183,7 @@ def notify(request):
 
 
 		ucursor = connections['default'].cursor()
-		ucursor.execute("update Orders set ostatus = 1 where oid = %s",(dict_data['out_trade_no'],))
+		ucursor.execute("update orders set ostatus = 1 where oid = %s",(dict_data['out_trade_no'],))
 
 		if ucursor:
 			llcursor = connections['default'].cursor()
