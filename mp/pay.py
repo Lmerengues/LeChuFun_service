@@ -138,7 +138,7 @@ def index(request):
 	cursor.close()
 # then we judge if insert well
 	jcursor = connections['default'].cursor()
-	jcursor.execute("select ono from Orders where prepay_id = %s",(prepay_id,))
+	jcursor.execute("select ono from orders where prepay_id = %s",(prepay_id,))
 	data = {}
 	paySign_data['my_status'] = 0
 	if len(jcursor.fetchall()) >= 1:
