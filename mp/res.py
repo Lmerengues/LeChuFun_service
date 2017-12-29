@@ -25,14 +25,11 @@ def index(request):
     openid = request.GET['openid']
 
     cursor = connections['default'].cursor()
-    cursor.execute("select oid,orders.hno,odate,ostart,oend,orders.ocno,otime from orders,contact,house"
+    cursor.execute("select oid,orders.hno,odate,ostart,oend,orders.ocno from orders,contact,house"
                    "where orders.hno = house.hno and orders.ocno = contact.cno and orders.uno = %s order by otime desc",(openid,))
     raw = dictfetchall(cursor)
     cursor.close()
 
-
-    for item in raw:
-        item['otime'] = json_serial(item['otime'])
 
     cursor = connections['default'].cursor()
     cursor.execute("select unickName,uavatarurl from Users where uid = %s",(openid,))
