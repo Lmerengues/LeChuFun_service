@@ -2,7 +2,7 @@ from django.http import HttpResponse
 
 import json
 from django.db import connections
-from datetime import date, datetime
+from datetime import date, datetime,time
 import pytz
 tz  = pytz.timezone('Asia/Shanghai')
 def json_serial(obj):
