@@ -71,11 +71,18 @@ def check_date(request):
 	cursor.execute("select ostart,oend from orders where hno = %s and odate = %s", (hno,date,))
 	time_dict = dictfetchall(cursor)
 
+	for item in time_dict:
+		item['ostart']  = json_serial(item['ostart'])
+		item['oend'] = json_serial(item['oend'])
+
+
 	dict = {"times":time_dict}
 	if len(time_dict) == 0:
 		dict['status'] = 0
 	else:
 		dict['status'] = 1
+
+
 	response = HttpResponse(json.dumps(time_dict), content_type="application/json")
 	return response
 
