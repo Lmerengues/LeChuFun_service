@@ -11,6 +11,7 @@ def dictfetchall(cursor):
 	dict(zip([col[0] for col in desc], row))
     	for row in cursor.fetchall()
     	]
+
 def index(request):
 
 	hno = request.GET['hno']

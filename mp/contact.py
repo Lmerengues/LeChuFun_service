@@ -6,6 +6,7 @@ import json
 from django.db import connections
 import datetime
 
+
 def dictfetchall(cursor):
 	desc = cursor.description
 	return [
@@ -37,6 +38,7 @@ def index(request):
     time_end = request.GET['timeend']
     date = request.GET['date']
     num = request.GET['num']
+    openid = request.GET['openid']
 
     mins = time_split(time_end) - time_split(time_start)
     hours = round((mins + 0.0) / 60)
@@ -73,8 +75,18 @@ def index(request):
     num_arr = [5,10,20,30]
     price_ave = price_total/num_arr[int(num)]
 
+
+    cursor = connections['default'].cursor()
+    cursor.execute("select uname,uphone,uwechat,ufirm,udepartment,ucode from contact where uno = %s order by utime desc", (openid,))
+    contact_dis = dictfetchall(cursor)
+    cursor.close()
+
+    hiscontact = {}
+    if len(contact_dis)==0:
+        hiscontact = contact_dis[0]
+
     dict = {'house_info':house_raw,'date':date_total_str,'time':time_total_str,'detail':price_detail,
-            'price_total':price_total,'price_ave':price_ave}
+            'price_total':price_total,'price_ave':price_ave,'contact':hiscontact}
 
     response = HttpResponse(json.dumps(dict),content_type="application/json")
     return response
