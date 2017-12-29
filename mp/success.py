@@ -24,7 +24,7 @@ def index(request):
     cursor.close()
 
     cursor = connections['default'].cursor()
-    cursor.execute("select * from contact where cno = %s", (cno,))
+    cursor.execute("select uname,uwechat from contact where cno = %s", (cno,))
     craw = dictfetchall(cursor)
     cursor.close()
 
