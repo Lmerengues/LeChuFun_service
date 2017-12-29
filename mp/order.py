@@ -87,6 +87,44 @@ def check_date(request):
 	return response
 
 
+def check_time(request):
+	hno = request.GET['hno']
+	date = request.GET['date']
+	start = request.GET['start']
+	end = request.GET['end']
+
+	cursor = connections['default'].cursor()
+	cursor.execute("select ostart,oend from orders where hno = %s and odate = %s and ostatus = 1", (hno, date,))
+	time_dict = dictfetchall(cursor)
+
+	start_i = time_split(start)
+	end_i = time_split(end)
+
+	flag = 0
+	for item in time_dict:
+		item['ostart'] = json_serial(item['ostart'])
+		item['oend'] = json_serial(item['oend'])
+		item['start_i'] = time_split(item['ostart'])
+		item['end_i'] = time_split(item['oend'])
+
+		if start_i >= item['start_i'] and end_i<= item['end_i']:
+			flag = 1
+
+	dict = {'status':flag}
+	response = HttpResponse(json.dumps(dict), content_type="application/json")
+	return response
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
