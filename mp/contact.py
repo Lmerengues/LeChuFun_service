@@ -64,7 +64,7 @@ def index(request):
     cursor.execute("select * from house_discount where hno = %s order by hour desc", (hno,))
     house_dis = dictfetchall(cursor)
     cursor.close()
-    if(len(house_dis)!= 0):
+    if len(house_dis)!= 0 and hours>= int(house_dis[0]['hour']):
         item = {"name":"满"+str(house_dis[0]['hour'])+"小时减"+str(house_dis[0]['discount']),
                 "price":"￥-"+str(house_dis[0]['discount'])}
         price_detail.append(item)
