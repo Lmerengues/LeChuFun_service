@@ -96,10 +96,19 @@ def submit(request):
     openid = request.GET['openid']
     name = request.GET['name']
     wechat = request.GET['wechat']
-    firm = request.GET['firm']
-    dep = request.GET['dep']
-    code = request.GET['code']
     phone = request.GET['phone']
+
+    firm = request.GET['firm']
+    if firm == "undefined":
+        firm = ""
+
+    dep = request.GET['dep']
+    if dep == "undefined":
+        dep = ""
+        
+    code = request.GET['code']
+    if code == "undefined":
+        code = ""
 
     cursor = connections['default'].cursor()
     cursor.execute("select cno from contact where uno = %s and uname = %s "
