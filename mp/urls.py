@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^form_submit$', form.submit),
     url(r'^login$',login.login),
     url(r'^order$',order.index),
+    url(r'^cal_price$',order.cal_price),
     url(r'^pay$',pay.index),
     url(r'^pay_notify$',pay.notify),
     url(r'^like$',detail.like),
