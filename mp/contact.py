@@ -51,7 +51,7 @@ def index(request):
     price_detail.append(item)
 
     cursor = connections['default'].cursor()
-    cursor.execute("select * from house_discount where house.hno = %s order by hour desc", (hno,))
+    cursor.execute("select * from house_discount where hno = %s order by hour desc", (hno,))
     house_dis = dictfetchall(cursor)
     if(len(house_dis)!= 0):
         item = {"name":"满"+str(house_dis[0]['hour'])+"小时减"+str(house_dis[0]['discount']),
