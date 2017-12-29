@@ -68,7 +68,7 @@ def check_date(request):
 	date = request.GET['date']
 
 	cursor = connections['default'].cursor()
-	cursor.execute("select ostart,oend from orders where hno = %s and odate = %s", (hno,date,))
+	cursor.execute("select ostart,oend from orders where hno = %s and odate = %s and ostatus = 1", (hno,date,))
 	time_dict = dictfetchall(cursor)
 
 	for item in time_dict:
