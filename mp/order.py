@@ -31,3 +31,48 @@ def index(request):
 
 	response = HttpResponse(json.dumps(raw),content_type="application/json")	
 	return response
+
+def time_split(timestr):
+
+	arr = timestr.split(':')
+	hour = int(arr[0])
+	min = int(arr[1])
+
+	min_chuo = hour*60+min
+	return min_chuo
+
+def cal_price(request):
+	hno = request.GET['hno']
+
+
+	time_start = request.GET['timestart']
+	time_end = request.GET['timeend']
+
+	mins = time_split(time_end) - time_split(time_start)
+	hours = round((mins+0.0)/60)
+
+	cursor = connections['default'].cursor()
+	cursor.execute("select hprice from house where house.hno = %s", (hno,))
+	raw = dictfetchall(cursor)
+	price_per_hour = raw[0]['hprice']
+	cursor.close()
+
+	price_total = price_per_hour * hours
+	response = HttpResponse(json.dumps({"total_price":price_total}), content_type="application/json")
+	return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
