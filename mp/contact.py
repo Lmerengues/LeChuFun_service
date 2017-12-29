@@ -41,7 +41,7 @@ def index(request):
     mydate = date_pro(date)
     anyday = datetime.datetime(mydate['year'], mydate['month'], mydate['day']).strftime("%w")
     week_str_arr = ['日','一','二','三','四','五','六']
-    date_total_str = mydate['arr'][0]+"年"+mydate['arr'][1]+"月"+mydate['arr'][2]+"日星期"+week_str_arr[anyday]
+    date_total_str = mydate['arr'][0]+"年"+mydate['arr'][1]+"月"+mydate['arr'][2]+"日星期"+week_str_arr[int(anyday)]
 
     time_total_str = time_start+"至"+time_end
 
