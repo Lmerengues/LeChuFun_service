@@ -82,7 +82,7 @@ def index(request):
     cursor.close()
 
     hiscontact = {}
-    if len(contact_dis)==0:
+    if len(contact_dis) >0:
         hiscontact = contact_dis[0]
 
     dict = {'house_info':house_raw,'date':date_total_str,'time':time_total_str,'detail':price_detail,
