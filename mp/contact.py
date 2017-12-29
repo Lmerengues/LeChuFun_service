@@ -105,7 +105,7 @@ def submit(request):
     dep = request.GET['dep']
     if dep == "undefined":
         dep = ""
-        
+
     code = request.GET['code']
     if code == "undefined":
         code = ""

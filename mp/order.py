@@ -62,6 +62,24 @@ def cal_price(request):
 	return response
 
 
+def check_date(request):
+
+	hno = request.GET['hno']
+	date = request.GET['date']
+
+	cursor = connections['default'].cursor()
+	cursor.execute("select ostart,oend from orders where hno = %s and odate = %s", (hno,date,))
+	time_dict = dictfetchall(cursor)
+
+	dict = {"times":time_dict}
+	if len(time_dict) == 0:
+		dict['status'] = 0
+	else:
+		dict['status'] = 1
+	response = HttpResponse(json.dumps(time_dict), content_type="application/json")
+	return response
+
+
 
 
 
