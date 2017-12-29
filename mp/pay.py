@@ -136,7 +136,7 @@ def index(request):
 	return resp
 
 	cursor = connections['default'].cursor()
-	cursor.execute("insert into orders values(null,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,sysdate(),%s,%s,%s,0)",
+	cursor.execute("insert into orders values(null,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,sysdate(),%s,%s,%s,'0')",
 				   (my_out_trade_no,hno,openid,date,time_start,time_end,type,num,ready,
 					barb,fapiao,tip,str(int(total)*100),cno,sign,paySign,prepay_id,))
 	cursor.close()
