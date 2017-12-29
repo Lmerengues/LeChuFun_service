@@ -8,10 +8,8 @@ tz  = pytz.timezone('Asia/Shanghai')
 def json_serial(obj):
     """JSON serializer for objects not serializable by default json code"""
 
-    if isinstance(obj, (datetime, date)):
+    if isinstance(obj, (datetime, date,time)):
         return obj.isoformat()
-	if isinstance(obj, (datetime, time)):
-		return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
 #cursor = connections['default'].cursor()
