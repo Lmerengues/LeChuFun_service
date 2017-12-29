@@ -20,6 +20,16 @@ def date_pro(date_str):         #2017-02-03日期字符串解析
     day = int(arr[2])
     return {'year':year,'month':month,'day':day,'arr':arr}
 
+def time_split(timestr):
+
+	arr = timestr.split(':')
+	hour = int(arr[0])
+	min = int(arr[1])
+
+	min_chuo = hour*60+min
+	return min_chuo
+
+
 def index(request):
 
     hno = request.GET['hno']
@@ -53,6 +63,7 @@ def index(request):
     cursor = connections['default'].cursor()
     cursor.execute("select * from house_discount where hno = %s order by hour desc", (hno,))
     house_dis = dictfetchall(cursor)
+    cursor.close()
     if(len(house_dis)!= 0):
         item = {"name":"满"+str(house_dis[0]['hour'])+"小时减"+str(house_dis[0]['discount']),
                 "price":"￥-"+str(house_dis[0]['discount'])}
@@ -68,41 +79,58 @@ def index(request):
     response = HttpResponse(json.dumps(dict),content_type="application/json")
     return response
 
-def time_split(timestr):
+def submit(request):
 
-	arr = timestr.split(':')
-	hour = int(arr[0])
-	min = int(arr[1])
+    openid = request.GET['hno']
+    name = request.GET['hno']
+    wechat = request.GET['wechat']
+    firm = request.GET['firm']
+    dep = request.GET['dep']
+    code = request.GET['code']
 
-	min_chuo = hour*60+min
-	return min_chuo
+    cursor = connections['default'].cursor()
+    cursor.execute("select cno from contact where uno = %s and uname = %s "
+                   "and uwechat = %s and ufirm = %s "
+                   "and udepartment = %s and ucode = %s ",(openid,name,wechat,firm,dep,code,))
+    contact_raw = dictfetchall(cursor)
+    cursor.close()
+    if len(contact_raw) == 0:
+        cursor = connections['default'].cursor()
+        cursor.execute("insert into contact values(null,%s,%s,%s,%s,%s,%s,sysdate())",
+                       (openid,name,wechat,firm,dep,code,))
+        cursor.close()
+        cursor = connections['default'].cursor()
+        cursor.execute("select cno from contact where uno = %s and uname = %s "
+                       "and uwechat = %s and ufirm = %s "
+                       "and udepartment = %s and ucode = %s ", (openid, name, wechat, firm, dep, code,))
+        cno_raw = dictfetchall(cursor)
+        if len(cno_raw) == 1:
+            cno = cno_raw[0]['cno']
+    else:
+        cno = contact_raw[0]['cno']
 
-def cal_price(request):
-	hno = request.GET['hno']
+    response = HttpResponse(json.dumps({'cno':cno}), content_type="application/json")
+    return response
+
+    '''
+    hno = request.GET['hno']
+    date = request.GET['date']
+    time_start = request.GET['start']+":00"
+    time_end = request.GET['end'] + ":00"
+    type = request.GET['type']
+    ready = request.GET['ready']
+    num = request.GET['num']
+    barb = request.GET['barb']
+    fapiao = request.GET['fapiao']
+    tip = request.GET['tip']
+    total = request.GET['price_total']
 
 
-	time_start = request.GET['timestart']
-	time_end = request.GET['timeend']
-
-	mins = time_split(time_end) - time_split(time_start)
-	hours = round((mins+0.0)/60)
-
-	cursor = connections['default'].cursor()
-	cursor.execute("select hprice from house where house.hno = %s", (hno,))
-	raw = dictfetchall(cursor)
-	price_per_hour = raw[0]['hprice']
-	cursor.close()
-
-	price_total = price_per_hour * hours
-	response = HttpResponse(json.dumps({"total_price":price_total}), content_type="application/json")
-	return response
-
-
-
-
-
-
-
+    cursor = connections['default'].cursor()
+    cursor.execute("insert into contact values(null,%s,%s,%s,%s,%s,%s,sysdate())",
+                   (openid, name, wechat, firm, dep, code,))
+    cursor.close()
+    '''
 
 
 

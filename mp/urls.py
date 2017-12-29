@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^order$',order.index),
     url(r'^contact$',contact.index),
     url(r'^cal_price$',order.cal_price),
+    url(r'^contact_submit$',contact.submit),
     url(r'^pay$',pay.index),
     url(r'^pay_notify$',pay.notify),
     url(r'^like$',detail.like),
