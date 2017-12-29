@@ -87,6 +87,7 @@ def submit(request):
     firm = request.GET['firm']
     dep = request.GET['dep']
     code = request.GET['code']
+    phone = request.GET['phone']
 
     cursor = connections['default'].cursor()
     cursor.execute("select cno from contact where uno = %s and uname = %s "
@@ -96,13 +97,13 @@ def submit(request):
     cursor.close()
     if len(contact_raw) == 0:
         cursor = connections['default'].cursor()
-        cursor.execute("insert into contact values(null,%s,%s,%s,%s,%s,%s,sysdate())",
-                       (openid,name,wechat,firm,dep,code,))
+        cursor.execute("insert into contact values(null,%s,%s,%s,%s,%s,%s,%s,sysdate())",
+                       (openid,name,phone,wechat,firm,dep,code,))
         cursor.close()
         cursor = connections['default'].cursor()
         cursor.execute("select cno from contact where uno = %s and uname = %s "
-                       "and uwechat = %s and ufirm = %s "
-                       "and udepartment = %s and ucode = %s ", (openid, name, wechat, firm, dep, code,))
+                       "and uwechat = %s and ufirm = %s and uphone = %s"
+                       "and udepartment = %s and ucode = %s ", (openid, name, wechat, firm, phone, dep, code,))
         cno_raw = dictfetchall(cursor)
         if len(cno_raw) == 1:
             cno = cno_raw[0]['cno']
