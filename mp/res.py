@@ -29,6 +29,10 @@ def index(request):
     raw = dictfetchall(cursor)
     cursor.close()
 
+    for item in raw:
+        item['odate'] = json_serial(item['odate'])
+        item['ostart'] = json_serial(item['start'])
+        item['oend'] = json_serial(item['oend'])
 
     cursor = connections['default'].cursor()
     cursor.execute("select unickName,uavatarurl from Users where uid = %s",(openid,))
