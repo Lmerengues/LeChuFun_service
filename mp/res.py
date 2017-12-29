@@ -25,7 +25,7 @@ def index(request):
     openid = request.GET['openid']
 
     cursor = connections['default'].cursor()
-    cursor.execute("select oid,orders.hno,odate,ostart,oend,orders.ocno,hpic,htitle1,htitle2 from orders,contact,house where orders.hno = house.hno and orders.ocno = contact.cno and orders.uno = %s and ostatus = 1 order by otime desc",(openid,))
+    cursor.execute("select oid,orders.hno,odate,ostart,oend,onum,ototal,orders.ocno,hpic,htitle1,htitle2 from orders,contact,house where orders.hno = house.hno and orders.ocno = contact.cno and orders.uno = %s and ostatus = 1 order by otime desc",(openid,))
     raw = dictfetchall(cursor)
     cursor.close()
 
@@ -40,6 +40,8 @@ def index(request):
         item['year'] = item['odate'].split("-")[0]
         item['month'] = item['odate'].split("-")[1]
         item['day'] = item['odate'].split("-")[2]
+
+        item['ototal'] = int(item['ototal'])/100
 
 
 
