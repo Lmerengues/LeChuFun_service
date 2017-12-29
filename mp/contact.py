@@ -81,8 +81,8 @@ def index(request):
 
 def submit(request):
 
-    openid = request.GET['hno']
-    name = request.GET['hno']
+    openid = request.GET['openid']
+    name = request.GET['name']
     wechat = request.GET['wechat']
     firm = request.GET['firm']
     dep = request.GET['dep']
