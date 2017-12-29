@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import view,home,detail,form,login,order,pay,index
+from . import view,home,detail,form,login,order,pay,index,contact
 
 from django.contrib import admin
 import settings  
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^form_submit$', form.submit),
     url(r'^login$',login.login),
     url(r'^order$',order.index),
+    url(r'^contact$',contact.index),
     url(r'^cal_price$',order.cal_price),
     url(r'^pay$',pay.index),
     url(r'^pay_notify$',pay.notify),
