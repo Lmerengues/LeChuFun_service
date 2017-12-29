@@ -25,7 +25,7 @@ def index(request):
     openid = request.GET['openid']
 
     cursor = connections['default'].cursor()
-    cursor.execute("select oid from orders,contact where orders.ocno = contact.cno and orders.uno = %s order by otime desc",(openid,))
+    cursor.execute("select oid from orders,contact,house where orders.ocno = contact.cno and orders.hno = house.hno and orders.uno = %s order by otime desc",(openid,))
     raw = dictfetchall(cursor)
     cursor.close()
 
