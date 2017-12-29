@@ -32,7 +32,10 @@ def index(request):
     for item in raw:
         item['odate'] = json_serial(item['odate'])
         item['ostart'] = json_serial(item['ostart'])
+        item['ostart'] = item['ostart'][0:5]
+
         item['oend'] = json_serial(item['oend'])
+        item['oend'] = item['oend'][0:5]
 
     cursor = connections['default'].cursor()
     cursor.execute("select unickName,uavatarurl from Users where uid = %s",(openid,))
