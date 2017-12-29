@@ -55,7 +55,7 @@ def index(request):
     house_dis = dictfetchall(cursor)
     if(len(house_dis)!= 0):
         item = {"name":"满"+str(house_dis[0]['hour'])+"小时减"+str(house_dis[0]['discount']),
-                "price":"-￥"+str(house_dis[0]['discount'])}
+                "price":"￥-"+str(house_dis[0]['discount'])}
         price_detail.append(item)
         price_total -= int(house_dis[0]['discount'])
 
