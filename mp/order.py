@@ -100,6 +100,10 @@ def check_time(request):
 	start_i = time_split(start)
 	end_i = time_split(end)
 
+	if end_i <= start_i:
+		response = HttpResponse(json.dumps({"status":-1}), content_type="application/json")
+		return response
+
 	flag = 0
 	for item in time_dict:
 		item['ostart'] = json_serial(item['ostart'])
@@ -107,7 +111,7 @@ def check_time(request):
 		item['start_i'] = time_split(item['ostart'])
 		item['end_i'] = time_split(item['oend'])
 
-		if start_i >= item['start_i'] and end_i<= item['end_i']:
+		if end_i > item['start_i'] and start_i < item['end_i']:
 			flag = 1
 
 	dict = {'status':flag}
