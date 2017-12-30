@@ -13,7 +13,7 @@ def dictfetchall(cursor):
     	]
 
 def f2(a,b):
-    return math.ceil(b['c']-a['c'])
+    return int(math.ceil(b['c']-a['c']))
 
 def index(request):
     cursor = connections['default'].cursor()
@@ -114,5 +114,4 @@ def index_location(request):
     raw.sort(cmp = f2)
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
-
 
