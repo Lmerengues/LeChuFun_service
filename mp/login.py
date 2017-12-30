@@ -48,7 +48,6 @@ def login(res):
     loginret = {} 
     loginret['openid'] = userdata['openid']
     resp = HttpResponse(json.dumps(loginret),content_type="application/json")
-    #print(response.text)
 
 
     return resp
