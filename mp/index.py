@@ -100,7 +100,12 @@ def index_location(request):
         a = (delta_weidu * 3600) * 30.8
         b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
         c = math.sqrt(a*a + b*b)
-        rawitem['distance'] = (c+0.0)/1000
+        if c<1000:
+            rawitem['distance'] = round(c)
+            rawitem['danwei'] = 'm'
+        else:
+            rawitem['distance'] = round((c+0.0)/1000,1)
+            rawitem['danwei'] = 'km'
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
