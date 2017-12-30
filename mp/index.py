@@ -12,6 +12,9 @@ def dictfetchall(cursor):
     	for row in cursor.fetchall()
     	]
 
+def f2(a,b):
+    return b['c']-a['c']
+
 def index(request):
     cursor = connections['default'].cursor()
     cursor.execute(
@@ -100,6 +103,7 @@ def index_location(request):
         a = (delta_weidu * 3600) * 30.8
         b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
         c = math.sqrt(a*a + b*b)
+        rawitem['c'] = c+0.0
         if c<1000:
             rawitem['distance'] = round(c)
             rawitem['danwei'] = 'm'
@@ -107,6 +111,7 @@ def index_location(request):
             rawitem['distance'] = round((c+0.0)/1000,1)
             rawitem['danwei'] = 'km'
 
+    raw.sort(cmp = f2)
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
