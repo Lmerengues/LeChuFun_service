@@ -43,6 +43,25 @@ def index(request):
 
         item['ototal'] = int(item['ototal'])/100
 
+    cursor.execute(
+        "select oid,orders.hno,odate,ostart,oend,onum,ototal,orders.ocno,hpic,htitle1,htitle2 from orders,contact,house where orders.hno = house.hno and orders.ocno = contact.cno and orders.uno = %s and ostatus = 1 and orders.odate>= sysdate() order by otime desc limit 1",
+        (openid,))
+    latest_raw = dictfetchall(cursor)
+    cursor.close()
+
+    for item in latest_raw:
+        item['odate'] = json_serial(item['odate'])
+        item['ostart'] = json_serial(item['ostart'])
+        item['ostart'] = item['ostart'][0:5]
+
+        item['oend'] = json_serial(item['oend'])
+        item['oend'] = item['oend'][0:5]
+
+        item['year'] = item['odate'].split("-")[0]
+        item['month'] = item['odate'].split("-")[1]
+        item['day'] = item['odate'].split("-")[2]
+
+        item['ototal'] = int(item['ototal']) / 100
 
 
     cursor = connections['default'].cursor()
@@ -50,5 +69,5 @@ def index(request):
     uraw = dictfetchall(cursor)
     cursor.close()
 
-    response = HttpResponse(json.dumps([raw,uraw]), content_type="application/json")
+    response = HttpResponse(json.dumps([raw,uraw,latest_raw]), content_type="application/json")
     return response
