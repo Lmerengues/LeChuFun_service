@@ -31,7 +31,7 @@ def index(request):
     str = array[0]+array[1]+array[2]
     str = hashlib.sha1(str).hexdigest()
     if str == signature:
-        return HttpResponse(json.dumps(request.GET['echostr']), content_type="application/json")
+        return HttpResponse(request.GET['echostr'], content_type="application/json")
     else:
-        return HttpResponse(json.dumps('?'), content_type="application/json")
+        return HttpResponse('?', content_type="application/json")
 
