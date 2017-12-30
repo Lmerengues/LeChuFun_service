@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import view,home,detail,form,login,order,pay,index,contact,success,res
+from . import view,home,detail,form,login,order,pay,index,contact,success,res,push
 
 from django.contrib import admin
 import settings  
@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^pay$',pay.index),
     url(r'^pay_notify$',pay.notify),
     url(r'^success$',success.index),
+    url(r'^push',push.index),
     url(r'^like$',detail.like),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.STATIC_ROOT }),  
 ]
