@@ -45,10 +45,13 @@ def index(request):
 '''
 
 def index(request):
-    his_lati = float(request.GET['latitude'])
-    his_longi = float(request.GET['longitude'])
-    his_speed = request.GET['speed']
-    his_accuracy = request.GET['accuracy']
+    flag =  0
+    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']
+        his_lati = float(request.GET['latitude'])
+        his_longi = float(request.GET['longitude'])
+        his_speed = request.GET['speed']
+        his_accuracy = request.GET['accuracy']
+        flag = 1
 
     openid = request.GET['openid']
 
@@ -72,20 +75,20 @@ def index(request):
             (hno,))
         rawitem['images'] = dictfetchall(icursor)
         icursor.close()
+        if flag:
+            delta_weidu = his_lati - float(rawitem['hlatitude'])
+            delta_jingdu = his_longi - float(rawitem['hlongitude'])
 
-        delta_weidu = his_lati - float(rawitem['hlatitude'])
-        delta_jingdu = his_longi - float(rawitem['hlongitude'])
-
-        a = (delta_weidu * 3600) * 30.8
-        b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
-        c = math.sqrt(a * a + b * b)
-        rawitem['c'] = c + 0.0
-        if c < 1000:
-            rawitem['distance'] = round(c)
-            rawitem['danwei'] = 'm'
-        else:
-            rawitem['distance'] = round((c + 0.0) / 1000, 1)
-            rawitem['danwei'] = 'km'
+            a = (delta_weidu * 3600) * 30.8
+            b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
+            c = math.sqrt(a * a + b * b)
+            rawitem['c'] = c + 0.0
+            if c < 1000:
+                rawitem['distance'] = round(c)
+                rawitem['danwei'] = 'm'
+            else:
+                rawitem['distance'] = round((c + 0.0) / 1000, 1)
+                rawitem['danwei'] = 'km'
 
     #raw.sort(cmp=f2)
     response = HttpResponse(json.dumps(raw), content_type="application/json")
@@ -93,10 +96,13 @@ def index(request):
 
 
 def index_price(request):
-    his_lati = float(request.GET['latitude'])
-    his_longi = float(request.GET['longitude'])
-    his_speed = request.GET['speed']
-    his_accuracy = request.GET['accuracy']
+    flag = 0
+    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']
+        his_lati = float(request.GET['latitude'])
+        his_longi = float(request.GET['longitude'])
+        his_speed = request.GET['speed']
+        his_accuracy = request.GET['accuracy']
+        flag = 1
 
     openid = request.GET['openid']
 
@@ -120,20 +126,20 @@ def index_price(request):
             (hno,))
         rawitem['images'] = dictfetchall(icursor)
         icursor.close()
+        if flag:
+            delta_weidu = his_lati - float(rawitem['hlatitude'])
+            delta_jingdu = his_longi - float(rawitem['hlongitude'])
 
-        delta_weidu = his_lati - float(rawitem['hlatitude'])
-        delta_jingdu = his_longi - float(rawitem['hlongitude'])
-
-        a = (delta_weidu * 3600) * 30.8
-        b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
-        c = math.sqrt(a * a + b * b)
-        rawitem['c'] = c + 0.0
-        if c < 1000:
-            rawitem['distance'] = round(c)
-            rawitem['danwei'] = 'm'
-        else:
-            rawitem['distance'] = round((c + 0.0) / 1000, 1)
-            rawitem['danwei'] = 'km'
+            a = (delta_weidu * 3600) * 30.8
+            b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
+            c = math.sqrt(a * a + b * b)
+            rawitem['c'] = c + 0.0
+            if c < 1000:
+                rawitem['distance'] = round(c)
+                rawitem['danwei'] = 'm'
+            else:
+                rawitem['distance'] = round((c + 0.0) / 1000, 1)
+                rawitem['danwei'] = 'km'
 
     #raw.sort(cmp=f2)
     response = HttpResponse(json.dumps(raw), content_type="application/json")
@@ -142,10 +148,13 @@ def index_price(request):
 
 def index_location(request):
 
-    his_lati = float(request.GET['latitude'])
-    his_longi = float(request.GET['longitude'])
-    his_speed = request.GET['speed']
-    his_accuracy = request.GET['accuracy']
+    flag = 0
+    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']
+        his_lati = float(request.GET['latitude'])
+        his_longi = float(request.GET['longitude'])
+        his_speed = request.GET['speed']
+        his_accuracy = request.GET['accuracy']
+        flag = 1
 
     openid = request.GET['openid']
 
@@ -169,22 +178,22 @@ def index_location(request):
             (hno,))
         rawitem['images'] = dictfetchall(icursor)
         icursor.close()
+        if flag:
+            delta_weidu = his_lati - float(rawitem['hlatitude'])
+            delta_jingdu = his_longi - float(rawitem['hlongitude'])
 
-        delta_weidu = his_lati - float(rawitem['hlatitude'])
-        delta_jingdu = his_longi - float(rawitem['hlongitude'])
-
-        a = (delta_weidu * 3600) * 30.8
-        b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
-        c = math.sqrt(a*a + b*b)
-        rawitem['c'] = c+0.0
-        if c<1000:
-            rawitem['distance'] = round(c)
-            rawitem['danwei'] = 'm'
-        else:
-            rawitem['distance'] = round((c+0.0)/1000,1)
-            rawitem['danwei'] = 'km'
-
-    raw.sort(cmp = f2)
+            a = (delta_weidu * 3600) * 30.8
+            b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
+            c = math.sqrt(a*a + b*b)
+            rawitem['c'] = c+0.0
+            if c<1000:
+                rawitem['distance'] = round(c)
+                rawitem['danwei'] = 'm'
+            else:
+                rawitem['distance'] = round((c+0.0)/1000,1)
+                rawitem['danwei'] = 'km'
+    if flag:
+        raw.sort(cmp = f2)
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
