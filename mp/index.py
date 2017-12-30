@@ -93,9 +93,16 @@ def index(request):
 
 
 def index_price(request):
+    his_lati = float(request.GET['latitude'])
+    his_longi = float(request.GET['longitude'])
+    his_speed = request.GET['speed']
+    his_accuracy = request.GET['accuracy']
+
+    openid = request.GET['openid']
+
     cursor = connections['default'].cursor()
     cursor.execute(
-        "select house.hno,htitle1,htitle2,hprice,htype,hpic from house,house_display where house.hno = house_display.hno and house_display.hflag = 1 order by hprice ASC ")
+        "select house.hno,htitle1,htitle2,hprice,htype,hpic,hlongitude,hlatitude from house,house_display where house.hno = house_display.hno and house_display.hflag = 1 order by hprice ASC ")
     raw = dictfetchall(cursor)
     cursor.close()
     for rawitem in raw:
@@ -114,6 +121,21 @@ def index_price(request):
         rawitem['images'] = dictfetchall(icursor)
         icursor.close()
 
+        delta_weidu = his_lati - float(rawitem['hlatitude'])
+        delta_jingdu = his_longi - float(rawitem['hlongitude'])
+
+        a = (delta_weidu * 3600) * 30.8
+        b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
+        c = math.sqrt(a * a + b * b)
+        rawitem['c'] = c + 0.0
+        if c < 1000:
+            rawitem['distance'] = round(c)
+            rawitem['danwei'] = 'm'
+        else:
+            rawitem['distance'] = round((c + 0.0) / 1000, 1)
+            rawitem['danwei'] = 'km'
+
+    #raw.sort(cmp=f2)
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
