@@ -46,7 +46,7 @@ def index(request):
 
 def index(request):
     flag =  0
-    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']
+    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']:
         his_lati = float(request.GET['latitude'])
         his_longi = float(request.GET['longitude'])
         his_speed = request.GET['speed']
@@ -97,7 +97,7 @@ def index(request):
 
 def index_price(request):
     flag = 0
-    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']
+    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']:
         his_lati = float(request.GET['latitude'])
         his_longi = float(request.GET['longitude'])
         his_speed = request.GET['speed']
@@ -149,7 +149,7 @@ def index_price(request):
 def index_location(request):
 
     flag = 0
-    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']
+    if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']:
         his_lati = float(request.GET['latitude'])
         his_longi = float(request.GET['longitude'])
         his_speed = request.GET['speed']
