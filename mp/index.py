@@ -55,7 +55,7 @@ def index(request):
         his_accuracy = request.GET['accuracy']
 
         cursor = connections['default'].cursor()
-        cursor.execute("insert into Users_location values(%s,%f,%f,%f,%f,sysdate())",
+        cursor.execute("insert into Users_location values(%s,%s,%s,%s,%s,sysdate())",
                        (his_lati,his_longi,his_speed,his_accuracy,))
         cursor.close()
         flag = 1
