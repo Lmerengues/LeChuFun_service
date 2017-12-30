@@ -33,5 +33,5 @@ def index(request):
     if str == signature:
         return HttpResponse(json.dumps(request.GET['echostr']), content_type="application/json")
     else:
-        return 0
+        return HttpResponse(json.dumps('?'), content_type="application/json")
 
