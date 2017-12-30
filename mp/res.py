@@ -43,6 +43,8 @@ def index(request):
 
         item['ototal'] = int(item['ototal'])/100
 
+        
+    cursor = connections['default'].cursor()
     cursor.execute(
         "select oid,orders.hno,odate,ostart,oend,onum,ototal,orders.ocno,hpic,htitle1,htitle2 from orders,contact,house where orders.hno = house.hno and orders.ocno = contact.cno and orders.uno = %s and ostatus = 1 and orders.odate>= sysdate() order by otime desc limit 1",
         (openid,))
