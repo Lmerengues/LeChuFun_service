@@ -66,8 +66,8 @@ def index_price(request):
 
 def index_location(request):
 
-    his_lati = float(request.GET['longitude'])
-    his_longi = float(request.GET['latitude'])
+    his_lati = float(request.GET['latitude'])
+    his_longi = float(request.GET['longitude'])
     his_speed = request.GET['speed']
     his_accuracy = request.GET['accuracy']
 
@@ -104,3 +104,5 @@ def index_location(request):
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
+
+
