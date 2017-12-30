@@ -56,6 +56,11 @@ def index(request):
 	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s "
 		"and equip.eno = house_equip.eno and tno = 3",(hno,))
 	equips['meal'] = dictfetchall(ecursor)
+
+	ecursor = connections['default'].cursor()
+	ecursor.execute("select eurl,ename from house_equip,equip where house_equip.hno = %s "
+					"and equip.eno = house_equip.eno and tno = 4", (hno,))
+	equips['chief'] = dictfetchall(ecursor)
 	ecursor.close()
 
 	raw[0]['equip'] = equips
