@@ -20,8 +20,6 @@ def f2(a,b):
         return -1
 
 def index(request):
-    return HttpResponse(json.dumps(request.GET['echostr']), content_type="application/json")
-
     signature = request.GET["signature"]
     timestamp = request.GET["timestamp"]
     nonce = request.GET["nonce"]
@@ -34,5 +32,6 @@ def index(request):
     str = hashlib.sha1(str).hexdigest()
     if str == signature:
         return HttpResponse(json.dumps(request.GET['echostr']), content_type="application/json")
-
+    else:
+        return 0
 
