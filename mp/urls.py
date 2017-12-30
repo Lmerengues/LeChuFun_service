@@ -22,7 +22,7 @@ import settings
 urlpatterns = [
     url(r'^$',view.index),
     url(r'^index$', index.index),
-    url(r'^price_index$', index.price_index),
+    url(r'^index_price$', index.index_price),
     url(r'^hello$', pay.test),
     url(r'^res_index$', res.index),
     url(r'^admin/', admin.site.urls),
