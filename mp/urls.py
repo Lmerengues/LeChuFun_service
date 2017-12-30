@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$',view.index),
     url(r'^index$', index.index),
     url(r'^index_price$', index.index_price),
+    url(r'^index_location$', index.index_location),
     url(r'^hello$', pay.test),
     url(r'^res_index$', res.index),
     url(r'^admin/', admin.site.urls),
