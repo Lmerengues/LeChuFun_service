@@ -44,7 +44,7 @@ def index(request):
     return response
 '''
 
-def indec(request):
+def index(request):
     his_lati = float(request.GET['latitude'])
     his_longi = float(request.GET['longitude'])
     his_speed = request.GET['speed']
@@ -54,7 +54,7 @@ def indec(request):
 
     cursor = connections['default'].cursor()
     cursor.execute(
-        "select house.hno,htitle1,htitle2,hprice,htype,hpic,hlongitude,hlatitude from house,house_display where house.hno = house_display.hno and house_display.hflag = 1 order by hprice ASC ")
+        "select house.hno,htitle1,htitle2,hprice,htype,hpic,hlongitude,hlatitude from house,house_display where house.hno = house_display.hno and house_display.hflag = 1 ")
     raw = dictfetchall(cursor)
     cursor.close()
     for rawitem in raw:
