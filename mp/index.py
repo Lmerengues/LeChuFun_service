@@ -13,7 +13,10 @@ def dictfetchall(cursor):
     	]
 
 def f2(a,b):
-    return int(math.ceil(b['c']-a['c']))
+    if b['c']-a['c']<0:
+        return 1
+    else:
+        return -1
 
 def index(request):
     cursor = connections['default'].cursor()
