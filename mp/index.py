@@ -98,7 +98,7 @@ def index_location(request):
         delta_jingdu = his_longi - float(rawitem['hlongitude'])
 
         a = (delta_weidu * 3600) * 30.8
-        b = (delta_jingdu) * 30.8 * math.cos(his_lati)
+        b = (delta_jingdu * 3600) * 30.8 * math.cos(his_lati)
         c = math.sqrt(a*a + b*b)
         rawitem['distance'] = (c+0.0)/1000
 
