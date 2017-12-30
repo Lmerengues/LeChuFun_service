@@ -46,11 +46,18 @@ def index(request):
 
 def index(request):
     flag =  0
+    openid = request.GET['openid']
+
     if request.GET['latitude'] and request.GET['longitude'] and request.GET['speed'] and request.GET['accuracy']:
         his_lati = float(request.GET['latitude'])
         his_longi = float(request.GET['longitude'])
         his_speed = request.GET['speed']
         his_accuracy = request.GET['accuracy']
+
+        cursor = connections['default'].cursor()
+        cursor.execute("insert into Users_location values(%s,%f,%f,%f,%f,sysdate())",
+                       (his_lati,his_longi,his_speed,his_accuracy,))
+        cursor.close()
         flag = 1
 
     openid = request.GET['openid']
