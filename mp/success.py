@@ -3,9 +3,6 @@ from django.http import HttpResponse
 import json
 from django.db import connections
 
-
-# cursor = connections['default'].cursor()
-
 def dictfetchall(cursor):
     desc = cursor.description
     return [
