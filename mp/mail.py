@@ -19,10 +19,10 @@ def index(request):
 
     from_email = settings.DEFAULT_FROM_EMAIL
 
-    msg = EmailMultiAlternatives('title', '<p>test</p>', from_email, ['lechufun@163.com'])
+    msg = EmailMultiAlternatives('title', '<p>test</p><p>again</p>', from_email, ['lechufun@163.com'])
 
     msg.content_subtype = "html"
     msg.send()
-    
+
     response = HttpResponse("test mail", content_type="application/json")
     return response
