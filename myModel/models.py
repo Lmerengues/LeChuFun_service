@@ -29,12 +29,12 @@ class Users(models.Model):
 
 
 class UsersLocation(models.Model):
-    uno = models.CharField(max_length=32)
+    uno = models.CharField(max_length=32,primary_key=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
     speed = models.FloatField()
     accuracy = models.FloatField()
-    time = models.DateTimeField()
+    time = models.DateTimeField(primary_key=True)
 
     class Meta:
         managed = False
@@ -222,8 +222,8 @@ class HouseDisplay(models.Model):
 
 
 class HouseEquip(models.Model):
-    hno = models.IntegerField()
-    eno = models.IntegerField()
+    hno = models.IntegerField(primary_key=True)
+    eno = models.IntegerField(primary_key=True)
 
     class Meta:
         managed = False
@@ -232,8 +232,8 @@ class HouseEquip(models.Model):
 
 
 class HouseIcon(models.Model):
-    hno = models.IntegerField()
-    ino = models.IntegerField()
+    hno = models.IntegerField(primary_key=True)
+    ino = models.IntegerField(primary_key=True)
 
     class Meta:
         managed = False
