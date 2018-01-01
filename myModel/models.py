@@ -201,8 +201,8 @@ class House(models.Model):
 
 
 class HouseDiscount(models.Model):
-    hno = models.IntegerField()
-    hour = models.IntegerField()
+    hno = models.IntegerField(primary_key=True)
+    hour = models.IntegerField(primary_key=True)
     discount = models.IntegerField()
 
     class Meta:
@@ -212,7 +212,7 @@ class HouseDiscount(models.Model):
 
 
 class HouseDisplay(models.Model):
-    hno = models.IntegerField()
+    hno = models.IntegerField(primary_key=True)
     hflag = models.IntegerField()
 
     class Meta:
