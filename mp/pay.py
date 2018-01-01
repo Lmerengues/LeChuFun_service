@@ -157,7 +157,6 @@ def index(request):
 
 def send_order_mail(oid):
 
-
 	tcursor = connections['default'].cursor()
 	tcursor.execute("select orders.oid,orders.hno,odate,ostart,oend,otype,onum,oready,obarbecue,"
 					"ofapiao,otip,ototal,orders.ocno,otime,htitle1,htitle2,uname,uphone,uwechat,ufirm,udepartment from orders,contact,house "
