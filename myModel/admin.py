@@ -1,8 +1,11 @@
 from django.contrib import admin
-from myModel.models import Users,UsersLocation,Contact,Equip,House,HouseDiscount,\
-    HouseDisplay,HouseEquip,HouseIcon,HouseLabel,HouseMemory,HousePic,Icon,Orders
+from myModel import models
 
 # Register your models here.
-admin.site.register([Users, UsersLocation, Contact,Equip,HouseMemory,HousePic,Icon,Orders,
-                     House,HouseDiscount,HouseDisplay,HouseEquip,HouseIcon,HouseLabel])
+#admin.site.register([Users, UsersLocation, Contact,Equip,HouseMemory,HousePic,Icon,Orders,
+#                     House,HouseDiscount,HouseDisplay,HouseEquip,HouseIcon,HouseLabel])
 
+class UsersAdmin(admin.Modeladmin):
+    list_display = [f.name for f in models.Users._meta.fields]
+
+admin.site.register(models.Users,UsersAdmin)
