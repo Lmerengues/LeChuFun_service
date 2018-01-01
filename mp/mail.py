@@ -10,7 +10,6 @@ import random
 import string
 #import datetime
 from datetime import date, datetime,time as time2
-import time
 import urllib2
 import requests
 #cursor = connections['default'].cursor()
