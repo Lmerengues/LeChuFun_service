@@ -14,34 +14,55 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import view,home,detail,form,login,order,pay,index,contact,success,res,push,mail
+from . import detail,login,order,pay,index,contact,success,res,push,mail
 
 from django.contrib import admin
 import settings  
  
 urlpatterns = [
-    url(r'^$',view.index),
+    #url(r'^$',view.index),
+
+    url(r'^admin/', admin.site.urls),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+
+
     url(r'^index$', index.index),
     url(r'^index_price$', index.index_price),
     url(r'^index_location$', index.index_location),
-    url(r'^hello$', pay.test),
-    url(r'^res_index$', res.index),
-    url(r'^admin/', admin.site.urls),
+
     url(r'^detail$', detail.index),
-    url(r'^form$', form.index),
-    url(r'^form_submit$', form.submit),
+
     url(r'^login$',login.login),
+
     url(r'^order$',order.index),
+
     url(r'^check_date$',order.check_date),
     url(r'^check_time$',order.check_time),
-    url(r'^contact$',contact.index),
     url(r'^cal_price$',order.cal_price),
-    url(r'^contact_submit$',contact.submit),
-    url(r'^pay$',pay.index),
-    url(r'^pay_notify$',pay.notify),
+
+    url(r'^contact$', contact.index),
+    url(r'^contact_submit$', contact.submit),
+
+    url(r'^pay$', pay.index),
+    url(r'^pay_notify$', pay.notify),
+
+    url(r'^push', push.index),
+
+    url(r'^mail$', mail.index),
+
     url(r'^success$',success.index),
-    url(r'^push',push.index),
-    url(r'^mail$',mail.index),
-    url(r'^like$',detail.like),
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.STATIC_ROOT }),  
+
+    url(r'^res_index$', res.index),
+
+    # url(r'^hello$', pay.test),
+
+    # url(r'^form$', form.index),
+    # url(r'^form_submit$', form.submit),
+
+    # url(r'^like$',detail.like),
+
+
 ]
+
+
+
