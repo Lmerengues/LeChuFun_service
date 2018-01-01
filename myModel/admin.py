@@ -6,7 +6,7 @@ from myModel.models import Users,UsersLocation,Contact,Equip,House,HouseDiscount
 #admin.site.register([Users, UsersLocation, Contact,Equip,HouseMemory,HousePic,Icon,Orders,
 #                     House,HouseDiscount,HouseDisplay,HouseEquip,HouseIcon,HouseLabel])
 
-class UsersAdmin(admin.Modeladmin):
+class UsersAdmin(admin.ModelAdmin):
     list_display = ['uid']
 
 admin.site.register(Users,UsersAdmin)
