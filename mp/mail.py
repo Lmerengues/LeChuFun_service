@@ -9,7 +9,7 @@ import math
 
 def index(request):
     send_mail('Subject here', 'Here is the message.', 'lechufun@163.com',
-          ['317958662@qq.com'], fail_silently=False)
+          ['lechufun@163.com','317958662@qq.com'], fail_silently=False)
 
     response = HttpResponse("test mail", content_type="application/json")
     return response
