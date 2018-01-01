@@ -9,7 +9,7 @@ import logging
 import random
 import string
 #import datetime
-from datetime import date, datetime,time
+from datetime import date, datetime,time as time2
 import time
 import urllib2
 import requests
@@ -25,7 +25,7 @@ from django.core.mail import EmailMultiAlternatives
 def json_serial(obj):
     """JSON serializer for objects not serializable by default json code"""
 
-    if isinstance(obj, (datetime, date,time)):
+    if isinstance(obj, (datetime, date, time2)):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 def dictfetchall(cursor):
