@@ -233,6 +233,9 @@ def notify(request):
 			llcursor.execute("insert into logs values(null,%s,sysdate())",('errcode:-1',))
 			llcursor.close()
 
+			send_order_mail(dict_data['out_trade_no'])
+
+
 		ucursor.close()
 
 		return HttpResponse("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>",content_type="application/xml")
