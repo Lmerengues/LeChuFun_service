@@ -54,7 +54,7 @@ def index(request):
     str += '<p>预约者姓名:' + raw[0]['uname'] + '</p>'
     str += '<p>预约者微信:' + raw[0]['uwechat'] + '</p>'
     str += '<p>预约者电话:' + raw[0]['uphone'] + '</p>'
-    str += '<p>预约者公司/部门:' + raw[0]['ufirm'] + "/" + raw[0]['ufirn'] + '</p>'
+    str += '<p>预约者公司/部门:' + raw[0]['ufirm'] + "/" + raw[0]['udepartment'] + '</p>'
     str += '<p>预约时间:' + json_serial(raw[0]['odate']) + "   " + json_serial(raw[0]['ostart']) + "-" + json_serial(
         raw[0]['oend']) + '</p>'
     str += '<p>下单金额:' + str(int(raw[0]['ototal']) / 100) + '</p>'
