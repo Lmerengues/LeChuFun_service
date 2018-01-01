@@ -18,6 +18,8 @@ import xml.etree.ElementTree as ET
 #from flask import Flask, request, jsonify
 #from datetime import date, datetime
 import pytz
+from django.core.mail import send_mail
+
 def json_serial(obj):
     """JSON serializer for objects not serializable by default json code"""
 
@@ -184,6 +186,10 @@ def notify(request):
 
 		ucursor = connections['default'].cursor()
 		ucursor.execute("update orders set ostatus = 1 where oid = %s",(dict_data['out_trade_no'],))
+
+
+		send_mail('乐处Fun订单信息', 'test', 'lechufun@163.com',
+				  ['lechufun@163.com','liruishenshui@126.com'], fail_silently=False)
 
 		if ucursor:
 			llcursor = connections['default'].cursor()
