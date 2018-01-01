@@ -64,7 +64,7 @@ def index(request):
     str1 += '<p>是否需要准备:' + my_is[int(raw[0]['oready'])] + '</p>'
     str1 += '<p>是否需要烧烤设备:' + my_is[int(raw[0]['obarbecue'])] + '</p>'
     str1 += '<p>是否需要发票:' + my_is[int(raw[0]['ofapiao'])] + '</p>'
-    str1 += '<p>赴宴:' + raw[0]['otip'] + '</p>'
+    str1 += '<p>附言:' + raw[0]['otip'] + '</p>'
 
     from_email = settings.DEFAULT_FROM_EMAIL
 
