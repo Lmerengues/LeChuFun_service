@@ -251,7 +251,7 @@ def notify(request):
 			req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
 			result = urllib2.urlopen(req, timeout=30).read()
 
-			send_order_mail(dict_data['out_trade_no'])
+			#send_order_mail(dict_data['out_trade_no'])
 			llcursor = connections['default'].cursor()
 			llcursor.execute("insert into logs values(null,%s,sysdate())",('errcode:-2'+result+"$"+str(tmpdata),))
 			llcursor.close()
