@@ -58,7 +58,7 @@ def index(request):
     str1 += '<p>预约时间:' + json_serial(raw[0]['odate']) + "   " + json_serial(raw[0]['ostart']) + "-" + json_serial(
         raw[0]['oend']) + '</p>'
     str1 += '<p>下单金额:' + str(int(raw[0]['ototal']) / 100) + '</p>'
-    str1 += '<p>下单时间:' + raw[0]['otime'] + '</p>'
+    str1 += '<p>下单时间:' + json_serial(raw[0]['otime']) + '</p>'
     str1 += '<p>预约类型:' + my_type[int(raw[0]['otype'])] + '</p>'
     str1 += '<p>预约人数:' + my_num[int(raw[0]['onum'])] + '</p>'
     str1 += '<p>是否需要准备:' + my_is[int(raw[0]['oready'])] + '</p>'
