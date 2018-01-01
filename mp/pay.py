@@ -154,6 +154,23 @@ def index(request):
 	resp = HttpResponse(json.dumps(paySign_data), content_type="application/json")
 	return resp
 
+def send_order_mail(oid):
+
+
+	tcursor = connections['default'].cursor()
+	tcursor.execute("select orders.oid,orders.hno,odate,ostart,oend,otype,onum,oready,obarbecue,"
+					"ofapiao,otip,ototal,orders.ocno,otime,htitle1,htitle2,uname,uphone,uwechat,ufirm,udepartment from orders,contact,house "
+					"where oid = %s and orders.ono = contact.cno and orders.hno = house.hno",(oid,))
+	raw = dictfetchall(tcursor)
+	tcursor.close()
+
+	str = '<p>订单号:' +  raw[0]['oid'] +'</p>'
+
+
+	send_mail('乐处Fun订单信息', str, 'lechufun@163.com',
+			  ['lechufun@163.com', 'liruishenshui@126.com'], fail_silently=False)
+
+
 def notify(request):
 
 	tcursor = connections['default'].cursor()
@@ -187,9 +204,6 @@ def notify(request):
 		ucursor = connections['default'].cursor()
 		ucursor.execute("update orders set ostatus = 1 where oid = %s",(dict_data['out_trade_no'],))
 
-
-		send_mail('乐处Fun订单信息', 'test', 'lechufun@163.com',
-				  ['lechufun@163.com','liruishenshui@126.com'], fail_silently=False)
 
 		if ucursor:
 			llcursor = connections['default'].cursor()
