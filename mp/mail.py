@@ -38,7 +38,10 @@ def dictfetchall(cursor):
     	]
 
 def index(request):
-    pay.send_order_mail('1514813084')
-    resp = HttpResponse('sb', content_type="application/json")
 
+    oid = request.GET['oid']
+    pay.send_order_mail(oid)
+
+
+    resp = HttpResponse(json.dumps({'status':'success'}), content_type="application/json")
     return resp
