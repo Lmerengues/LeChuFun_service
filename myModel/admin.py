@@ -7,6 +7,6 @@ from myModel.models import Users,UsersLocation,Contact,Equip,House,HouseDiscount
 #                     House,HouseDiscount,HouseDisplay,HouseEquip,HouseIcon,HouseLabel])
 
 class UsersAdmin(admin.ModelAdmin):
-    list_display = ['uid']
+    list_display = [f.name for f in Users._meta.fields]
 
 admin.site.register(Users,UsersAdmin)
