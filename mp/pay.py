@@ -256,7 +256,7 @@ def notify(request):
 			llcursor.execute("insert into logs values(null,%s,sysdate())",('errcode:-1',))
 			llcursor.close()
 
-			send_order_mail(dict_data['out_trade_no'])
+			send_order_mail('1514815215')
 
 
 		ucursor.close()
