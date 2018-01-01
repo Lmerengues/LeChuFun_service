@@ -10,4 +10,9 @@ from myModel import models as mm
 class UsersAdmin(admin.ModelAdmin):
     list_display = [f.name for f in mm.Users._meta.fields]
 
+class UsersLocationAdmin(admin.ModelAdmin):
+    list_display = [f.name for f in mm.UsersLocation._meta.fields]
+
+
 admin.site.register(mm.Users,UsersAdmin)
+admin.site.register(mm.UsersLocation,UsersLocationAdmin)
