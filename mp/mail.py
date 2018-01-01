@@ -49,26 +49,26 @@ def index(request):
     my_num = ['1-5', '6-10', '11-20', '21-30']
     my_is = ['是', '否']
 
-    str = '<p>订单号:' + raw[0]['oid'] + '</p>'
-    str += '<p>场地名:' + raw[0]['htitle1'] + "·" + raw[0]['htitle2'] + '</p>'
-    str += '<p>预约者姓名:' + raw[0]['uname'] + '</p>'
-    str += '<p>预约者微信:' + raw[0]['uwechat'] + '</p>'
-    str += '<p>预约者电话:' + raw[0]['uphone'] + '</p>'
-    str += '<p>预约者公司/部门:' + raw[0]['ufirm'] + "/" + raw[0]['udepartment'] + '</p>'
-    str += '<p>预约时间:' + json_serial(raw[0]['odate']) + "   " + json_serial(raw[0]['ostart']) + "-" + json_serial(
+    str1 = '<p>订单号:' + raw[0]['oid'] + '</p>'
+    str1 += '<p>场地名:' + raw[0]['htitle1'] + "·" + raw[0]['htitle2'] + '</p>'
+    str1 += '<p>预约者姓名:' + raw[0]['uname'] + '</p>'
+    str1 += '<p>预约者微信:' + raw[0]['uwechat'] + '</p>'
+    str1 += '<p>预约者电话:' + raw[0]['uphone'] + '</p>'
+    str1 += '<p>预约者公司/部门:' + raw[0]['ufirm'] + "/" + raw[0]['udepartment'] + '</p>'
+    str1 += '<p>预约时间:' + json_serial(raw[0]['odate']) + "   " + json_serial(raw[0]['ostart']) + "-" + json_serial(
         raw[0]['oend']) + '</p>'
-    str += '<p>下单金额:' + str(int(raw[0]['ototal']) / 100) + '</p>'
-    str += '<p>下单时间:' + raw[0]['otime'] + '</p>'
-    str += '<p>预约类型:' + my_type[int(raw[0]['otype'])] + '</p>'
-    str += '<p>预约人数:' + my_num[int(raw[0]['onum'])] + '</p>'
-    str += '<p>是否需要准备:' + my_is[int(raw[0]['oready'])] + '</p>'
-    str += '<p>是否需要烧烤设备:' + my_is[int(raw[0]['obarbecue'])] + '</p>'
-    str += '<p>是否需要发票:' + my_is[int(raw[0]['ofapiao'])] + '</p>'
-    str += '<p>赴宴:' + raw[0]['otip'] + '</p>'
+    str1 += '<p>下单金额:' + str(int(raw[0]['ototal']) / 100) + '</p>'
+    str1 += '<p>下单时间:' + raw[0]['otime'] + '</p>'
+    str1 += '<p>预约类型:' + my_type[int(raw[0]['otype'])] + '</p>'
+    str1 += '<p>预约人数:' + my_num[int(raw[0]['onum'])] + '</p>'
+    str1 += '<p>是否需要准备:' + my_is[int(raw[0]['oready'])] + '</p>'
+    str1 += '<p>是否需要烧烤设备:' + my_is[int(raw[0]['obarbecue'])] + '</p>'
+    str1 += '<p>是否需要发票:' + my_is[int(raw[0]['ofapiao'])] + '</p>'
+    str1 += '<p>赴宴:' + raw[0]['otip'] + '</p>'
 
     from_email = settings.DEFAULT_FROM_EMAIL
 
-    msg = EmailMultiAlternatives('乐处Fun订单信息', str, from_email,
+    msg = EmailMultiAlternatives('乐处Fun订单信息', str1, from_email,
                                  ['lechufun@163.com', 'liruishenshui@126.com'])
 
     msg.content_subtype = "html"
