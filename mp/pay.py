@@ -160,7 +160,8 @@ def send_order_mail(oid):
 	tcursor = connections['default'].cursor()
 	tcursor.execute("select orders.oid,orders.hno,odate,ostart,oend,otype,onum,oready,obarbecue,"
 					"ofapiao,otip,ototal,orders.ocno,otime,htitle1,htitle2,uname,uphone,uwechat,ufirm,udepartment from orders,contact,house "
-					"where oid = %s and orders.ono = contact.cno and orders.hno = house.hno", (oid,))
+					"where oid = %s and orders.ocno = contact.cno and orders.hno = house.hno", (oid,))
+
 	raw = dictfetchall(tcursor)
 	tcursor.close()
 
