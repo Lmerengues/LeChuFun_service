@@ -36,5 +36,5 @@ def index(request):
     req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
     result = urllib2.urlopen(req, timeout=30).read()
 
-    resp = HttpResponse(result)
+    resp = HttpResponse(result,content_type='image/jpeg')
     return resp
