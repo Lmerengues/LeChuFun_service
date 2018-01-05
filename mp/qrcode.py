@@ -36,5 +36,9 @@ def index(request):
     req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
     result = urllib2.urlopen(req, timeout=30).read()
 
+    fo = open("/static/images/2.jpg", "wb")
+    fo.write(result);
+    fo.close()
+
     resp = HttpResponse(result)
     return resp
