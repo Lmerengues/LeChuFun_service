@@ -14,13 +14,13 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import detail,login,order,pay,index,contact,success,res,push,mail
+from . import detail,login,order,pay,index,contact,success,res,push,mail,view
 
 from django.contrib import admin
 import settings  
  
 urlpatterns = [
-    #url(r'^$',view.index),
+    url(r'^$',view.index),
 
     url(r'^admin/', admin.site.urls),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
