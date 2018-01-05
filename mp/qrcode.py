@@ -30,7 +30,7 @@ def index(request):
     response = requests.request("GET", url, headers=headers, params=querystring)
     access_token = json.loads(response.text)['access_token']
 
-    url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN="+access_token
+    url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token="+access_token
 
     tmpdata={"scene":'5',"page":"pages/detail/detail"}
     req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
