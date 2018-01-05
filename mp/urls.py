@@ -34,6 +34,7 @@ urlpatterns = [
 
     url(r'^login$',login.login),
 
+    
     url(r'^order$',order.index),
 
     url(r'^check_date$',order.check_date),
