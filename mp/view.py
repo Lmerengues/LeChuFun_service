@@ -44,5 +44,6 @@ def icons(request):
     raw = dictfetchall(cursor)
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
+    return response
 
 
