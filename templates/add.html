@@ -184,12 +184,14 @@
                         <div class="row">
                             <label class="col-md-2 control-label">场地设备</label>
                             <div class="col-md-9">
+                                {% for e in equips %}
                                 <div class="form-check">
                                     <input type="checkbox" value="">
                                     <label class="form-check-label" for="exampleRadios1">
-                                        Default radio
+                                        e.ename
                                     </label>
                                 </div>
+                                {% endfor %}
                                 <div class="form-check">
                                     <input type="checkbox" value="">
                                     <label class="form-check-label" for="exampleRadios2">
