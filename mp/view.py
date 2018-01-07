@@ -62,4 +62,10 @@ def icons(request):
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
+def addHouseHandle(request):
+    
+    raw = {'status':1}
+    response = HttpResponse(json.dumps(raw), content_type="application/json")
+    return response
+
 
