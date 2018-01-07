@@ -27,6 +27,18 @@ def index(request):
 def add(request):
     context          = {}
     #context['hello'] = 'Hello World!'
+    cursor = connections['default'].cursor()
+    cursor.execute("select * from equip")
+    eraw = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['default'].cursor()
+    cursor.execute("select * from icon")
+    iraw = dictfetchall(cursor)
+    cursor.close()
+    context['equips'] = eraw
+    context['icons'] = iraw
+
     return render(request, 'add.html', context)
 
 
