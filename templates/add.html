@@ -187,18 +187,20 @@
                                 
                                 {% for e in equips %}
                                 <div class="form-check">
-                                    <input type="checkbox" value="">
+                                    <input type="checkbox" value="{{e.eno}}">
                                     <label class="form-check-label" for="exampleRadios1">
                                         {{e.ename}}
                                     </label>
                                 </div>
                                 {% endfor %}
+                                {% for i in icons %}
                                 <div class="form-check">
-                                    <input type="checkbox" value="">
-                                    <label class="form-check-label" for="exampleRadios2">
-                                        Second default radio
+                                    <input type="checkbox" value="{{i.ino}}">
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        {{i.iname}}
                                     </label>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
