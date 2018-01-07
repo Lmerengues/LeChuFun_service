@@ -258,6 +258,24 @@
                 })
                 console.log(equips);
                 console.log(icons);
+                $("#form-house").ajaxSubmit({
+                    url:"https://mina.mapglory.com/addHouseHandle",
+                    type:"POST",
+                    data: {
+                        'labels':JSON.stringify(labels),
+                        'equips':equips,
+                        'icons':icons,
+                    },
+                    success:function(data){
+                        console.log(data);
+                        if(data.status == 1) {
+                            console.log('status')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    }
+                });
 
             })
         })
