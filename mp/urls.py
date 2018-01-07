@@ -22,8 +22,8 @@ import settings
 urlpatterns = [
     url(r'^$',view.index),
     url(r'^add$', view.add),
-    url(r'^equips$', view.equips),
-    url(r'^icons$', view.icons),
+    #url(r'^equips$', view.equips),
+    #url(r'^icons$', view.icons),
 
     url(r'^admin/', admin.site.urls),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),

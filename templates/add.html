@@ -30,201 +30,235 @@
                     场地信息录入
                 </div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地前缀</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="htitle1">
+                    <form id="form-house" enctype="multipart/form-data" method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地前缀</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="htitle1">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地名称</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="htitle2">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地名称</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="htitle2">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地地址概括（2到8个字）</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="htitle3">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地地址概括（2到8个字）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="htitle3">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地详细地址</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <textarea type='text' class='form-control' id='haddress'></textarea>
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地详细地址</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <textarea type='text' class='form-control' id='haddress'></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地介绍</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <textarea type='text' class='form-control' id='hdetail'></textarea>
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地介绍</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <textarea type='text' class='form-control' id='hdetail'></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地纬度(小数形式）</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="hlatitude">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地纬度(小数形式）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="hlatitude">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地纬度(小数形式）</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="hlongitude">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地纬度(小数形式）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="hlongitude">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地乐价</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="hprice">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地乐价</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="hprice">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地原价</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="hprice_old">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地原价</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="hprice_old">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地面积</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="hsquare">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地面积</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="hsquare">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地类型</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="htype">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地类型</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="htype">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地标签（用;分割，合计不超过15个字）</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input type='text' class='form-control' placeholder='' id="htype">
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地标签（用;分割，合计不超过15个字）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' placeholder='' id="hlabel">
+                                    </div>
                                 </div>
-                            </div>
-                        </div>								
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地图片（多张）</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input  type="file" multiple/>
+                            </div>								
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地图片（多张）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input  type="file" multiple/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地代表图片（一张）</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input  type="file"/>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地代表图片（一张）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input  type="file"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地记忆（多张）</label>
-                            <div class="col-md-9">
-                                <div class="input-group">
-                                    <input  type="file" multiple/>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地记忆（多张）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input  type="file" multiple/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地设备</label>
-                            <div class="col-md-9">
-                                
-                                {% for e in equips %}
-                                <div class="form-check">
-                                    <input type="checkbox" value="{{e.eno}}">
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        {{e.ename}}
-                                    </label>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地设备</label>
+                                <div class="col-md-9">
+                                    {% for e in equips %}
+                                    <div class="form-check">
+                                        <input type="checkbox" value="{{e.eno}}" class="equip-checkbox">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{e.ename}}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2 control-label">场地类型</label>
-                            <div class="col-md-9">
-                                {% for i in icons %}
-                                <div class="form-check">
-                                    <input type="checkbox" value="{{i.ino}}">
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        {{i.iname}}
-                                    </label>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地类型</label>
+                                <div class="col-md-9">
+                                    {% for i in icons %}
+                                    <div class="form-check">
+                                        <input type="checkbox" value="{{i.ino}}" class="icon-checkbox">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{i.iname}}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
                             </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type='submit' class='btn btn-primary' id="btn-commit">提交</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
     <script>
         $(document).ready(function(){
-            $.get("https://mina.mapglory.com/equips",{},function(res){
-                console.log(res);
-            })
-            $.get("https://mina.mapglory.com/icons",{},function(res){
-                console.log(res);
+            $("#btn-commit").click(function(){
+                var htitle1 = $("#htitle1").val();
+                var htitle2 = $("#htitle2").val();
+                var htitle3 = $("#htitle3").val();
+                var hdetail = $("#hdetail").text();
+                var haddress = $("#haddress").val();
+                var hlongitude = $("#hlongitude").val();
+                var hlatitude = $("#hlatitude").val();
+                var hprice = $("#hprice").val()
+                var hprice_old = $("#hprice_old").val();
+                var hsquare = $("#hsquare").val();
+                var htype = $("#htype").val();
+                var hlabel = $("#hlabel").val();
+                var labels = hlabel.split(/[,_;；]/);
+                for(var i = 0 ; i<labels.length ; i++){
+                    if(labels[i] == ""){
+                        labels.splice(i,1);
+                        i = -1;
+                    }
+                }
+                console.log(labels);
+                var equips = []
+                $(".equip-checkbox").each(function(){
+                    if($(this).is(':checked')){
+                        equips.push($(this).val())
+                    }
+                })
+                var icons = []
+                $(".icon-checkbox").each(function(){
+                    if($(this).is(':checked')){
+                        icons.push($(this).val())
+                    }
+                })
+                console.log(equips);
+                console.log(icons);
+
             })
         })
     </script>
