@@ -21,7 +21,7 @@ import settings
  
 urlpatterns = [
     url(r'^$',view.index),
-    url(r'^add$', view.icons),
+    url(r'^add$', view.add),
     url(r'^equips$', view.equips),
     url(r'^icons$', view.icons),
 
