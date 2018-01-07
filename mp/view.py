@@ -38,6 +38,7 @@ def add(request):
     cursor.close()
     context['equips'] = eraw
     context['icons'] = iraw
+    context['test'] = 'hello'
 
     return render(request, 'add.html', context)
 
