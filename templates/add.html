@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>场地信息录入</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        html, body {
+          font: 10pt arial;
+        }
+    </style>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <!--script type="text/javascript" src="static/js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>
+    <link  href="static/dist/vis-network.min.css" rel="stylesheet" type="text/css" /-->
+    <link  href="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <link  href="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet">
+    <!--link  href="static/css/slider.css" rel="stylesheet">
+    <link  href="static/css/jquery.dataTables.min.css" rel="stylesheet"-->
+    <style>
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    场地信息录入
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地前缀</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="htitle1">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地名称</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="htitle2">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地地址概括（2到8个字）</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="htitle3">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地详细地址</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <textarea type='text' class='form-control' id='haddress'></textarea>
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地介绍</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <textarea type='text' class='form-control' id='hdetail'></textarea>
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地纬度(小数形式）</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="hlatitude">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地纬度(小数形式）</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="hlongitude">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地乐价</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="hprice">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地原价</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="hprice_old">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地面积</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="hsquare">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地类型</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="htype">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地标签（用;分割，合计不超过15个字）</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type='text' class='form-control' placeholder='' id="htype">
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地图片（多张）</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input  type="file" multiple/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地代表图片（一张）</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input  type="file"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地记忆（多张）</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input  type="file" multiple/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地设备</label>
+                            <div class="col-md-9">
+                                <div class="form-check">
+                                    <input type="checkbox" value="">
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Default radio
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" value="">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Second default radio
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2 control-label">场地类型</label>
+                            <div class="col-md-9">
+                                <div class="form-check">
+                                    <input type="checkbox" value="">
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Default radio
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" value="">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Second default radio
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        $(document).ready(function(){
+            $.get("https://mina.mapglory.com/equips",{},function(res){
+                console.log(res);
+            })
+            $.get("https://mina.mapglory.com/icons",{},function(res){
+                console.log(res);
+            })
+        })
+    </script>
+</body>
+
+
+
+</html>
