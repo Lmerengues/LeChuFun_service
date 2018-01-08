@@ -93,7 +93,7 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-md-2 control-label">场地纬度(小数形式）</label>
+                                <label class="col-md-2 control-label">场地经度(小数形式）</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
                                         <input type='text' class='form-control' id="hlongitude" name="hlongitude" placeholder="116.7435432">
@@ -227,7 +227,7 @@
                 var htitle1 = $("#htitle1").val();
                 var htitle2 = $("#htitle2").val();
                 var htitle3 = $("#htitle3").val();
-                var hdetail = $("#hdetail").text();
+                var hdetail = $("#hdetail").val();
                 var haddress = $("#haddress").val();
                 var hlongitude = $("#hlongitude").val();
                 var hlatitude = $("#hlatitude").val();
@@ -236,11 +236,25 @@
                 var hsquare = $("#hsquare").val();
                 var htype = $("#htype").val();
                 var hlabel = $("#hlabel").val();
-                if(!(htitle1&&htitle2&&htitle3&&hdetail&&haddress&&hlongitude&&hlatitude&&hprice&&hprice_old&hsquare&&htype&&hlabel)){
+
+                console.log(!isNaN(hlongitude))
+                console.log(htitle1);
+                console.log(htitle2);
+                console.log(htitle3);
+                console.log(hdetail);
+                console.log(haddress);
+                console.log(hlongitude);
+                console.log(hlatitude);
+                console.log(hprice);
+                console.log(hprice_old);
+                console.log(hsquare);
+                console.log(htype);
+                console.log(hlabel);
+                if(!(htitle1&&htitle2&&htitle3&&hdetail&&haddress&&hlongitude&&hlatitude&&hprice&&hprice_old&&hsquare&&htype&&hlabel)){
                     alert("遗漏了信息，请检查！");
                     return ;
                 }
-                if(!isNaN(hlongitude) || !isNaN(hlatitude) || !isNaN(hprice) || !isNaN(hprice_old) || !isNaN(hsquare) ){
+                if(isNaN(hlongitude) || isNaN(hlatitude) || isNaN(hprice) || isNaN(hprice_old) || isNaN(hsquare) ){
                     alert("请填入正确的数字");
                     return ;
                 }
