@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import detail,login,order,pay,index,contact,success,res,push,mail,view,qrcode
+from . import detail,login,order,pay,index,contact,success,res,push,mail,view,qrcode,ruc
 
 from django.contrib import admin
 import settings  
@@ -60,6 +60,8 @@ urlpatterns = [
     url(r'^res_index$', res.index),
 
     url(r'^getqrcode$', qrcode.index),
+
+    url(r'^ruc$', ruc.home),
 
     # url(r'^hello$', pay.test),
 
