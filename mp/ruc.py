@@ -55,11 +55,11 @@ def lookupPE_height(sno, mode):
         return HttpResponse(wechat.response_news([{'title': "无可奉告", 'description': '告辞'}]))
     if mode == 1:
         pecursor.execute(
-            "select * from pe_grade,pe_student where pe_grade.sno = pe_student.sno and pe_grade.sno  = %s and tno = 4",
+            "select * from pe_grade,student where pe_grade.sno = student.sno and pe_grade.sno  = %s and tno = 4",
             [sno])
     else:
         pecursor.execute(
-            "select * from pe_grade,pe_student where pe_grade.sno = pe_student.sno and pe_student.sname  = %s and tno = 4",
+            "select * from pe_grade,student where pe_grade.sno = student.sno and pe_student.sname  = %s and tno = 4",
             [sno])
     raw = pecursor.fetchall()
     if (len(raw) == 1):
@@ -79,11 +79,11 @@ def lookupPE_weight(sno, mode):
         return HttpResponse(wechat.response_news([{'title': "无可奉告", 'description': '告辞'}]))
     if mode == 1:
         pecursor.execute(
-            "select * from pe_grade,pe_student where pe_grade.sno = pe_student.sno and pe_grade.sno  = %s and tno = 5",
+            "select * from pe_grade,student where pe_grade.sno = student.sno and pe_grade.sno  = %s and tno = 5",
             [sno])
     else:
         pecursor.execute(
-            "select * from pe_grade,pe_student where pe_grade.sno = pe_student.sno and pe_student.sname  = %s and tno = 5",
+            "select * from pe_grade,student where pe_grade.sno = student.sno and student.sname  = %s and tno = 5",
             [sno])
     raw = pecursor.fetchall()
     if (len(raw) == 1):
@@ -103,7 +103,7 @@ def lookupPE_pe(sno, mode):
         return HttpResponse(wechat.response_news([{'title': "无可奉告", 'description': '告辞'}]))
     if mode == 1:
         pecursor.execute(
-            "select pe_grade.sno,pe_grade.sgrade,sscore,srate,pe_type.tno,tname,tdimen,sname from pe_grade,pe_student,pe_type where pe_grade.sno = pe_student.sno and pe_grade.sno  = %s and pe_grade.tno = pe_type.tno",
+            "select pe_grade.sno,pe_grade.sgrade,sscore,srate,pe_type.tno,tname,tdimen,sname from pe_grade,student,pe_type where pe_grade.sno = student.sno and pe_grade.sno  = %s and pe_grade.tno = pe_type.tno",
             [sno])
     else:
 
@@ -112,7 +112,7 @@ def lookupPE_pe(sno, mode):
         if (len(praw) > 1):
             return HttpResponse(wechat.response_text("重名了！"))
         pecursor.execute(
-            "select pe_grade.sno,pe_grade.sgrade,sscore,srate,pe_type.tno,tname,tdimen,sname from pe_grade,pe_student,pe_type where pe_grade.sno = pe_student.sno and pe_student.sname  = %s and pe_grade.tno = pe_type.tno",
+            "select pe_grade.sno,pe_grade.sgrade,sscore,srate,pe_type.tno,tname,tdimen,sname from pe_grade,student,pe_type where pe_grade.sno = student.sno and student.sname  = %s and pe_grade.tno = pe_type.tno",
             [sno])
     raw = pecursor.fetchall()
     if (len(raw) > 0):
