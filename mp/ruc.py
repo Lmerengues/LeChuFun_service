@@ -59,7 +59,7 @@ def lookupPE_height(sno, mode):
             [sno])
     else:
         pecursor.execute(
-            "select * from pe_grade,student where pe_grade.sno = student.sno and pe_student.sname  = %s and tno = 4",
+            "select * from pe_grade,student where pe_grade.sno = student.sno and student.sname  = %s and tno = 4",
             [sno])
     raw = pecursor.fetchall()
     if (len(raw) == 1):
@@ -107,7 +107,7 @@ def lookupPE_pe(sno, mode):
             [sno])
     else:
 
-        pecursor.execute("select * from pe_student where sname = %s", [sno])
+        pecursor.execute("select * from student where sname = %s", [sno])
         praw = pecursor.fetchall()
         if (len(praw) > 1):
             return HttpResponse(wechat.response_text("重名了！"))
