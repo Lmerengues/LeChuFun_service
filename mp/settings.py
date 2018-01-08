@@ -88,6 +88,14 @@ DATABASES = {
         'PASSWORD': '233180txy',
         'HOST':'localhost',
         'PORT':'3306',
+    },
+    'rucpe':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ruc',
+        'USER': 'root',
+        'PASSWORD': '233180txy',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 

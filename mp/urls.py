@@ -61,7 +61,7 @@ urlpatterns = [
 
     url(r'^getqrcode$', qrcode.index),
 
-    url(r'^ruc$', ruc.home),
+    url(r'^ruc$', push.index),
 
     # url(r'^hello$', pay.test),
 
