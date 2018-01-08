@@ -65,9 +65,9 @@ def icons(request):
 def addHouseHandle(request):
 
     rb = request.body
-    cursor = connections['default'].cursor()
-    cursor.execute("insert into logs values(null,%s,sysdate())", (rb,))
-    cursor.close()
+    #cursor = connections['default'].cursor()
+    #cursor.execute("insert into logs values(null,%s,sysdate())", (rb,))
+    #cursor.close()
 
     
     raw = {'status':1}
