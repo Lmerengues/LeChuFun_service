@@ -18,7 +18,7 @@ def f2(a,b):
         return 1
     else:
         return -1
-
+'''
 def index(request):
 
     signature = request.GET["signature"]
@@ -37,6 +37,7 @@ def index(request):
         return HttpResponse('?', content_type="application/json")
 
 '''
+
 def index(request):
 
     tcursor = connections['default'].cursor()
@@ -44,6 +45,6 @@ def index(request):
     tcursor.close()
     return HttpResponse('success', content_type="application/json")
 
-'''
+
 
 

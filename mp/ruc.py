@@ -6,7 +6,7 @@ from wechat_sdk import WechatBasic
 
 from django.db import connections
 
-token = 'lmerengues'
+token = 'lechufun2017'
 
 cursor = connections['default'].cursor()
 
