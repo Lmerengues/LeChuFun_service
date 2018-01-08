@@ -23,6 +23,7 @@ from django.core.mail import EmailMultiAlternatives
 
 
 def index(request):
+    hno = request.GET['hno']
     url = "https://api.weixin.qq.com/cgi-bin/token"
     querystring = {"grant_type": "client_credential", "appid": "wx08912a543bda29bc",
                    "secret": "0b0d2c8666c0504d696c5cddd342ba17"}
@@ -32,7 +33,7 @@ def index(request):
 
     url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token="+access_token
 
-    tmpdata={"scene":'5',"page":"pages/detail/detail"}
+    tmpdata={"scene":hno,"page":"pages/detail/detail"}
     req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
     result = urllib2.urlopen(req, timeout=30).read()
 
