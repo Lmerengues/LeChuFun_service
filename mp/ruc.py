@@ -90,7 +90,8 @@ def lookupPE_weight(sno, mode):
     if (len(raw) == 1):
         resultstr = '体重:' + str(raw[0][1]) + "kg"
         sname = raw[0][6]
-        return HttpResponse(wechat.response_news([{'title': sname + "的体重", 'description': resultstr}]))
+        #return HttpResponse(wechat.response_news([{'title': sname + "的体重", 'description': resultstr}]))
+        return HttpResponse(wechat.response_text(sname + "的体重" + "\n-----------------\n" + resultstr))
     elif len(raw) > 1 and mode != 1:
         return HttpResponse(wechat.response_text("重名了！"))
     else:
@@ -125,7 +126,8 @@ def lookupPE_pe(sno, mode):
             # return HttpResponse(wechat.response_news([{'title':sname+"的体重",'description':resultstr}]))
             resultstr += '项目:' + hitem[5] + "\n成绩:" + str(hitem[1]) + hitem[6] + "\n分数:" + str(hitem[2]) + "\n等级:" + \
                          hitem[3] + "\n------------------------------\n"
-        return HttpResponse(wechat.response_news([{'title': raw[0][7] + "的体测成绩", 'description': resultstr}]))
+        #return HttpResponse(wechat.response_news([{'title': raw[0][7] + "的体测成绩", 'description': resultstr}]))
+        return HttpResponse(wechat.response_text(raw[0][7] + "的体测成绩" + "\n-----------------\n" + resultstr))
     else:
         resultstr = '太笨了没查到哎'
         return HttpResponse(wechat.response_text(resultstr))
