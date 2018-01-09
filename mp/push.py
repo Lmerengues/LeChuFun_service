@@ -18,6 +18,7 @@ def f2(a,b):
         return 1
     else:
         return -1
+
 '''
 def index(request):
 

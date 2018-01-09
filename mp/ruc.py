@@ -65,7 +65,8 @@ def lookupPE_height(sno, mode):
     if (len(raw) == 1):
         resultstr = '身高:' + str(raw[0][1]) + "cm"
         sname = raw[0][6]
-        return HttpResponse(wechat.response_news([{'title': sname + "的身高", 'description': resultstr}]))
+        #return HttpResponse(wechat.response_news([{'title': sname + "的身高", 'description': resultstr}]))
+        return HttpResponse(wechat.response_text(sname + "的身高"+"\n-----------------\n"+resultstr))
     elif len(raw) > 1 and mode != 1:
         return HttpResponse(wechat.response_text("重名了！"))
     else:
