@@ -28,6 +28,17 @@ def index(request):
     raw['hot_acti'] = dictfetchall(cursor)
     cursor.close()
 
+    cursor = connections['klook'].cursor()
+    cursor.execute(
+        "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,aurl from activities,activity_rank_theme where activities.ano = activity_rank_theme.ano order by aval desc")
+    raw['theme_acti'] = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute(
+        "select activity_rank_recommend.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,aurl from activities,activity_rank_recommend where activities.ano = activity_rank_recommend.ano order by aval desc")
+    raw['rec_acti'] = dictfetchall(cursor)
+    cursor.close()
 
 
 
