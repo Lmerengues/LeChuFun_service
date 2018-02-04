@@ -96,6 +96,14 @@ DATABASES = {
         'PASSWORD': '233180txy',
         'HOST':'127.0.0.1',
         'PORT':'3306',
+    },
+    'klook':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'klook',
+        'USER': 'root',
+        'PASSWORD': '233180txy',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 
