@@ -3,6 +3,10 @@ from django.http import HttpResponse
 import json
 from django.db import connections
 
+from datetime import date, datetime,time
+
+import math
+
 def dictfetchall(cursor):
 	desc = cursor.description
 	return [
@@ -10,6 +14,12 @@ def dictfetchall(cursor):
     	for row in cursor.fetchall()
     	]
 
+def json_serial(obj):
+    """JSON serializer for objects not serializable by default json code"""
+
+    if isinstance(obj, (datetime, date,date)):
+        return obj.isoformat()
+    raise TypeError ("Type %s not serializable" % type(obj))
 
 def index(request):
     ano = request.GET['ano']
@@ -20,6 +30,9 @@ def index(request):
     cursor.execute("select * from activities where ano = %s",(ano,))
     raw['act'] = dictfetchall(cursor)
     cursor.close()
+
+    for item in raw['act']:
+        item['adate'] = json_serial(item['adate'])
 
     cursor = connections['klook'].cursor()
     cursor.execute("select * from activity_rule where ano = %s", (ano,))
