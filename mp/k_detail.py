@@ -95,6 +95,13 @@ def index(request):
     raw['comment']['cdate'] = json_serial(raw['comment']['cdate'])
     cursor.close()
 
+    cursor = connections['klook'].cursor()
+    cursor.execute("select count(*) as cou from activity_comment where ano = %s",(ano,))
+    raw['comment_num'] = dictfetchall(cursor)[0]
+    cursor.close()
+
+
+
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
