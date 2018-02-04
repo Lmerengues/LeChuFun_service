@@ -106,3 +106,19 @@ def index(request):
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
+def comment(request):
+    ano = request.GET['ano']
+
+    raw = {}
+    cursor = connections['klook'].cursor()
+    cursor.execute("select uno,cdetail,cscore,cdate,unickName,uavatarurl from activity_comment,Users where activity_comment.uno = Users.uid and ano = %s order by cdate desc",(ano,))
+
+    raw['comment'] = dictfetchall(cursor)
+
+    for comment in raw['comment']:
+        comment['cdate'] = json_serial(comment['cdate'])
+
+    cursor.close()
+
+    response = HttpResponse(json.dumps(raw), content_type="application/json")
+    return response
