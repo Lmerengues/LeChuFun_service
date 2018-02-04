@@ -29,6 +29,7 @@ def index(request):
     cursor = connections['klook'].cursor()
     cursor.execute("select * from activities where ano = %s",(ano,))
     raw['act'] = dictfetchall(cursor)[0]
+    raw['act']['ascore'] = (int(raw['act']['ascore'])+0.0)/10
     cursor.close()
 
     raw['act']['adate'] = json_serial(raw['act']['adate'])
