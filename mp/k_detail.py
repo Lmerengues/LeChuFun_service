@@ -31,8 +31,7 @@ def index(request):
     raw['act'] = dictfetchall(cursor)[0]
     cursor.close()
 
-    for item in raw['act']:
-        item['adate'] = json_serial(item['adate'])
+    raw['act']['adate'] = json_serial(raw['act']['adate'])
 
     cursor = connections['klook'].cursor()
     cursor.execute("select * from activity_rule where ano = %s", (ano,))
