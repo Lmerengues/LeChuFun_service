@@ -30,19 +30,19 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select activity_rank_hot.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl from activities,activity_rank_hot where activities.ano = activity_rank_hot.ano order by aval desc")
+        "select activity_rank_hot.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_hot,place where activities.ano = activity_rank_hot.ano and activities.pno = place.pno order by aval desc")
     raw['hot_acti'] = dictfetchall(cursor)
     cursor.close()
 
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl from activities,activity_rank_theme where activities.ano = activity_rank_theme.ano order by aval desc")
+        "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_theme,place where activities.ano = activity_rank_theme.ano and activities.pno = place.pnoorder by aval desc")
     raw['theme_acti'] = dictfetchall(cursor)
     cursor.close()
 
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select activity_rank_recommend.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl from activities,activity_rank_recommend where activities.ano = activity_rank_recommend.ano order by aval desc")
+        "select activity_rank_recommend.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_recommend,place where activities.ano = activity_rank_recommend.ano and activities.pno = place.pno order by aval desc")
     raw['rec_acti'] = dictfetchall(cursor)
     cursor.close()
 
