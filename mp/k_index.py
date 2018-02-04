@@ -17,7 +17,7 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select pno,ptitle,purl from place,place_hot where place.pno = place_hot.pno order by pval desc")
+        "select place_hot.pno,ptitle,purl from place,place_hot where place.pno = place_hot.pno order by pval desc")
     raw = dictfetchall(cursor)
     cursor.close()
 
