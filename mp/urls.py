@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import detail,login,order,pay,index,contact,success,res,push,mail,view,qrcode,ruc,k_index
+from . import detail,login,order,pay,index,contact,success,res,push,mail,view,qrcode,ruc,k_index,k_detail
 
 from django.contrib import admin
 import settings  
@@ -65,7 +65,8 @@ urlpatterns = [
 
     # here comes klook!
 
-    url(r'^kindex$', k_index.index)
+    url(r'^kindex$', k_index.index),
+    url(r'^kdetail$', k_detail.index)
 
     # url(r'^hello$', pay.test),
 

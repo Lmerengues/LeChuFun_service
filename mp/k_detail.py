@@ -13,7 +13,7 @@ def dictfetchall(cursor):
 
 def index(request):
     ano = request.GET['ano']
-    
+
     raw  = {}
 
     cursor = connections['klook'].cursor()
