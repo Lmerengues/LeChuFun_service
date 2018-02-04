@@ -90,7 +90,7 @@ def index(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select uno,cdetail,cscore,cdate,unickName,uavatarurl from activity_comment,Users where activity_comment.uno = Users.uno and ano = %s order by cdate desc limit 1", (ano,))
+    cursor.execute("select uno,cdetail,cscore,cdate,unickName,uavatarurl from activity_comment,Users where activity_comment.uno = Users.uid and ano = %s order by cdate desc limit 1", (ano,))
     raw['comment'] = dictfetchall(cursor)[0]
     cursor.close()
 
