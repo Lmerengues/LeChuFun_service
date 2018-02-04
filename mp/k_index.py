@@ -36,7 +36,7 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_theme,place where activities.ano = activity_rank_theme.ano and activities.pno = place.pnoorder by aval desc")
+        "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_theme,place where activities.ano = activity_rank_theme.ano and activities.pno = place.pno order by aval desc")
     raw['theme_acti'] = dictfetchall(cursor)
     cursor.close()
 
