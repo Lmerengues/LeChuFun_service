@@ -55,13 +55,23 @@ def index(request):
         cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select * from activity_order_know where ano = %s", (ano,))
-    raw['act_order'] = dictfetchall(cursor)
+    cursor.execute("select * from activity_order_know where ano = %s and ktype = 1", (ano,))
+    raw['act_order_1'] = dictfetchall(cursor)
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select * from activity_use_know where ano = %s", (ano,))
-    raw['act_use'] = dictfetchall(cursor)
+    cursor.execute("select * from activity_order_know where ano = %s and ktype = 2", (ano,))
+    raw['act_order_2'] = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select * from activity_use_know where ano = %s and ktype = 1", (ano,))
+    raw['act_use_1'] = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select * from activity_use_know where ano = %s and ktype = 2", (ano,))
+    raw['act_use_2'] = dictfetchall(cursor)
     cursor.close()
 
     cursor = connections['klook'].cursor()
