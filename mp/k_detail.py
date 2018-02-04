@@ -36,7 +36,7 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute("select * from activity_rule where ano = %s", (ano,))
-    raw['act_rule'] = dictfetchall(cursor)
+    raw['act_rule'] = dictfetchall(cursor)[0]
     cursor.close()
 
     cursor = connections['klook'].cursor()
