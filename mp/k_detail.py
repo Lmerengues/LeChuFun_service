@@ -65,6 +65,11 @@ def index(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
+    cursor.execute("select * from activity_use_know where ano = %s and ktype = 0", (ano,))
+    raw['act_use_0'] = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
     cursor.execute("select * from activity_use_know where ano = %s and ktype = 1", (ano,))
     raw['act_use_1'] = dictfetchall(cursor)
     cursor.close()
