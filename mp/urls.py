@@ -66,7 +66,9 @@ urlpatterns = [
     # here comes klook!
 
     url(r'^kindex$', k_index.index),
-    url(r'^kdetail$', k_detail.index)
+    url(r'^kdetail$', k_detail.index),
+    url(r'^kcomment$', k_detail.comment)
+
 
     # url(r'^hello$', pay.test),
 
