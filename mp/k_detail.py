@@ -84,6 +84,16 @@ def index(request):
     raw['act_ref'] = dictfetchall(cursor)
     cursor.close()
 
+    cursor = connections['klook'].cursor()
+    cursor.execute("select * from activity_use_know where ano = %s and ktype = 0", (ano,))
+    raw['act_use_0'] = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select uno,cdetail,cscore,cdate,unickName,uavatarurl from activity_comment,Users where activity_comment.uno = Users.uno and ano = %s order by cdate desc limit 1", (ano,))
+    raw['comment'] = dictfetchall(cursor)[0]
+    cursor.close()
+
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
