@@ -3,6 +3,8 @@ from django.http import HttpResponse
 import json
 from django.db import connections
 
+from datetime import date, datetime,time
+
 import math
 
 def dictfetchall(cursor):
@@ -12,6 +14,12 @@ def dictfetchall(cursor):
     	for row in cursor.fetchall()
     	]
 
+def json_serial(obj):
+    """JSON serializer for objects not serializable by default json code"""
+
+    if isinstance(obj, (datetime, date,date)):
+        return obj.isoformat()
+    raise TypeError ("Type %s not serializable" % type(obj))
 
 def index(request):
 
@@ -34,11 +42,17 @@ def index(request):
     raw['hot_acti'] = dictfetchall(cursor)
     cursor.close()
 
+    for item in raw['hot_acti']:
+        item['adate'] = json_serial(item['adate'])
+
     cursor = connections['klook'].cursor()
     cursor.execute(
         "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_theme,place where activities.ano = activity_rank_theme.ano and activities.pno = place.pno order by aval desc")
     raw['theme_acti'] = dictfetchall(cursor)
     cursor.close()
+
+    for item in raw['theme_acti']:
+        item['adate'] = json_serial(item['adate'])
 
     cursor = connections['klook'].cursor()
     cursor.execute(
@@ -47,7 +61,8 @@ def index(request):
     cursor.close()
 
 
-
+    for item in raw['rec_acti']:
+        item['adate'] = json_serial(item['adate'])
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
