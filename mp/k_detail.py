@@ -34,7 +34,7 @@ def index(request):
     raw['act']['adate'] = json_serial(raw['act']['adate'])
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select * from activity_rule where ano = %s", (ano,))
+    cursor.execute("select rno,rdetail,activity_rule.rno,iurl from activity_rule,icon where activity_rule.ino = icon.ino and ano = %s", (ano,))
     raw['act_rule'] = dictfetchall(cursor)
     cursor.close()
 
