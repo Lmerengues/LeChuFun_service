@@ -18,6 +18,12 @@ def index(request):
     raw = {}
     cursor = connections['klook'].cursor()
     cursor.execute(
+        "select * from base")
+    raw['base'] = dictfetchall(cursor)[0]
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute(
         "select place_hot.pno,ptitle,purl from place,place_hot where place.pno = place_hot.pno order by pval desc")
     raw['hot_place'] = dictfetchall(cursor)
     cursor.close()
