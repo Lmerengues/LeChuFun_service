@@ -21,7 +21,7 @@ def json_serial(obj):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
-def hotlist(request):
+def index(request):
 
     raw = {}
 
@@ -29,6 +29,11 @@ def hotlist(request):
     cursor.execute(
         "select place_hot.pno,ptitle,purl from place,place_hot where place.pno = place_hot.pno order by pval desc")
     raw['hot_place'] = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select ptitle as cityName,cityPinYin,cityPY from place order by cityPY")
+    raw['citys'] = dictfetchall(cursor)
     cursor.close()
 
     response=HttpResponse(json.dumps(raw), content_type="application/json")

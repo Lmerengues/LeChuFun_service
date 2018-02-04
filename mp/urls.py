@@ -68,7 +68,7 @@ urlpatterns = [
     url(r'^kindex$', k_index.index),
     url(r'^kdetail$', k_detail.index),
     url(r'^kcomment$', k_detail.comment),
-    url(r'^khot_place$', k_place.hotlist)
+    url(r'^kplace$', k_place.index)
 
 
     # url(r'^hello$', pay.test),
