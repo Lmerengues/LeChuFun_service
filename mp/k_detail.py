@@ -44,9 +44,15 @@ def index(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select activity_package.pno,ptitle,pprice,pprice_old,rdetail from activity_package,activity_package_rule where activity_package.pno = activity_package_rule.pno and ano = %s", (ano,))
+    cursor.execute("select pno,ptitle,pprice,pprice_old from activity_package where ano = %s", (ano,))
     raw['act_package'] = dictfetchall(cursor)
     cursor.close()
+
+    for package in raw['act_package']:
+        cursor = connections['klook'].cursor()
+        cursor.execute("select rdetail from activity_package_rule where pno = %s",(package['pno'],))
+        package['rule'] = dictfetchall(cursor)
+        cursor.close()
 
     cursor = connections['klook'].cursor()
     cursor.execute("select * from activity_order_know where ano = %s", (ano,))
