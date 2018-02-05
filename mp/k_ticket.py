@@ -31,5 +31,10 @@ def index(request):
     raw['ticket'] = dictfetchall(cursor)
     cursor.close()
 
+    cursor = connections['klook'].cursor()
+    cursor.execute("select * from activity_package where pno = %s", (pno,))
+    raw['package'] = dictfetchall(cursor)[0]
+    cursor.close()
+
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
