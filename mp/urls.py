@@ -14,7 +14,8 @@ Including another URLconf
 """
 from django.conf.urls import url
  
-from . import detail,login,order,pay,index,contact,success,res,push,mail,view,qrcode,ruc,k_index,k_detail,k_place,k_order
+from . import detail,login,order,pay,index,contact,success,res,push,mail,view,\
+    qrcode,ruc,k_index,k_detail,k_place,k_order,k_ticket
 
 from django.contrib import admin
 import settings  
@@ -69,7 +70,8 @@ urlpatterns = [
     url(r'^kdetail$', k_detail.index),
     url(r'^kcomment$', k_detail.comment),
     url(r'^kplace$', k_place.index),
-    url(r'^korder$', k_order.index)
+    url(r'^korder$', k_order.index),
+    url(r'^kticket$', k_ticket.index)
 
 
     # url(r'^hello$', pay.test),
