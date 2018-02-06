@@ -47,7 +47,7 @@ def create(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute("select max(tid) as mtid from order_tickets where 1")
-    raw['maxtid'] = int(dictfetchall(cursor)[0]['mtid'])
+    raw['maxtid'] = int(dictfetchall(cursor)[0]['mtid']) + 1
     cursor.close()
 
     #response = HttpResponse(json.dumps(numofticket), content_type="application/json")
@@ -61,6 +61,7 @@ def create(request):
         cursor = connections['klook'].cursor()
         cursor.execute("insert into order_tickets values(null,%s,%s,%s)", (mytid,key,numofticket[key],))
         cursor.close()
+
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
