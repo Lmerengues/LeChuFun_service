@@ -137,7 +137,7 @@ def index(request):
     result = urllib2.urlopen(req, timeout=30).read()
     prepay_id = xml_to_dict(result).get('prepay_id')
     paySign_data = {
-        'appId': 'wx08912a543bda29bc',
+        'appId': 'wx249ce8c7c0899bfc',
         'timeStamp': my_out_trade_no,
         'nonceStr': now,
         'package': 'prepay_id={0}'.format(prepay_id),
