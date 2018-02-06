@@ -36,6 +36,11 @@ def login(res):
 
     userdata = json.loads(response.text)
     cursor = connections['klook'].cursor()
+
+    resp = HttpResponse(json.dumps(userdata), content_type="application/json")
+
+    return resp
+
     cursor.execute("select * from Users where uid = %s", (userdata['openid'],))
 
     flag = 1
