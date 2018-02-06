@@ -19,7 +19,7 @@ def index(request):
 
     openid = request.GET['openid']
     cursor = connections['default'].cursor()
-    cursor.execute("select uname,uphone,uwechat from contact where uno = %s order by utime desc", (openid,))
+    cursor.execute("select uname,uphone,uwechat,email from contact where uno = %s order by utime desc", (openid,))
     contact_dis = dictfetchall(cursor)
     cursor.close()
 
