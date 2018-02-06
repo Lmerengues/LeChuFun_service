@@ -51,18 +51,18 @@ def submit(request):
     #if code == "undefined":
     #    code = ""
 
-    cursor = connections['default'].cursor()
+    cursor = connections['klook'].cursor()
     cursor.execute("select cno from contact where uno = %s and uname = %s "
                    "and uemail= %s and uphone = %s " ,(openid,name,email,phone,))
     contact_raw = dictfetchall(cursor)
 
     cursor.close()
     if len(contact_raw) == 0:
-        cursor = connections['default'].cursor()
+        cursor = connections['klook'].cursor()
         cursor.execute("insert into contact values(null,%s,%s,%s,%s,sysdate())",
                        (openid,name,phone,email,))
         cursor.close()
-        cursor = connections['default'].cursor()
+        cursor = connections['klook'].cursor()
         cursor.execute("select cno from contact where uno = %s and uname = %s "
                        "and uemail= %s and uphone = %s ", (openid, name, email, phone,))
         cno_raw = dictfetchall(cursor)
