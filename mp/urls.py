@@ -75,7 +75,7 @@ urlpatterns = [
     url(r'^kcreate_ticket$', k_ticket.create),
     url(r'^kcontact$', k_contact.index),
     url(r'^kcontact_submit$', k_contact.submit),
-    url(r'^klogin', k_login.login),
+    url(r'^klogin$', k_login.login),
     url(r'^kpay$', k_pay.index),
     url(r'^kpay_notify$', k_pay.notify),
     # url(r'^hello$', pay.test),
