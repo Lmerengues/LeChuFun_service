@@ -164,6 +164,7 @@ def index(request):
     if len(jcursor.fetchall()) >= 1:
         paySign_data['my_status'] = 1
         paySign_data['order_id'] = my_out_trade_no
+        paySign_data['prepay_id'] = prepay_id
 
     resp = HttpResponse(json.dumps(paySign_data), content_type="application/json")
     return resp
