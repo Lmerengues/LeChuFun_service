@@ -53,15 +53,15 @@ def login(res):
         userdata['openid'], rawdata['nickName'], rawdata['gender'], rawdata['language'], rawdata['city'],
         rawdata['province'], rawdata['country'], rawdata['avatarUrl'],))
 
-        resp = HttpResponse(json.dumps(userdata), content_type="application/json")
-
-        return resp
         icursor.close()
 
     cursor.close()
 
     loginret = {}
     loginret['openid'] = userdata['openid']
+    resp = HttpResponse(json.dumps(userdata), content_type="application/json")
+
+    return resp
     resp = HttpResponse(json.dumps(loginret), content_type="application/json")
 
     return resp
