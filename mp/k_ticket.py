@@ -55,8 +55,7 @@ def create(request):
 
     mytid =  raw['maxtid']+1
     for key in numofticket:
-        continue
-        response = HttpResponse(numofticket['1'], content_type="application/json")
+        response = HttpResponse(numofticket, content_type="application/json")
         return response
         ikey = int(float(key))
         cursor = connections['klook'].cursor()
