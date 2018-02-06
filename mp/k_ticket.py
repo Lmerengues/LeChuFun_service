@@ -43,7 +43,7 @@ def index(request):
 def create(request):
 
     raw  = {}
-    numofticket = eval(request.GET['numoftickets'])
+    numofticket = request.GET['numoftickets']
 
     cursor = connections['klook'].cursor()
     cursor.execute("select max(tid) as mtid from order_tickets where 1")
@@ -55,7 +55,7 @@ def create(request):
 
     mytid =  raw['maxtid']+1
     for key in numofticket:
-        response = HttpResponse(type(numofticket), content_type="application/json")
+        response = HttpResponse(numofticket, content_type="application/json")
         return response
         ikey = int(float(key))
         cursor = connections['klook'].cursor()
