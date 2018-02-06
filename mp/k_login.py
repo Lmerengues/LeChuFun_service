@@ -52,13 +52,13 @@ def login(res):
         icursor.execute("insert into Users values(%s,%s,%s,%s,%s,%s,%s,%s,sysdate())", (
         userdata['openid'], rawdata['nickName'], rawdata['gender'], rawdata['language'], rawdata['city'],
         rawdata['province'], rawdata['country'], rawdata['avatarUrl'],))
+        resp = HttpResponse(json.dumps(userdata), content_type="application/json")
 
+        return resp
         icursor.close()
 
     cursor.close()
-    resp = HttpResponse(json.dumps(userdata), content_type="application/json")
 
-    return resp
     loginret = {}
     loginret['openid'] = userdata['openid']
 
