@@ -50,13 +50,13 @@ def create(request):
     raw['maxtid'] = int(dictfetchall(cursor)[0]['mtid'])
     cursor.close()
 
-    response = HttpResponse(json.dumps(numofticket), content_type="application/json")
-    return response
+    #response = HttpResponse(json.dumps(numofticket), content_type="application/json")
+    #return response
 
     mytid =  raw['maxtid']+1
     for key in numofticket:
         cursor = connections['klook'].cursor()
-        cursor.execute("insert into order_tickets values(null,%s,%s,%s)", (mytid,key,numofticket[key],))
+        cursor.execute("insert into order_tickets values(null,%s,%s,%s)", (mytid,int(key),numofticket[key],))
         cursor.close()
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
