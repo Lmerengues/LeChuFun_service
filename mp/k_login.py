@@ -35,13 +35,13 @@ def login(res):
     response = requests.request("GET", url, headers=headers, params=querystring)
 
     userdata = json.loads(response.text)
-    cursor = connections['default'].cursor()
+    cursor = connections['klook'].cursor()
     cursor.execute("select * from Users where uid = %s", (userdata['openid'],))
 
     flag = 1
     if (len(cursor.fetchall()) == 0):
         rawdata = json.loads(res.GET['rawData'])
-        icursor = connections['default'].cursor()
+        icursor = connections['klook'].cursor()
         icursor.execute("insert into Users values(%s,%s,%s,%s,%s,%s,%s,%s,sysdate())", (
         userdata['openid'], rawdata['nickName'], rawdata['gender'], rawdata['language'], rawdata['city'],
         rawdata['province'], rawdata['country'], rawdata['avatarUrl'],))
