@@ -46,7 +46,7 @@ def index(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select atitle1 from activities where ano = %s", (contact_dis['package']['ano'],))
+    cursor.execute("select atitle1 from activities where ano = %s", (dict['package']['ano'],))
     dict['atitle'] = dictfetchall(cursor)[0]['atitle1']
     cursor.close()
 
