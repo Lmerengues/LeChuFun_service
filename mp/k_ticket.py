@@ -38,3 +38,25 @@ def index(request):
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
+
+
+def create(request):
+
+    raw  = {}
+    numofticket = request.GET['numoftickets']
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select max(tid) from order_tickets where 1")
+    raw['maxtid'] = int(dictfetchall(cursor)[0])
+    cursor.close()
+
+
+    mytid =  raw['maxtid']+1
+    for (key,val) in numofticket:
+        cursor = connections['klook'].cursor()
+        cursor.execute("insert into order_tickets values(%s,%s,%s)", (mytid,key,val,))
+        cursor.close()
+        
+    response = HttpResponse(json.dumps(raw), content_type="application/json")
+    return response
+

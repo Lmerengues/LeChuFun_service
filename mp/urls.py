@@ -71,7 +71,8 @@ urlpatterns = [
     url(r'^kcomment$', k_detail.comment),
     url(r'^kplace$', k_place.index),
     url(r'^korder$', k_order.index),
-    url(r'^kticket$', k_ticket.index)
+    url(r'^kticket$', k_ticket.index),
+    url(r'^kcreate_ticket$', k_ticket.create)
 
 
     # url(r'^hello$', pay.test),
