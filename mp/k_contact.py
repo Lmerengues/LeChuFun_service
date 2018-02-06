@@ -17,7 +17,25 @@ def dictfetchall(cursor):
 
 def index(request):
 
+    contact_dis = {}
+
+
     openid = request.GET['openid']
+    cursor = connections['klook'].cursor()
+    cursor.execute("select * from activity_package where pno = %s", (request.GET['pno'],))
+    contact_dis['package'] = dictfetchall(cursor)[0]
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select ptitle1 from activities where ano = %s", (contact_dis['package']['ano'],))
+    contact_dis['ptitle1'] = dictfetchall(cursor)[0]['ptitle1']
+    cursor.close()
+
+
+
+
+
+
     cursor = connections['klook'].cursor()
     cursor.execute("select uname,uphone,uemail from contact where uno = %s order by utime desc", (openid,))
     contact_dis = dictfetchall(cursor)
