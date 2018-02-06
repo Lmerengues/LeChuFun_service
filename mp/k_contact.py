@@ -21,15 +21,8 @@ def index(request):
 
 
     openid = request.GET['openid']
-    cursor = connections['klook'].cursor()
-    cursor.execute("select * from activity_package where pno = %s", (request.GET['pno'],))
-    contact_dis['package'] = dictfetchall(cursor)[0]
-    cursor.close()
 
-    cursor = connections['klook'].cursor()
-    cursor.execute("select atitle1 from activities where ano = %s", (contact_dis['package']['ano'],))
-    contact_dis['atitle'] = dictfetchall(cursor)[0]['atitle1']
-    cursor.close()
+
 
 
 
@@ -46,6 +39,16 @@ def index(request):
         hiscontact = contact_dis[0]
 
     dict = hiscontact
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select * from activity_package where pno = %s", (request.GET['pno'],))
+    dict['package'] = dictfetchall(cursor)[0]
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select atitle1 from activities where ano = %s", (contact_dis['package']['ano'],))
+    dict['atitle'] = dictfetchall(cursor)[0]['atitle1']
+    cursor.close()
 
     response = HttpResponse(json.dumps(dict),content_type="application/json")
     return response
