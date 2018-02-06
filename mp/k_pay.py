@@ -217,7 +217,7 @@ def notify(request):
 
         jucursor = connections['klook'].cursor()
         jucursor.execute(
-            "select oid,uno,ototal,otime,prepay_id,atitle1 from orders,activity_package,activities where oid = %s and activity_package.pno = orders.ano and activity_package.ano = activity.ano ",
+            "select oid,uno,ototal,otime,prepay_id,atitle1 from orders,activity_package,activities where oid = %s and activity_package.pno = orders.ano and activity_package.ano = activities.ano ",
             (dict_data['out_trade_no'],))
         raw = dictfetchall(jucursor)
 
