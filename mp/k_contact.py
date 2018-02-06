@@ -55,8 +55,8 @@ def submit(request):
     cursor.execute("select cno from contact where uno = %s and uname = %s and uemail= %s and uphone = %s " ,(openid,name,email,phone,))
     contact_raw = dictfetchall(cursor)
 
-    response = HttpResponse(json.dumps(contact_raw), content_type="application/json")
-    return response
+    #response = HttpResponse(json.dumps(contact_raw), content_type="application/json")
+    #return response
 
 
     cursor.close()
