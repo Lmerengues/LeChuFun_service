@@ -47,7 +47,7 @@ def create(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute("select max(tid) as mtid from order_tickets where 1")
-    raw['maxtid'] = int(dictfetchall(cursor)[0][''])
+    raw['maxtid'] = int(dictfetchall(cursor)[0]['mtid'])
     cursor.close()
 
 
