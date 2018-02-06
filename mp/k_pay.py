@@ -154,7 +154,7 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute("insert into orders values(null,%s,%s,%s,%s,%s,%s,sysdate(),%s,%s,%s,0)",
-                   (my_out_trade_no, pno, openid, date, 'test', total, sign, paySign, prepay_id,))
+                   (my_out_trade_no, pno, openid, date, 'test', int(total)*100, sign, paySign, prepay_id,))
     cursor.close()
     # then we judge if insert well
     jcursor = connections['klook'].cursor()
