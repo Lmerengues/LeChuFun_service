@@ -73,7 +73,8 @@ urlpatterns = [
     url(r'^korder$', k_order.index),
     url(r'^kticket$', k_ticket.index),
     url(r'^kcreate_ticket$', k_ticket.create),
-    url(r'^kcontact', k_contact.index)
+    url(r'^kcontact', k_contact.index),
+    url(r'^kcontact_submit', k_contact.submit)
 
 
     # url(r'^hello$', pay.test),

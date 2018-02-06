@@ -31,3 +31,45 @@ def index(request):
 
     response = HttpResponse(json.dumps(dict),content_type="application/json")
     return response
+
+def submit(request):
+
+    openid = request.GET['openid']
+    name = request.GET['uname']
+    email = request.GET['uemail']
+    phone = request.GET['uphone']
+
+    #firm = request.GET['firm']
+    #if firm == "undefined":
+    #    firm = ""
+
+    #dep = request.GET['dep']
+    #if dep == "undefined":
+    #   dep = ""
+
+    #code = request.GET['code']
+    #if code == "undefined":
+    #    code = ""
+
+    cursor = connections['default'].cursor()
+    cursor.execute("select cno from contact where uno = %s and uname = %s "
+                   "and uemail= %s and uphone = %s " ,(openid,name,email,phone,))
+    contact_raw = dictfetchall(cursor)
+
+    cursor.close()
+    if len(contact_raw) == 0:
+        cursor = connections['default'].cursor()
+        cursor.execute("insert into contact values(null,%s,%s,%s,%s,sysdate())",
+                       (openid,name,phone,email,))
+        cursor.close()
+        cursor = connections['default'].cursor()
+        cursor.execute("select cno from contact where uno = %s and uname = %s "
+                       "and uemail= %s and uphone = %s ", (openid, name, email, phone,))
+        cno_raw = dictfetchall(cursor)
+        if len(cno_raw) == 1:
+            cno = cno_raw[0]['cno']
+    else:
+        cno = contact_raw[0]['cno']
+
+    response = HttpResponse(json.dumps({'cno':cno}), content_type="application/json")
+    return response
