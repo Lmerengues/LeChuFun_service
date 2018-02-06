@@ -50,6 +50,8 @@ def create(request):
     raw['maxtid'] = int(dictfetchall(cursor)[0]['mtid'])
     cursor.close()
 
+    response = HttpResponse(json.dumps(numofticket), content_type="application/json")
+    return response
 
     mytid =  raw['maxtid']+1
     for key in numofticket:
