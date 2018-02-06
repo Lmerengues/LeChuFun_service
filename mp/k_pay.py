@@ -72,7 +72,7 @@ def create_sign(pay_data, merchant_key):
 
 
 def test(request):
-    jucursor = connections['default'].cursor()
+    jucursor = connections['klook'].cursor()
     jucursor.execute("select bneed from Orders where oid = %s", ('1512391903',))
     raw = dictfetchall(jucursor)
     return HttpResponse(raw[0]['bneed'], 'text/html')
@@ -170,7 +170,7 @@ def index(request):
 
 
 def send_order_mail(oid):
-    tcursor = connections['default'].cursor()
+    tcursor = connections['klook'].cursor()
     tcursor.execute("select orders.oid,orders.hno,odate,ostart,oend,otype,onum,oready,obarbecue,"
                     "ofapiao,otip,ototal,orders.ocno,otime,htitle1,htitle2,uname,uphone,uwechat,ufirm,udepartment from orders,contact,house "
                     "where oid = %s and orders.ocno = contact.cno and orders.hno = house.hno", (oid,))
@@ -209,15 +209,15 @@ def send_order_mail(oid):
 
 
 def notify(request):
-    tcursor = connections['default'].cursor()
+    tcursor = connections['klook'].cursor()
     tcursor.execute("insert into logs values(null,'test',sysdate())")
     tcursor.close()
     if request.method == 'POST':
         dict_data = xml_to_dict(request.body)
 
-        jucursor = connections['default'].cursor()
+        jucursor = connections['klook'].cursor()
         jucursor.execute(
-            "select oid,uno,ototal,otime,prepay_id,htitle1,htitle2 from orders,house where oid = %s and house.hno = orders.hno ",
+            "select oid,uno,ototal,otime,prepay_id,atitle1 from orders,activity_package,activities where oid = %s and activity_package.pno = orders.ano and activity_package.ano = activity.ano ",
             (dict_data['out_trade_no'],))
         raw = dictfetchall(jucursor)
 
@@ -226,6 +226,7 @@ def notify(request):
         # llcursor = connections['default'].cursor()
         # llcursor.execute("insert into logs values(null,%s,sysdate())",(dict_data['out_trade_no'],))
         # llcursor.close()
+        '''
 
         if str(raw[0]['ototal']) != str(dict_data['total_fee']):
             # llcursor = connections['default'].cursor()
@@ -234,48 +235,49 @@ def notify(request):
             return HttpResponse(
                 "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>",
                 content_type="application/xml")
+        '''
 
-        llcursor = connections['default'].cursor()
+        llcursor = connections['klook'].cursor()
         llcursor.execute("insert into logs values(null,%s,sysdate())", ('hieheihei',))
         llcursor.close()
 
-        ucursor = connections['default'].cursor()
+        ucursor = connections['klook'].cursor()
         ucursor.execute("update orders set ostatus = 1 where oid = %s", (dict_data['out_trade_no'],))
 
         if ucursor:
-            llcursor = connections['default'].cursor()
+            llcursor = connections['klook'].cursor()
             llcursor.execute("insert into logs values(null,%s,sysdate())", ('hie2',))
             llcursor.close()
 
             url = "https://api.weixin.qq.com/cgi-bin/token"
-            querystring = {"grant_type": "client_credential", "appid": "wx08912a543bda29bc",
-                           "secret": "0b0d2c8666c0504d696c5cddd342ba17"}
+            querystring = {"grant_type": "client_credential", "appid": "wx249ce8c7c0899bfc",
+                           "secret": "e5e70d0f2e713a307c2beeb7f3eea8de"}
             headers = {}
             response = requests.request("GET", url, headers=headers, params=querystring)
             access_token = json.loads(response.text)['access_token']
 
-            llcursor = connections['default'].cursor()
+            llcursor = connections['klook'].cursor()
             llcursor.execute("insert into logs values(null,%s,sysdate())", ('hie3',))
             llcursor.close()
 
             url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=" + access_token
-            tmpdata = {"touser": raw[0]['uno'], "template_id": "r2-xlRvYeETDndxslsDy44ReOf01wV5xVOjYZCT8Rw8",
+            tmpdata = {"touser": raw[0]['uno'], "template_id": "2o5prNY_ljLX4tFt_9t2MDY2jI0xSpX3U9g3mkqF6",
                        "form_id": raw[0]['prepay_id'],
                        "data": {"keyword1": {"value": json_serial(raw[0]['otime']), "color": "#000000"},
                                 "keyword2": {"value": dict_data['out_trade_no'], "color": "#000000"},
                                 "keyword3": {"value": str(int(raw[0]['ototal']) / 100) + "元", "color": "#000000"},
-                                "keyword4": {"value": raw[0]['htitle1'] + "·" + raw[0]['htitle2'], "color": "#000000"}}}
+                                "keyword4": {"value": raw[0]['atitle1'], "color": "#000000"}}}
 
             req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
             result = urllib2.urlopen(req, timeout=30).read()
 
             # send_order_mail(dict_data['out_trade_no'])
-            llcursor = connections['default'].cursor()
+            llcursor = connections['klook'].cursor()
             llcursor.execute("insert into logs values(null,%s,sysdate())",
                              ('errcode:-2' + result + "$" + str(tmpdata),))
             llcursor.close()
             #			result = str(result)
-            llcursor = connections['default'].cursor()
+            llcursor = connections['klook'].cursor()
             llcursor.execute("insert into logs values(null,%s,sysdate())", ('errcode:-1',))
             llcursor.close()
 
