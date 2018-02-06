@@ -52,9 +52,9 @@ def create(request):
 
 
     mytid =  raw['maxtid']+1
-    for (key,val) in numofticket:
+    for key in numofticket:
         cursor = connections['klook'].cursor()
-        cursor.execute("insert into order_tickets values(%s,%s,%s)", (mytid,key,val,))
+        cursor.execute("insert into order_tickets values(%s,%s,%s)", (mytid,key,numofticket[key],))
         cursor.close()
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
