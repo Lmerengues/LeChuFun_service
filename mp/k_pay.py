@@ -112,7 +112,7 @@ def index(request):
         'nonce_str': now,
         'body': 'aa-bb',
         'out_trade_no': my_out_trade_no,
-        'total_fee': int(total) ,
+        'total_fee': int(total)*100 ,
         'spbill_create_ip': '118.89.233.180',
         'notify_url': 'https://mina.mapglory.com/kpay_notify',
         'attach': '{"msg": "test"}',
@@ -226,7 +226,7 @@ def notify(request):
         # llcursor = connections['default'].cursor()
         # llcursor.execute("insert into logs values(null,%s,sysdate())",(dict_data['out_trade_no'],))
         # llcursor.close()
-        '''
+
 
         if str(raw[0]['ototal']) != str(dict_data['total_fee']):
             # llcursor = connections['default'].cursor()
@@ -235,7 +235,7 @@ def notify(request):
             return HttpResponse(
                 "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>",
                 content_type="application/xml")
-        '''
+
 
         llcursor = connections['klook'].cursor()
         llcursor.execute("insert into logs values(null,%s,sysdate())", ('hieheihei',))
