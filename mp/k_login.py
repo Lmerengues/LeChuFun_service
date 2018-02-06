@@ -56,12 +56,12 @@ def login(res):
         icursor.close()
 
     cursor.close()
-
-    loginret = {}
-    loginret['openid'] = userdata['openid']
     resp = HttpResponse(json.dumps(userdata), content_type="application/json")
 
     return resp
+    loginret = {}
+    loginret['openid'] = userdata['openid']
+
     resp = HttpResponse(json.dumps(loginret), content_type="application/json")
 
     return resp
