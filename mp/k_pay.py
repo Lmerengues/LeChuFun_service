@@ -261,7 +261,7 @@ def notify(request):
             llcursor.close()
 
             url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=" + access_token
-            tmpdata = {"touser": raw[0]['uno'], "template_id": "2o5prNY_ljLX4tFt_9t2MDY2jI0xSpX3U9g3mkqF",
+            tmpdata = {"touser": raw[0]['uno'], "template_id": "2o5prNY_ljLX4tFt_9t2MDY2jI0xSpX3U9g3mkqF6iI",
                        "form_id": raw[0]['prepay_id'],
                        "data": {"keyword1": {"value": json_serial(raw[0]['otime']), "color": "#000000"},
                                 "keyword2": {"value": dict_data['out_trade_no'], "color": "#000000"},
