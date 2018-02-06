@@ -17,6 +17,7 @@ def dictfetchall(cursor):
 
 def index(request):
 
+    openid = request.GET['openid']
     cursor = connections['default'].cursor()
     cursor.execute("select uname,uphone,uemail from contact where uno = %s order by utime desc", (openid,))
     contact_dis = dictfetchall(cursor)
