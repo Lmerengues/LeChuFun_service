@@ -45,15 +45,17 @@ def login(res):
 
     flag = 1
     if (len(cursor.fetchall()) == 0):
-        
-        resp = HttpResponse(json.dumps(userdata), content_type="application/json")
 
-        return resp
+
         rawdata = json.loads(res.GET['rawData'])
         icursor = connections['klook'].cursor()
         icursor.execute("insert into Users values(%s,%s,%s,%s,%s,%s,%s,%s,sysdate())", (
         userdata['openid'], rawdata['nickName'], rawdata['gender'], rawdata['language'], rawdata['city'],
         rawdata['province'], rawdata['country'], rawdata['avatarUrl'],))
+
+        resp = HttpResponse(json.dumps(userdata), content_type="application/json")
+
+        return resp
         icursor.close()
 
     cursor.close()
