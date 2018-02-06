@@ -56,7 +56,7 @@ def create(request):
 
     mytid =  raw['maxtid']+1
     for key in numofticket:
-        return response
+        #return response
         ikey = int(float(key))
         cursor = connections['klook'].cursor()
         cursor.execute("insert into order_tickets values(null,%s,%s,%s)", (mytid,key,numofticket[key],))
