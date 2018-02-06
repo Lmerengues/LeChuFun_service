@@ -27,7 +27,7 @@ def index(request):
     if len(contact_dis) >0:
         hiscontact = contact_dis[0]
 
-    dict = {'contact':hiscontact}
+    dict = hiscontact
 
     response = HttpResponse(json.dumps(dict),content_type="application/json")
     return response
