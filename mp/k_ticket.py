@@ -54,7 +54,7 @@ def create(request):
     #return response
     ttickets = json.dumps(numofticket)
 
-    mytid =  raw['maxtid']+1
+    mytid =  raw['maxtid']
     for key in numofticket:
         #return response
         ikey = int(float(key))
