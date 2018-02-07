@@ -65,7 +65,7 @@ def list(request):
         for arr_item in arr:
             if int(arr_item['pnum']) != 0:
                 des_str = des_str + arr_item['ttitle'] + 'x' + str(arr_item['pnum'])
-        item['odes'] = des_sstr
+        item['odes'] = des_str
 
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
