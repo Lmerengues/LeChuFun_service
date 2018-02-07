@@ -55,6 +55,10 @@ def list(request):
     raw['order_info'] = dictfetchall(cursor)
     cursor.close()
 
+    for item in raw['order_info']:
+        item['odate'] = json_serial(item['odate'])
+        item['otime'] = json_serial(item['otime'])
+
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
