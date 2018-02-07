@@ -50,7 +50,7 @@ def detail(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl from activities where activities.pno = %s order by anum desc limit 10",(pno,))
+    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,place where activities.pno = %s and activities.pno = place.pno order by anum desc limit 10",(pno,))
     raw['hot_acti'] = dictfetchall(cursor)
     cursor.close()
 
