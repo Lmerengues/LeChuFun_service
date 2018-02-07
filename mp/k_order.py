@@ -39,3 +39,22 @@ def index(request):
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
+
+def list(request):
+
+    openid = request.GET['openid']
+    raw = {}
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select unickName,uavatarurl,uscore from Users where uid = %s", (openid,))
+    raw['user_info'] = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select oid,otime,odate,ototal,ostatus,atitle1 from orders,activity_package,activities where uno = %s and orders.ano = activity_package.pno and activity_package.ano = activities.ano", (openid,))
+    raw['order_info'] = dictfetchall(cursor)
+    cursor.close()
+
+
+    response = HttpResponse(json.dumps(raw), content_type="application/json")
+    return response

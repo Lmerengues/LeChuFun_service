@@ -104,6 +104,8 @@ def index(request):
     total = request.GET['price_total']
     openid = request.GET['openid']
     date = request.GET['date']
+    cno = request.GET['cno']
+    tid = request.GET['tid']
 
     # then we start to do pay job
     data = {
@@ -153,8 +155,8 @@ def index(request):
     # return resp
 
     cursor = connections['klook'].cursor()
-    cursor.execute("insert into orders values(null,%s,%s,%s,%s,%s,%s,sysdate(),%s,%s,%s,0)",
-                   (my_out_trade_no, pno, openid, date, 'test', int(total)*100, sign, paySign, prepay_id,))
+    cursor.execute("insert into orders values(null,%s,%s,%s,%s,%s,%s,%s,%s,sysdate(),%s,%s,%s,0)",
+                   (my_out_trade_no, pno, openid, cno , tid , date, 'test', int(total)*100, sign, paySign, prepay_id,))
     cursor.close()
     # then we judge if insert well
     jcursor = connections['klook'].cursor()
