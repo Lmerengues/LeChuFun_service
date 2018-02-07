@@ -48,3 +48,6 @@ def detail(request):
     raw['purl'] = dictfetchall(cursor)[0]['purl']
     cursor.close()
 
+    response = HttpResponse(json.dumps(raw), content_type="application/json")
+    return response
+
