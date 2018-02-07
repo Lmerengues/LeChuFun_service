@@ -57,6 +57,14 @@ def detail(request):
     for item in raw['hot_acti']:
         item['adate'] = json_serial(item['adate'])
 
+    cursor = connections['klook'].cursor()
+    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,place where activities.pno = %s and activities.pno = place.pno order by aaddtime desc limit 10",(pno,))
+    raw['new_acti'] = dictfetchall(cursor)
+    cursor.close()
+
+    for item in raw['new_acti']:
+        item['adate'] = json_serial(item['adate'])
+
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
