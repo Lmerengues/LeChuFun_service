@@ -42,10 +42,16 @@ def index(request):
 def detail(request):
 
     raw = {}
+    pno = request.GET['pno']
 
     cursor = connections['klook'].cursor()
     cursor.execute("select purl from place where pno = %s",(request.GET['pno'],))
     raw['purl'] = dictfetchall(cursor)[0]['purl']
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl from activities where activities.pno = %s order by anum desc limit 10",(pno,))
+    raw['hot_acti'] = dictfetchall(cursor)
     cursor.close()
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
