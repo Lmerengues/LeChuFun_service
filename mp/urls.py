@@ -83,6 +83,8 @@ urlpatterns = [
     url(r'^klist', k_list.index),
     url(r'^kfood_list', k_food.index),
     url(r'^korder_list', k_order.list),
+    url(r'^krefund', k_order.refund)
+
     # url(r'^hello$', pay.test),
 
     # url(r'^form$', form.index),
