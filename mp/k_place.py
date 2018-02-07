@@ -46,7 +46,7 @@ def detail(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute("select purl,ptitle from place where pno = %s",(request.GET['pno'],))
-    raw['purl'] = dictfetchall(cursor)[0]['purl']
+    raw = dictfetchall(cursor)[0]
     cursor.close()
 
     cursor = connections['klook'].cursor()
