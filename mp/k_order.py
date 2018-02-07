@@ -47,17 +47,25 @@ def list(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute("select unickName,uavatarurl,uscore from Users where uid = %s", (openid,))
-    raw['user_info'] = dictfetchall(cursor)
+    raw['user_info'] = dictfetchall(cursor)[0]
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select oid,otime,odate,ototal,ostatus,atitle1 from orders,activity_package,activities where uno = %s and orders.ano = activity_package.pno and activity_package.ano = activities.ano", (openid,))
+    cursor.execute("select oid,otime,odate,ototal,ostatus,atitle1,aurl from orders,activity_package,activities where uno = %s and orders.ano = activity_package.pno and activity_package.ano = activities.ano", (openid,))
     raw['order_info'] = dictfetchall(cursor)
     cursor.close()
 
     for item in raw['order_info']:
         item['odate'] = json_serial(item['odate'])
         item['otime'] = json_serial(item['otime'])
+        str = ''
+        cursor = connections['klook'].cursor()
+        cursor.execute("select ttitle,pnum from order_tickets,activity_package_ticket where tid = %s and order_tickets.pno = activity_package_ticket.tno",(item['tno'],))
+        arr = dictfetchall(cursor)
+        for arr_item in arr:
+            if int(arr_item['pnum']) != 0:
+                str = str + arr_item['title'] + 'x' + str(arr_item['pnum'])
+        item['odes'] = str
 
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
