@@ -27,12 +27,12 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select place_hot.pno,ptitle,purl from place,place_hot where place.pno = place_hot.pno order by pval desc")
+        "select place_hot.pno as pid,ptitle,purl from place,place_hot where place.pno = place_hot.pno order by pval desc")
     raw['hot_place'] = dictfetchall(cursor)
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select ptitle as cityName,cityPinYin,cityPY from place order by cityPY")
+    cursor.execute("select ptitle as cityName,cityPinYin,cityPY,pno from place order by cityPY")
     raw['citys'] = dictfetchall(cursor)
     cursor.close()
 
