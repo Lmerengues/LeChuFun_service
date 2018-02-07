@@ -31,5 +31,8 @@ def index(request):
     raw['list'] = dictfetchall(cursor)
     cursor.close()
 
+    for item in raw['list']:
+        item['adate'] = json_serial(item['adate'])
+
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
