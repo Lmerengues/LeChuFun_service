@@ -78,6 +78,8 @@ urlpatterns = [
     url(r'^klogin$', k_login.login),
     url(r'^kpay$', k_pay.index),
     url(r'^kpay_notify$', k_pay.notify),
+
+    url(r'^kplace_index', k_place.detail),
     # url(r'^hello$', pay.test),
 
     # url(r'^form$', form.index),

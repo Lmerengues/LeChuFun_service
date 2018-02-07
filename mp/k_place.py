@@ -38,3 +38,13 @@ def index(request):
 
     response=HttpResponse(json.dumps(raw), content_type="application/json")
     return response
+
+def detail(request):
+
+    raw = {}
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select purl from place where pno = %s",(request.GET['pno'],))
+    raw['purl'] = dictfetchall(cursor)[0]['purl']
+    cursor.close()
+
