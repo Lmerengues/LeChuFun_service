@@ -64,7 +64,7 @@ def list(request):
         arr = dictfetchall(cursor)
         for arr_item in arr:
             if int(arr_item['pnum']) != 0:
-                str = str + arr_item['title'] + 'x' + str(arr_item['pnum'])
+                str = str + arr_item['ttitle'] + 'x' + str(arr_item['pnum'])
         item['odes'] = str
 
 
