@@ -27,7 +27,7 @@ def index(request):
     raw = {}
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,place,activity_type where activities.pno = %s and activities.pno = place.pno and activities.ano = activity_type.ano and tno = 1 order by anum desc",(pno,))
+    cursor.execute("select activities.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,place,activity_type where activities.pno = %s and activities.pno = place.pno and activities.ano = activity_type.ano and tno = 1 order by anum desc",(pno,))
     raw['list'] = dictfetchall(cursor)
     cursor.close()
 
