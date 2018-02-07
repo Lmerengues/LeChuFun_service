@@ -58,13 +58,13 @@ def list(request):
     for item in raw['order_info']:
         item['odate'] = json_serial(item['odate'])
         item['otime'] = json_serial(item['otime'])
-        str = ''
+        des_str = ''
         cursor = connections['klook'].cursor()
         cursor.execute("select ttitle,pnum from order_tickets,activity_package_ticket where tid = %s and order_tickets.pno = activity_package_ticket.tno",(item['tno'],))
         arr = dictfetchall(cursor)
         for arr_item in arr:
             if int(arr_item['pnum']) != 0:
-                str = str + arr_item['ttitle'] + 'x' + str(arr_item['pnum'])
+                des_str = des_str + arr_item['ttitle'] + 'x' + str(arr_item['pnum'])
         item['odes'] = str
 
 
