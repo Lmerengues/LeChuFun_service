@@ -51,7 +51,7 @@ def list(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select oid,otime,odate,ototal,ostatus,atitle1,aurl,tno from orders,activity_package,activities where uno = %s and orders.ano = activity_package.pno and activity_package.ano = activities.ano", (openid,))
+    cursor.execute("select oid,otime,odate,ototal,ostatus,atitle1,aurl,tno from orders,activity_package,activities where uno = %s and orders.ano = activity_package.pno and activity_package.ano = activities.ano and ostatus > 0", (openid,))
     raw['order_info'] = dictfetchall(cursor)
     cursor.close()
 
@@ -70,3 +70,18 @@ def list(request):
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
+
+def refund(request):
+
+    oid = request.GET['oid']
+    raw = {}
+
+    cursor = connections['klook'].cursor()
+    flag = cursor.execute("update orders set ostatus = 2 where oid = %s", (oid,))
+
+    raw['status'] = flag
+    cursor.close()
+
+    response = HttpResponse(json.dumps(raw), content_type="application/json")
+    return response
+
