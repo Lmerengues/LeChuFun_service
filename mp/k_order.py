@@ -51,7 +51,7 @@ def list(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select oid,otime,odate,ototal,ostatus,atitle1,aurl from orders,activity_package,activities where uno = %s and orders.ano = activity_package.pno and activity_package.ano = activities.ano", (openid,))
+    cursor.execute("select oid,otime,odate,ototal,ostatus,atitle1,aurl,tno from orders,activity_package,activities where uno = %s and orders.ano = activity_package.pno and activity_package.ano = activities.ano", (openid,))
     raw['order_info'] = dictfetchall(cursor)
     cursor.close()
 
