@@ -33,6 +33,7 @@ def index(request):
     cursor.close()
 
     raw['act']['adate'] = json_serial(raw['act']['adate'])
+    raw['act']['aaddtime'] = json_serial(raw['act']['aaddtime'])
 
     cursor = connections['klook'].cursor()
     cursor.execute("select rno,rdetail,activity_rule.rno,iurl from activity_rule,icon where activity_rule.ino = icon.ino and ano = %s", (ano,))
