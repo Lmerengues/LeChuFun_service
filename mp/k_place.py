@@ -54,6 +54,9 @@ def detail(request):
     raw['hot_acti'] = dictfetchall(cursor)
     cursor.close()
 
+    for item in raw['hot_acti']:
+        item['adate'] = json_serial(item['adate'])
+
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
