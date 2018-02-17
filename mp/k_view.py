@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
- 
-#from django.http import HttpResponse
+
+# from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -10,23 +10,23 @@ from django.db import connections
 import math
 
 
-
 def dictfetchall(cursor):
-	desc = cursor.description
-	return [
-	dict(zip([col[0] for col in desc], row))
-    	for row in cursor.fetchall()
-    	]
+    desc = cursor.description
+    return [
+        dict(zip([col[0] for col in desc], row))
+        for row in cursor.fetchall()
+    ]
 
 
 def index(request):
-    context          = {}
-    #context['hello'] = 'Hello World!'
+    context = {}
+    # context['hello'] = 'Hello World!'
     return render(request, 'index.html', context)
 
+
 def add(request):
-    context          = {}
-    #context['hello'] = 'Hello World!'
+    context = {}
+    # context['hello'] = 'Hello World!'
 
 
     cursor = connections['default'].cursor()
@@ -41,9 +41,10 @@ def add(request):
     context['equips'] = eraw
     context['icons'] = iraw
 
-    #context['test'] = 'hello'
+    # context['test'] = 'hello'
 
-    return render(request, 'add.html', context)
+
+    return render(request, 'k_add.html', context)
 
 
 def equips(request):
@@ -54,6 +55,7 @@ def equips(request):
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
+
 def icons(request):
     cursor = connections['default'].cursor()
     cursor.execute("select * from icon")
@@ -62,15 +64,14 @@ def icons(request):
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 
-def addHouseHandle(request):
 
+def addHouseHandle(request):
     rb = request.POST['htitle1']
     cursor = connections['default'].cursor()
     cursor.execute("insert into logs values(null,%s,sysdate())", (rb,))
     cursor.close()
 
-    
-    raw = {'status':1}
+    raw = {'status': 1}
     response = HttpResponse(json.dumps(raw), content_type="application/json")
     return response
 

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>场地信息录入</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        html, body {
+          font: 10pt arial;
+        }
+    </style>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/js/jquery.form.js"></script>
+    <!--script type="text/javascript" src="static/js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>
+    <link  href="static/dist/vis-network.min.css" rel="stylesheet" type="text/css" /-->
+    <link  href="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <link  href="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet">
+    <!--link  href="static/css/slider.css" rel="stylesheet">
+    <link  href="static/css/jquery.dataTables.min.css" rel="stylesheet"-->
+    <style>
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    场地信息录入
+                </div>
+                <div class="panel-body">
+                    <form id="form-house" enctype="multipart/form-data" method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地前缀</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="htitle1" name="htitle1" placeholder="人大静谧地">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地名称</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="htitle2"  name="htitle2" placeholder="Laneway">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地地址概括（2到8个字）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="htitle3" name="htitle3" placeholder="人大">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地详细地址</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <textarea type='text' class='form-control' id='haddress' name='haddress'></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地介绍</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <textarea type='text' class='form-control' id='hdetail' name='hdetail'></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地纬度(小数形式）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="hlatitude" name="hlatitude" placeholder="23.123413">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地经度(小数形式）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="hlongitude" name="hlongitude" placeholder="116.7435432">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地乐价</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="hprice" name="hprice" placeholder="60">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地原价</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="hprice_old" name="hprice_old" placeholder="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地面积</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="hsquare" name="hsquare" placeholder="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地类型</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="htype" name="htype" placeholder="上新特惠">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地标签（用;分割，合计不超过15个字）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="hlabel" name="hlabel" placeholder="人大;性价比高;安静">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地图片（多张）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input  type="file" name="img" multiple/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地代表图片（一张）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input  type="file" name="pimg" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地记忆（多张）</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input  type="file" name="mem" multiple/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地设备</label>
+                                <div class="col-md-9">
+                                    {% for e in equips %}
+                                    <div class="form-check">
+                                        <input type="checkbox" value="{{e.eno}}" name="c1" class="equip-checkbox">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{e.ename}}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">场地类型</label>
+                                <div class="col-md-9">
+                                    {% for i in icons %}
+                                    <div class="form-check">
+                                        <input type="checkbox" value="{{i.ino}}" name="c2" class="icon-checkbox">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{i.iname}}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type='submit' class='btn btn-primary' id="btn-commit">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $("#btn-commit").click(function(){
+                var htitle1 = $("#htitle1").val();
+                var htitle2 = $("#htitle2").val();
+                var htitle3 = $("#htitle3").val();
+                var hdetail = $("#hdetail").val();
+                var haddress = $("#haddress").val();
+                var hlongitude = $("#hlongitude").val();
+                var hlatitude = $("#hlatitude").val();
+                var hprice = $("#hprice").val()
+                var hprice_old = $("#hprice_old").val();
+                var hsquare = $("#hsquare").val();
+                var htype = $("#htype").val();
+                var hlabel = $("#hlabel").val();
+
+                console.log(!isNaN(hlongitude))
+                console.log(htitle1);
+                console.log(htitle2);
+                console.log(htitle3);
+                console.log(hdetail);
+                console.log(haddress);
+                console.log(hlongitude);
+                console.log(hlatitude);
+                console.log(hprice);
+                console.log(hprice_old);
+                console.log(hsquare);
+                console.log(htype);
+                console.log(hlabel);
+                if(!(htitle1&&htitle2&&htitle3&&hdetail&&haddress&&hlongitude&&hlatitude&&hprice&&hprice_old&&hsquare&&htype&&hlabel)){
+                    alert("遗漏了信息，请检查！");
+                    return ;
+                }
+                if(isNaN(hlongitude) || isNaN(hlatitude) || isNaN(hprice) || isNaN(hprice_old) || isNaN(hsquare) ){
+                    alert("请填入正确的数字");
+                    return ;
+                }
+                console.log(hlabel);
+                var labels = hlabel.split(/[,_;；]/);
+                for(var i = 0 ; i<labels.length ; i++){
+                    if(labels[i] == ""){
+                        labels.splice(i,1);
+                        i = -1;
+                    }
+                }
+                console.log(labels);
+                var equips = []
+                $(".equip-checkbox").each(function(){
+                    if($(this).is(':checked')){
+                        equips.push($(this).val())
+                    }
+                })
+                var icons = []
+                $(".icon-checkbox").each(function(){
+                    if($(this).is(':checked')){
+                        icons.push($(this).val())
+                    }
+                })
+                console.log(equips);
+                console.log(icons);
+                if(!(equips.length && icons.length)){
+                    alert("请勾选设备与类型");
+                    return ;
+                }
+                $("#form-house").ajaxSubmit({
+                    url:"https://mina.mapglory.com/addHouseHandle",
+                    type:"POST",
+                    data: {
+                        'labels':JSON.stringify(labels),
+                        'equips':equips,
+                        'icons':icons,
+                    },
+                    success:function(data){
+                        console.log(data);
+                        if(data.status == 1) {
+                            console.log('status')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    }
+                });
+            })
+        })
+    </script>
+</body>
+
+
+
+</html>
