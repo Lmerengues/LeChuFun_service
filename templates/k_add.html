@@ -36,14 +36,14 @@
                     活动信息录入
                 </div>
                 <div class="panel-body">
-                    <form id="form-house" enctype="multipart/form-data" method="POST">
+                    <form id="form-activity" enctype="multipart/form-data" method="POST">
                         <label><a href="/kactivity">查看所有活动</a></label>
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-md-2 control-label">活动主标题</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <input type='text' class='form-control' id="htitle1" name="htitle1" placeholder="香港迪士尼乐园门票">
+                                        <input type='text' class='form-control' id="atitle1" name="atitle1" placeholder="香港迪士尼乐园门票">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <label class="col-md-2 control-label">活动副标题</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <input type='text' class='form-control' id="htitle2"  name="htitle2" placeholder="迪士尼奇幻之旅">
+                                        <input type='text' class='form-control' id="atitle2"  name="atitle2" placeholder="迪士尼奇幻之旅">
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                 <label class="col-md-2 control-label">活动价格</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <input type='text' class='form-control' id="htitle1" name="htitle1" placeholder="100">
+                                        <input type='text' class='form-control' id="aprice" name="aprice" placeholder="100">
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                 <label class="col-md-2 control-label">活动原价</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <input type='text' class='form-control' id="htitle1" name="htitle1" placeholder="200">
+                                        <input type='text' class='form-control' id="aprice_old" name="aprice_old" placeholder="200">
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                             <div class="row">
                                 <label for="dtp_input2" class="col-md-2 control-label">最早可预订日期</label>
                                 <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" >
-                                    <input class="form-control" size="16" type="text" value="" id="mydpicker" readonly>
+                                    <input class="form-control" size="16" type="text" value="" id="mydpicker" name="adate" readonly>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
@@ -94,7 +94,7 @@
                                 <label class="col-md-2 control-label">x小时内可确定订单</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <input type='text' class='form-control' id="htitle1" name="htitle1" placeholder="24">
+                                        <input type='text' class='form-control' id="ahour" name="ahour" placeholder="24">
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                 <label class="col-md-2 control-label">活动概览</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <textarea type='text' class='form-control' id='haddress' name='haddress' placeholder="xxx"></textarea>
+                                        <textarea type='text' class='form-control' id='adetail' name='adetail' placeholder="xxx"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -134,10 +134,10 @@
                                 <label class="col-md-2 control-label">活动城市(<a href="/addcity">添加城市</a>)</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <select class="selectpicker">
-                                          <option>北京</option>
-                                          <option>上海</option>
-                                          <option>广州</option>
+                                        <select class="selectpicker" name="pno">
+                                            {% for e in places %}
+                                                <option value="{{ e.pno}}">{{ e.ptitle }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>

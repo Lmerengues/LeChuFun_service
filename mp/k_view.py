@@ -41,6 +41,12 @@ def add(request):
     context['equips'] = eraw
     context['icons'] = iraw
 
+    cursor = connections['klook'].cursor()
+    cursor.execute("select pno,ptitle from place")
+    praw = dictfetchall(cursor)
+    cursor.close()
+    context['places'] = praw
+
     # context['test'] = 'hello'
 
 
@@ -86,8 +92,8 @@ def activity_list(request):
     eraw = dictfetchall(cursor)
     cursor.close()
 
-
     context['list'] = eraw
+
 
     # context['test'] = 'hello'
 
