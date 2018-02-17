@@ -86,7 +86,7 @@ urlpatterns = [
     url(r'^krefund', k_order.refund),
     url(r'^kadd$', k_view.add),
     url(r'^kaddHouseHandle$', k_view.addHouseHandle),
-    url(r'^kactivity$', k_view.activity_list())
+    url(r'^kactivity$', k_view.activity_list)
 
     # url(r'^hello$', pay.test),
 
