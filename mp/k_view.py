@@ -121,3 +121,10 @@ def activity_refund(request):
 
 
     return render(request, 'k_refund.html', context)
+
+def activity_image(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    return render(request, 'k_image.html', context)
