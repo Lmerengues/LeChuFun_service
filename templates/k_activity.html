@@ -43,6 +43,9 @@
                                 <tr>
                                     <th>活动名称</th>
                                     <th>操作</th>
+                                    <th>热门度</th>
+                                    <th>主题度</th>
+                                    <th>推荐度</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,6 +59,18 @@
                                             <a href="/kpackage?ano={{ e.ano }}">套餐</a>
                                             <a href="/krefundadd?ano={{ e.ano }}">退改</a>
                                             <a href="/kuse?ano={{ e.ano }}">使用</a>
+                                        </td>
+                                        <td>
+                                            <input type='text' class='form-control'/>
+                                            <a class="btn">提交</a>
+                                        </td>
+                                        <td>
+                                            <input type='text' class='form-control'/>
+                                            <a class="btn">提交</a>
+                                        </td>
+                                        <td>
+                                            <input type='text' class='form-control'/>
+                                            <a class="btn">提交</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
