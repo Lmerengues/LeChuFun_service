@@ -80,10 +80,10 @@ urlpatterns = [
     url(r'^kpay_notify$', k_pay.notify),
 
     url(r'^kplace_index$', k_place.detail),
-    url(r'^klist', k_list.index),
-    url(r'^kfood_list', k_food.index),
-    url(r'^korder_list', k_order.list),
-    url(r'^krefund', k_order.refund),
+    url(r'^klist$', k_list.index),
+    url(r'^kfood_list$', k_food.index),
+    url(r'^korder_list$', k_order.list),
+    url(r'^krefund$', k_order.refund),
     url(r'^kadd$', k_view.add),
     url(r'^kaddHouseHandle$', k_view.addHouseHandle),
 
