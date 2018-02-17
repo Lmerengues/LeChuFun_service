@@ -81,17 +81,13 @@ def activity_list(request):
     # context['hello'] = 'Hello World!'
 
 
-    cursor = connections['default'].cursor()
-    cursor.execute("select * from equip")
+    cursor = connections['klook'].cursor()
+    cursor.execute("select ano,atitle1 from activities")
     eraw = dictfetchall(cursor)
     cursor.close()
 
-    cursor = connections['default'].cursor()
-    cursor.execute("select * from icon")
-    iraw = dictfetchall(cursor)
-    cursor.close()
-    context['equips'] = eraw
-    context['icons'] = iraw
+
+    context['list'] = eraw
 
     # context['test'] = 'hello'
 

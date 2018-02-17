@@ -41,7 +41,6 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -50,20 +49,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>活动1</td>
-                                    <td>
-                                        <a herf="#">图片</a>
-                                        <a href="#">rule</a>
-                                        <a href="#">instruction</a>
-                                        <a href="#">套餐</a>
-                                        <a href="#">退改</a>
-                                        <a href="#">使用</a>
-                                    </td>
-                                </tr>
+                                {% for e in list %}
+                                    <tr>
+                                        <td>{{e.atitle1}} </td>
+                                        <td>
+                                            <a href="#">图片</a>
+                                            <a href="#">rule</a>
+                                            <a href="#">instruction</a>
+                                            <a href="#">套餐</a>
+                                            <a href="#">退改</a>
+                                            <a href="#">使用</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
-
-
                         </table>
                     </div>
 
