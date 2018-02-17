@@ -95,7 +95,8 @@ urlpatterns = [
     url(r'^krefundadd$', k_view.activity_refund),
     url(r'^kimage$', k_view.activity_image),
     url(r'^kpackage$', k_view.activity_package),
-
+    url(r'^prule$', k_view.package_rule),
+    url(r'^pticket$', k_view.package_ticket),
 
     # url(r'^hello$', pay.test),
 

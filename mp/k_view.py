@@ -145,3 +145,17 @@ def activity_package(request):
 
 
     return render(request, 'k_package.html', context)
+
+def package_rule(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    return render(request, 'p_rule.html', context)
+
+def package_ticket(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    return render(request, 'p_ticket.html', context)

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ticket</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        html, body {
+          font: 10pt arial;
+        }
+    </style>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/js/jquery.form.js"></script>
+
+    <script type="text/javascript" src="https://mina.mapglory.com/static/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="https://mina.mapglory.com/static/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+    <!--script type="text/javascript" src="static/js/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>
+    <link  href="static/dist/vis-network.min.css" rel="stylesheet" type="text/css" /-->
+    <link  href="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <link  href="https://mina.mapglory.com/static/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet">
+
+
+    <link href="https://mina.mapglory.com/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!--link  href="static/css/slider.css" rel="stylesheet">
+    <link  href="static/css/jquery.dataTables.min.css" rel="stylesheet"-->
+    <style>
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    ticket
+                </div>
+                <div class="panel-body">
+                    <form id="form-house" enctype="multipart/form-data" method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">票名</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="htitle2"  name="htitle2" placeholder="Laneway">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">票价</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="htitle2"  name="htitle2" placeholder="Laneway">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type='submit' class='btn btn-primary' id="btn-commit">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.form_date').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $("#btn-commit").click(function(){
+                var htitle1 = $("#htitle1").val();
+                var htitle2 = $("#htitle2").val();
+                var htitle3 = $("#htitle3").val();
+                var hdetail = $("#hdetail").val();
+                var haddress = $("#haddress").val();
+                var hlongitude = $("#hlongitude").val();
+                var hlatitude = $("#hlatitude").val();
+                var hprice = $("#hprice").val()
+                var hprice_old = $("#hprice_old").val();
+                var hsquare = $("#hsquare").val();
+                var htype = $("#htype").val();
+                var hlabel = $("#hlabel").val();
+
+                console.log(!isNaN(hlongitude))
+                console.log(htitle1);
+                console.log(htitle2);
+                console.log(htitle3);
+                console.log(hdetail);
+                console.log(haddress);
+                console.log(hlongitude);
+                console.log(hlatitude);
+                console.log(hprice);
+                console.log(hprice_old);
+                console.log(hsquare);
+                console.log(htype);
+                console.log(hlabel);
+                if(!(htitle1&&htitle2&&htitle3&&hdetail&&haddress&&hlongitude&&hlatitude&&hprice&&hprice_old&&hsquare&&htype&&hlabel)){
+                    alert("遗漏了信息，请检查！");
+                    return ;
+                }
+                if(isNaN(hlongitude) || isNaN(hlatitude) || isNaN(hprice) || isNaN(hprice_old) || isNaN(hsquare) ){
+                    alert("请填入正确的数字");
+                    return ;
+                }
+                console.log(hlabel);
+                var labels = hlabel.split(/[,_;；]/);
+                for(var i = 0 ; i<labels.length ; i++){
+                    if(labels[i] == ""){
+                        labels.splice(i,1);
+                        i = -1;
+                    }
+                }
+                console.log(labels);
+                var equips = []
+                $(".equip-checkbox").each(function(){
+                    if($(this).is(':checked')){
+                        equips.push($(this).val())
+                    }
+                })
+                var icons = []
+                $(".icon-checkbox").each(function(){
+                    if($(this).is(':checked')){
+                        icons.push($(this).val())
+                    }
+                })
+                console.log(equips);
+                console.log(icons);
+                if(!(equips.length && icons.length)){
+                    alert("请勾选设备与类型");
+                    return ;
+                }
+                $("#form-house").ajaxSubmit({
+                    url:"https://mina.mapglory.com/addHouseHandle",
+                    type:"POST",
+                    data: {
+                        'labels':JSON.stringify(labels),
+                        'equips':equips,
+                        'icons':icons,
+                    },
+                    success:function(data){
+                        console.log(data);
+                        if(data.status == 1) {
+                            console.log('status')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    }
+                });
+            })
+        })
+    </script>
+</body>
+
+
+
+</html>
