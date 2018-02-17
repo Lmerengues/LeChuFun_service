@@ -76,5 +76,25 @@ def addHouseHandle(request):
     return response
 
 
+def activity_list(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
 
+
+    cursor = connections['default'].cursor()
+    cursor.execute("select * from equip")
+    eraw = dictfetchall(cursor)
+    cursor.close()
+
+    cursor = connections['default'].cursor()
+    cursor.execute("select * from icon")
+    iraw = dictfetchall(cursor)
+    cursor.close()
+    context['equips'] = eraw
+    context['icons'] = iraw
+
+    # context['test'] = 'hello'
+
+
+    return render(request, 'k_activity.html', context)
 
