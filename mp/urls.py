@@ -86,11 +86,13 @@ urlpatterns = [
     url(r'^krefund', k_order.refund),
     url(r'^kadd$', k_view.add),
     url(r'^kaddHouseHandle$', k_view.addHouseHandle),
+
+
     url(r'^kactivity$', k_view.activity_list),
     url(r'^krule$', k_view.activity_rule),
     url(r'^kinstruction$', k_view.activity_instruction),
     url(r'^kuse$', k_view.activity_use),
-    url(r'^krefund$', k_view.activity_refund),
+    url(r'^krefundadd$', k_view.activity_refund),
 
 
     # url(r'^hello$', pay.test),
