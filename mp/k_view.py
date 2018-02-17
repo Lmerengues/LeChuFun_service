@@ -94,3 +94,9 @@ def activity_list(request):
 
     return render(request, 'k_activity.html', context)
 
+def activity_rule(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    return render(request, 'k_rule.html', context)
