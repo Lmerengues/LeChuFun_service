@@ -128,3 +128,20 @@ def activity_image(request):
 
 
     return render(request, 'k_image.html', context)
+
+def activity_package(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+    ano = request.GET['ano']
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select pno,ptitle from activity_package where ano = %s",(ano,))
+    eraw = dictfetchall(cursor)
+    cursor.close()
+
+    context['list'] = eraw
+
+
+
+    return render(request, 'k_package.html', context)

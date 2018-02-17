@@ -34,28 +34,24 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    所有活动
+                    所有套餐
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>活动名称</th>
+                                    <th>套餐名称</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for e in list %}
                                     <tr>
-                                        <td>{{e.atitle1}} </td>
+                                        <td>{{e.ptitle}} </td>
                                         <td>
-                                            <a href="/kimage?ano={{e.ano}}">图片</a>
-                                            <a href="/krule?ano={{e.ano}}">rule</a>
-                                            <a href="/kinstruction?ano={{ e.ano }}">instruction</a>
-                                            <a href="/kpackage?ano={{ e.ano }}">套餐</a>
-                                            <a href="/krefundadd?ano={{ e.ano }}">退改</a>
-                                            <a href="/kuse?ano={{ e.ano }}">使用</a>
+                                            <a href="/prule?ano={{e.pno}}">rule</a>
+                                            <a href="/pticket?ano={{e.pno}}">rule</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

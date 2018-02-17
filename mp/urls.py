@@ -94,6 +94,7 @@ urlpatterns = [
     url(r'^kuse$', k_view.activity_use),
     url(r'^krefundadd$', k_view.activity_refund),
     url(r'^kimage$', k_view.activity_image),
+    url(r'^kpackage$', k_view.activity_package),
 
 
     # url(r'^hello$', pay.test),
