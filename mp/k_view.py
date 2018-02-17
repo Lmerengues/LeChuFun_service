@@ -100,3 +100,24 @@ def activity_rule(request):
 
 
     return render(request, 'k_rule.html', context)
+
+def activity_instruction(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    return render(request, 'k_instruction.html', context)
+
+def activity_use(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    return render(request, 'k_use.html', context)
+
+def activity_refund(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    return render(request, 'k_refund.html', context)
