@@ -159,3 +159,8 @@ def package_ticket(request):
 
 
     return render(request, 'p_ticket.html', context)
+
+def city_add(request):
+    context = {}
+
+    return render(request, 'k_cityadd.html', context)
