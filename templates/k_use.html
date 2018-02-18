@@ -89,7 +89,7 @@
             $("#btn-commit").click(function(){
                 var ano = getRequest().ano;
                 $("#ano").val(ano);
-                $("#form-refund").ajaxSubmit({
+                $("#form-use").ajaxSubmit({
                     url:"https://mina.mapglory.com/add_use",
                     type:"POST",
                     success:function(res){
