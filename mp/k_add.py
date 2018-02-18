@@ -171,3 +171,37 @@ def hot_update(request):
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
+
+def theme_update(request):
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("delete from activity_rank_theme where 1")
+    cursor.close()
+
+    theme_dict = request.POST
+    for key in theme_dict:
+        cursor = connections['klook'].cursor()
+        cursor.execute("insert into activity_rank_theme values(%s,%s)",(key,theme_dict[key],))
+        cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
+
+def rec_update(request):
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("delete from activity_rank_rec where 1")
+    cursor.close()
+
+    rec_dict = request.POST
+    for key in rec_dict:
+        cursor = connections['klook'].cursor()
+        cursor.execute("insert into activity_rank_rec values(%s,%s)",(key,rec_dict[key],))
+        cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp

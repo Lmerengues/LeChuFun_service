@@ -65,10 +65,12 @@
                                             <input type="hidden" value="{{ e.ano }}" />
                                         </td>
                                         <td>
-                                            <input type='text' placeholder="0" class="theme"/>
+                                            <input type='text' placeholder="0" class="theme" value="{{ e.tval }}"/>
+                                            <input type="hidden" value="{{ e.ano }}" />
                                         </td>
                                         <td>
-                                            <input type='text' placeholder="0" class="rec"/>
+                                            <input type='text' placeholder="0" class="rec" value="{{ e.rval }}"/>
+                                            <input type="hidden" value="{{ e.ano }}" />
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -92,6 +94,34 @@
                     }
                 })
                 $.post("https://mina.mapglory.com/hot_update",hot_dict,function(res){
+                    console.log(res);
+                })
+            })
+            $("#btn-theme").click(function(){
+                theme_dict = {}
+                $(".theme").each(function(){
+                    if($(this).val() == ""){
+                        theme_dict[$(this).next().val()] = 0;
+                    }
+                    else{
+                        theme_dict[$(this).next().val()] = $(this).val();
+                    }
+                })
+                $.post("https://mina.mapglory.com/theme_update",theme_dict,function(res){
+                    console.log(res);
+                })
+            })
+            $("#btn-rec").click(function(){
+                rec_dict = {}
+                $(".rec").each(function(){
+                    if($(this).val() == ""){
+                        rec_dict[$(this).next().val()] = 0;
+                    }
+                    else{
+                        rec_dict[$(this).next().val()] = $(this).val();
+                    }
+                })
+                $.post("https://mina.mapglory.com/rec_update",rec_dict,function(res){
                     console.log(res);
                 })
             })

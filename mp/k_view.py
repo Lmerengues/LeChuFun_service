@@ -98,6 +98,16 @@ def activity_list(request):
         item['hval'] =  dictfetchall(cursor)[0]['aval']
         cursor.close()
 
+        cursor = connections['klook'].cursor()
+        cursor.execute("select aval from activity_rank_theme where ano = %s", (item['ano'],))
+        item['tval'] = dictfetchall(cursor)[0]['aval']
+        cursor.close()
+
+        cursor = connections['klook'].cursor()
+        cursor.execute("select aval from activity_rank_recommend where ano = %s", (item['ano'],))
+        item['rval'] = dictfetchall(cursor)[0]['aval']
+        cursor.close()
+
     context['list'] = eraw
 
 
