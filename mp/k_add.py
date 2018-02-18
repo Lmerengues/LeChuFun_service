@@ -24,7 +24,7 @@ def add_activity(request):
 def add_city(request):
 
     cursor = connections['klook'].cursor()
-    cursor.execute("insert into place values(null,%s,%s,%s,%s)",(request.POST['ptitle'],str(request.POST['pimg']),request.POST['cityPinYin'],request.POST['cityPY'],))
+    cursor.execute("insert into place values(null,%s,%s,%s,%s)",(request.POST['ptitle'],'aa',request.POST['cityPinYin'],request.POST['cityPY'],))
     cursor.close()
 
     raw = {'status': 1}
