@@ -88,12 +88,16 @@ def activity_list(request):
 
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select activities.ano,atitle1,aval as hval from activities,activity_rank_hot where activities.ano = activity_rank_hot.ano ")
+    cursor.execute("select ano,atitle1 from activities")
     eraw = dictfetchall(cursor)
     cursor.close()
 
-
-
+    for item in eraw:
+        cursor = connections['klook'].cursor()
+        cursor.execute("select aval from from activity_rank_hot where ano = %s",(item['ano'],))
+        item['hval'] =  dictfetchall(cursor)[0]['aval']
+        cursor.close()
+        
     context['list'] = eraw
 
 
