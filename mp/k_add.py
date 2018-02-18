@@ -28,8 +28,11 @@ def add_activity(request):
 
 def add_city(request):
 
-
-    pimage = request.FILES.post('pimg')
+    f = request.FILES['pimg']
+    with open('/var/www/html/mp/images/a', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+    #pimage = request.FILES.post('pimg')
 
     #path = default_storage.save('static/images/'+pimage.name,ContentFile(pimage.read()))
 
