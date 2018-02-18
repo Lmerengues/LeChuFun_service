@@ -84,7 +84,12 @@
             $("#btn-hot").click(function(){
                 hot_dict = {}
                 $(".hot").each(function(){
-                    hot_dict[$(this).next().val()] = $(this).val();
+                    if($(this).val() == ""){
+                        hot_dict[$(this).next().val()] = 0;
+                    }
+                    else{
+                        hot_dict[$(this).next().val()] = $(this).val();
+                    }
                 })
                 $.post("https://mina.mapglory.com/hot_update",hot_dict,function(res){
                     console.log(res);
