@@ -31,7 +31,7 @@ def add_city(request):
 
     f = request.FILES['pimg']
 
-    root_dir = '/var/www/html/mp/static/images/test'
+    root_dir = '/var/www/html/mp/static/images/citys'
     os.mkdir(root_dir)
 
 
@@ -45,7 +45,7 @@ def add_city(request):
 
 
     cursor = connections['klook'].cursor()
-    cursor.execute("insert into place values(null,%s,%s,%s,%s)",(request.POST['ptitle'],'aa',request.POST['cityPinyin'],request.POST['cityPY'],))
+    cursor.execute("insert into place values(null,%s,%s,%s,%s)",(request.POST['ptitle'],'https://mina.mapglory.com/static/images/citys/'+f.name,request.POST['cityPinyin'],request.POST['cityPY'],))
     cursor.close()
 
     raw = {'status': 1}
