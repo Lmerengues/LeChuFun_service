@@ -136,7 +136,7 @@ def add_image(request):
 def add_prule(request):
 
     cursor = connections['klook'].cursor()
-    cursor.execute("insert into activity_package_rule values(null,%s,%s)",(request.POST['rdetail'],request.POST['pno'],))
+    cursor.execute("insert into activity_package_rule values(null,%s,%s)",(request.POST['pdetail'],request.POST['pno'],))
     cursor.close()
 
     raw = {'status': 1}
