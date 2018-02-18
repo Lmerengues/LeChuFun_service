@@ -88,9 +88,11 @@ def activity_list(request):
 
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select ano,atitle1 from activities")
+    cursor.execute("select activities.ano,atitle1,aval as hval from activities,activity_rank_hot where activities.ano = activity_rank_hot.ano ")
     eraw = dictfetchall(cursor)
     cursor.close()
+
+
 
     context['list'] = eraw
 
