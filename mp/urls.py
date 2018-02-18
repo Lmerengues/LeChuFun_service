@@ -101,6 +101,7 @@ urlpatterns = [
 
 
     url(r'^add_activity$', k_add.add_activity),
+    url(r'^add_city$', k_add.add_city),
 
     # url(r'^hello$', pay.test),
 
