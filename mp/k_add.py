@@ -154,3 +154,20 @@ def add_pticket(request):
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
+
+def hot_update(request):
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("delete * from activity_rank_hot")
+    cursor.close()
+
+    hot_dict = request.POST['hot']
+    for key in hot_dict:
+        cursor = connections['klook'].cursor()
+        cursor.execute("insert into activity_rank_hot values(%s,%s)",(key,hot_dict[key],))
+        cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp

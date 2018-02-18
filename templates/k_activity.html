@@ -43,9 +43,9 @@
                                 <tr>
                                     <th>活动名称</th>
                                     <th>操作</th>
-                                    <th>热门度<a class="btn">提交</a></th>
-                                    <th>主题度<a class="btn">提交</a></th>
-                                    <th>推荐度<a class="btn">提交</a></th>
+                                    <th>热门度<a class="btn" id="btn-hot">提交</a></th>
+                                    <th>主题度<a class="btn" id="btn-theme">提交</a></th>
+                                    <th>推荐度<a class="btn" id="btn-rec">提交</a></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,13 +61,14 @@
                                             <a href="/kuse?ano={{ e.ano }}">使用</a>
                                         </td>
                                         <td>
-                                            <input type='text' placeholder="0"/>
+                                            <input type='text' placeholder="0" class="hot"/>
+                                            <input type="hidden" value="{{ e.ano }}" />
                                         </td>
                                         <td>
-                                            <input type='text' placeholder="0"/>
+                                            <input type='text' placeholder="0" class="theme"/>
                                         </td>
                                         <td>
-                                            <input type='text' placeholder="0"/>
+                                            <input type='text' placeholder="0" class="rec"/>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -78,6 +79,18 @@
             </div>
         </div>
     </div>
-
+    <script>
+        $(document).ready(function(){
+            $("#btn-hot").click(function(){
+                hot_dict = {}
+                $(".hot").each(function(){
+                    hot_dict[$(this).next().val()] = $(this).val();
+                })
+                $.post("https://mina.mapglory.com/hot_update",{'hot':hot_dict},function(res){
+                    console.log(res);
+                })
+            })
+        })
+    </script>
 </body>
 </html>

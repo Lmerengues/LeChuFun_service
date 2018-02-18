@@ -109,6 +109,7 @@ urlpatterns = [
     url(r'^add_image$', k_add.add_image),
     url(r'^add_prule$', k_add.add_prule),
     url(r'^add_pticket$', k_add.add_pticket),
+    url(r'^hot_update', k_add.hot_update),
 
     # url(r'^hello$', pay.test),
 
