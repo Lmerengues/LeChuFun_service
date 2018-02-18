@@ -103,3 +103,22 @@ def add_use(request):
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
+
+def add_image(request):
+
+    fs = request.FILES['aimg']
+    ano = request.POST['ano']
+
+    for f in fs:
+        root_dir = '/var/www/html/mp/static/images/'+str(ano)
+        os.mkdir(root_dir)
+
+        with open(root_dir + '/' + f.name, 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
