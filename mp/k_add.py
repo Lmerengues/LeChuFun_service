@@ -158,7 +158,7 @@ def add_pticket(request):
 def hot_update(request):
 
     cursor = connections['klook'].cursor()
-    cursor.execute("delete * from activity_rank_hot")
+    cursor.execute("delete from activity_rank_hot where 1")
     cursor.close()
 
     hot_dict = request.POST['hot']
