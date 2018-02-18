@@ -103,6 +103,7 @@ urlpatterns = [
     url(r'^add_activity$', k_add.add_activity),
     url(r'^add_city$', k_add.add_city),
     url(r'^add_rule$', k_add.add_rule),
+    url(r'^add_ins$', k_add.add_ins),
 
     # url(r'^hello$', pay.test),
 

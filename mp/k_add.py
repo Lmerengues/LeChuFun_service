@@ -65,3 +65,16 @@ def add_rule(request):
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
+
+def add_ins(request):
+
+
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_instruction values(null,%s,%s)",(request.POST['idetail'],request.POST['ano']))
+    cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
