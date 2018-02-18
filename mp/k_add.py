@@ -13,7 +13,7 @@ def add_activity(request):
 
     cursor = connections['klook'].cursor()
     #cursor.execute("insert into activities values(null,%s,%s,%s,%s,0,%s,%s,%s,%s,%s,%s,0,%s,sysdate())",(request.POST['atitle1'],request.POST['atitle2'],request.POST['aprice'],request.POST['aprice_old'],request.POST['adate'],request.POST['ahour'],request.POST['adetail'],request.POST['alongitude'],request.POST['alatitude'],basic_url,request.POST['pno'],))
-    cursor.execute("insert into activities values(null,'1','1','1','1',0,'2018-06-05','1','1','1','1','1',0,'0',sysdate())")
+    cursor.execute("insert into activities values(null,%s,%s,'1','1',0,'2018-06-05','1','1','1','1','1',0,'0',sysdate())",(request.POST['atitle1'],request.POST['atitle2'],))
     cursor.close()
 
     raw = {'status':1}
