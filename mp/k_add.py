@@ -106,17 +106,19 @@ def add_use(request):
 
 def add_image(request):
 
-    fs = request.FILES['aimg']
+    f = request.FILES['aimg']
     ano = request.POST['ano']
 
-    for f in fs:
-        root_dir = '/var/www/html/mp/static/images/'+str(ano)
-        os.mkdir(root_dir)
+    root_dir = '/var/www/html/mp/static/images/'+str(ano)
+    os.mkdir(root_dir)
 
-        with open(root_dir + '/' + f.name, 'wb+') as destination:
-            for chunk in f.chunks():
-                destination.write(chunk)
+    with open(root_dir + '/' + f.name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_image values(null,%s,%s)",('https://mina.mapglory.com/static/images/'+str(ano)+'/'+f.name,ano))
+    cursor.close()
 
     raw = {'status': 1}
 
