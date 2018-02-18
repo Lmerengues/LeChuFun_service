@@ -161,7 +161,7 @@ def hot_update(request):
     cursor.execute("delete from activity_rank_hot where 1")
     cursor.close()
 
-    hot_dict = request.POST['hot']
+    hot_dict = request.POST
     for key in hot_dict:
         cursor = connections['klook'].cursor()
         cursor.execute("insert into activity_rank_hot values(%s,%s)",(key,hot_dict[key],))
