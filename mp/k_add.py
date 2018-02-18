@@ -31,7 +31,7 @@ def add_city(request):
 
     pimage = request.FILES.post('pimg')
 
-    path = default_storage.save('static/images/'+pimage.name,ContentFile(pimage.read()))
+    #path = default_storage.save('static/images/'+pimage.name,ContentFile(pimage.read()))
 
 
     cursor = connections['klook'].cursor()
