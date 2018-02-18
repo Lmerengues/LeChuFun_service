@@ -123,6 +123,11 @@ def add_image(request):
     cursor.execute("insert into activity_image values(null,%s,%s)",('https://mina.mapglory.com/static/images/'+str(ano)+'/'+f.name,ano))
     cursor.close()
 
+    if request.has_key('star'):
+        cursor = connections['klook'].cursor()
+        cursor.execute("update activities set aurl = %s where ano = %s",('https://mina.mapglory.com/static/images/'+str(ano)+'/'+f.name,ano))
+        cursor.close()
+
     raw = {'status': 1}
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
