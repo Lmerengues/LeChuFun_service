@@ -82,7 +82,7 @@
                         hot_dict[$(this).next().val()] = $(this).val();
                     }
                 })
-                $.post("https://mina.mapglory.com/hot_update",hot_dict,function(res){
+                $.post("https://mina.mapglory.com/place_hot_update",hot_dict,function(res){
                     console.log(res);
                     if(res.status == 1){
                         alert('提交成功');
