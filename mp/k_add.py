@@ -29,7 +29,7 @@ def add_activity(request):
 def add_city(request):
 
 
-    #pimage = request.FILES.post('pimg')
+    pimage = request.FILES.POST('pimg')
 
     #path = default_storage.save('static/images/'+pimage.name,ContentFile(pimage.read()))
 
