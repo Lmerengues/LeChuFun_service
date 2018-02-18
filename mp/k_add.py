@@ -78,3 +78,16 @@ def add_ins(request):
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
+
+def add_refund(request):
+
+
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_refund_know values(null,%s,%s)",(request.POST['rdetail'],request.POST['ano']))
+    cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
