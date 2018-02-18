@@ -111,7 +111,8 @@ def add_image(request):
     f = request.FILES['aimg']
 
     root_dir = '/var/www/html/mp/static/images/'+str(ano)
-    os.mkdir(root_dir)
+    if not os.chdir(root_dir):
+        os.mkdir(root_dir)
 
     with open(root_dir + '/' + f.name, 'wb+') as destination:
         for chunk in f.chunks():
