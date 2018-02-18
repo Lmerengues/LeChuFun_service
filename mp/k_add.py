@@ -6,6 +6,7 @@ from django.db import connections
 from datetime import date, datetime,time
 
 import math
+import os
 
 def add_activity(request):
 
@@ -22,6 +23,17 @@ def add_activity(request):
     return resp
 
 def add_city(request):
+
+
+    pimage = request.FILES.post('pimg')
+    baseDir = os.path.dirname(os.path.abspath(__name__))
+    jpgdir = os.path.join(baseDir, 'static', 'images')
+    filename = os.path.join(jpgdir, pimage.name)
+    fobj = open(filename, 'wb')
+    for chrunk in pimage.chunks():
+        fobj.write(chrunk)
+    fobj.close()
+
 
     cursor = connections['klook'].cursor()
     cursor.execute("insert into place values(null,%s,%s,%s,%s)",(request.POST['ptitle'],'aa',request.POST['cityPinyin'],request.POST['cityPY'],))
