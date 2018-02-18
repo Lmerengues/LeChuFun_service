@@ -91,3 +91,15 @@ def add_refund(request):
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
+
+def add_use(request):
+
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_use_know values(null,%s,%s,%s)",(request.POST['udetail'],request.POST['ano'],request.POST['ktype'],))
+    cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
