@@ -18,15 +18,7 @@ def dictfetchall(cursor):
 def index(request):
 
     contact_dis = {}
-
-
     openid = request.GET['openid']
-
-
-
-
-
-
 
 
     cursor = connections['klook'].cursor()
