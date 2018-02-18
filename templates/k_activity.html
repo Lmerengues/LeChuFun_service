@@ -83,6 +83,14 @@
     </div>
     <script>
         $(document).ready(function(){
+            function CAR(time) {
+                if (!time) {
+                    time = 0;
+                }
+                setTimeout(function() {
+                    location.reload();
+                }, time * 2000);
+            }
             $("#btn-hot").click(function(){
                 hot_dict = {}
                 $(".hot").each(function(){
@@ -95,6 +103,13 @@
                 })
                 $.post("https://mina.mapglory.com/hot_update",hot_dict,function(res){
                     console.log(res);
+                    if(res.status == 1){
+                        alert('提交成功');
+                        CAR(1);
+                    }
+                    else{
+                        alert('提交失败');
+                    }
                 })
             })
             $("#btn-theme").click(function(){
@@ -109,6 +124,13 @@
                 })
                 $.post("https://mina.mapglory.com/theme_update",theme_dict,function(res){
                     console.log(res);
+                     if(res.status == 1){
+                        alert('提交成功');
+                        CAR(1);
+                    }
+                    else{
+                        alert('提交失败');
+                    }
                 })
             })
             $("#btn-rec").click(function(){
@@ -123,6 +145,13 @@
                 })
                 $.post("https://mina.mapglory.com/rec_update",rec_dict,function(res){
                     console.log(res);
+                     if(res.status == 1){
+                        alert('提交成功');
+                        CAR(1);
+                    }
+                    else{
+                        alert('提交失败');
+                    }
                 })
             })
         })
