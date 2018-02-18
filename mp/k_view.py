@@ -95,17 +95,27 @@ def activity_list(request):
     for item in eraw:
         cursor = connections['klook'].cursor()
         cursor.execute("select aval from activity_rank_hot where ano = %s",(item['ano'],))
-        item['hval'] =  dictfetchall(cursor)[0]['aval']
+        if len(dictfetchall(cursor)) > 0:
+            item['hval'] =  dictfetchall(cursor)[0]['aval']
+        else:
+            item['hval'] = 0
         cursor.close()
 
         cursor = connections['klook'].cursor()
         cursor.execute("select aval from activity_rank_theme where ano = %s", (item['ano'],))
-        item['tval'] = dictfetchall(cursor)[0]['aval']
+
+        if len(dictfetchall(cursor)) > 0:
+            item['tval'] = dictfetchall(cursor)[0]['aval']
+        else:
+            item['tval'] = 0
         cursor.close()
 
         cursor = connections['klook'].cursor()
         cursor.execute("select aval from activity_rank_recommend where ano = %s", (item['ano'],))
-        item['rval'] = dictfetchall(cursor)[0]['aval']
+        if len(dictfetchall(cursor)) > 0:
+            item['rval'] = dictfetchall(cursor)[0]['aval']
+        else:
+            item['rval'] = 0
         cursor.close()
 
     context['list'] = eraw
