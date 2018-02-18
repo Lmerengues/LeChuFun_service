@@ -70,6 +70,14 @@
     </div>
     <script>
         $(document).ready(function(){
+            function CAR(time) {
+                if (!time) {
+                    time = 0;
+                }
+                setTimeout(function() {
+                    location.reload();
+                }, time * 2000);
+            }
              function getRequest() {
               var url = window.location.search; //获取url中"?"符后的字串
               var theRequest = new Object();
