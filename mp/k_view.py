@@ -104,17 +104,18 @@ def activity_list(request):
 
         cursor = connections['klook'].cursor()
         cursor.execute("select aval from activity_rank_theme where ano = %s", (item['ano'],))
-
-        if len(dictfetchall(cursor)) > 0:
-            item['tval'] = dictfetchall(cursor)[0]['aval']
+        dic2 = dictfetchall(cursor)
+        if len(dic2) > 0:
+            item['tval'] = dic2[0]['aval']
         else:
             item['tval'] = 0
         cursor.close()
 
         cursor = connections['klook'].cursor()
         cursor.execute("select aval from activity_rank_recommend where ano = %s", (item['ano'],))
-        if len(dictfetchall(cursor)) > 0:
-            item['rval'] = dictfetchall(cursor)[0]['aval']
+        dic3 = dictfetchall(cursor)
+        if len(dic3) > 0:
+            item['rval'] = dic3[0]['aval']
         else:
             item['rval'] = 0
         cursor.close()
