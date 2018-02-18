@@ -27,6 +27,9 @@
     <link  href="static/css/jquery.dataTables.min.css" rel="stylesheet"-->
     <style>
     </style>
+
+    <script>
+    </script>
 </head>
 <body>
     <div class="row">
@@ -155,6 +158,14 @@
     </div>
     <script>
         $(document).ready(function(){
+            function CAR(time) {
+                if (!time) {
+                    time = 0;
+                }
+                setTimeout(function() {
+                    location.reload();
+                }, time * 2000);
+            }
             $('.form_date').datetimepicker({
                 weekStart: 1,
                 todayBtn:  1,
@@ -168,8 +179,15 @@
                 $("#form-activity").ajaxSubmit({
                     url:"https://mina.mapglory.com/add_activity",
                     type:"POST",
-                    success:function(data){
-                        console.log(data);
+                    success:function(res){
+                        console.log(res);
+                        if(res.status == 1){
+                            alert('活动添加成功！');
+                            CAR(2);
+                        }
+                        else{
+                            alert('添加失败，请检查！');
+                        }
                     }
                 });
             })
