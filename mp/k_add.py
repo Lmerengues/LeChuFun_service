@@ -8,6 +8,10 @@ from datetime import date, datetime,time
 import math
 import os
 
+from django.core.files.storage import default_storage
+from django.conf import settings
+from django.core.files.base import ContentFile
+
 def add_activity(request):
 
     basic_url = 'https://mina.mapglory.com/static/images/canaan/5.jpeg'
@@ -26,13 +30,8 @@ def add_city(request):
 
 
     pimage = request.FILES.post('pimg')
-    baseDir = os.path.dirname(os.path.abspath(__name__))
-    jpgdir = os.path.join(baseDir, 'static', 'images')
-    filename = os.path.join(jpgdir, pimage.name)
-    fobj = open(filename, 'wb')
-    for chrunk in pimage.chunks():
-        fobj.write(chrunk)
-    fobj.close()
+
+    path = default_storage.save('static/images/'+pimage.name,ContentFile(pimage.read()))
 
 
     cursor = connections['klook'].cursor()
