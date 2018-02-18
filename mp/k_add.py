@@ -12,6 +12,7 @@ from django.core.files.storage import default_storage
 from django.conf import settings
 from django.core.files.base import ContentFile
 
+
 def add_activity(request):
 
     basic_url = 'https://mina.mapglory.com/static/images/canaan/5.jpeg'
@@ -29,7 +30,13 @@ def add_activity(request):
 def add_city(request):
 
     f = request.FILES['pimg']
-    with open('/var/www/html/mp/static/images/a', 'wb+') as destination:
+
+    root_dir = '/var/www/html/mp/static/images/test'
+    os.mkdir(root_dir)
+
+
+
+    with open(root_dir+'/'+f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
     #pimage = request.FILES.post('pimg')
