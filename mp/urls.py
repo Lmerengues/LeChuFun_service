@@ -110,9 +110,11 @@ urlpatterns = [
     url(r'^add_prule$', k_add.add_prule),
     url(r'^add_pticket$', k_add.add_pticket),
 
-    url(r'^hot_update', k_add.hot_update),
-    url(r'^theme_update', k_add.theme_update),
-    url(r'^rec_update', k_add.rec_update),
+    url(r'^hot_update$', k_add.hot_update),
+    url(r'^theme_update$', k_add.theme_update),
+    url(r'^rec_update$', k_add.rec_update),
+
+    url(r'^kcity$', k_view.city),
 
     # url(r'^hello$', pay.test),
 

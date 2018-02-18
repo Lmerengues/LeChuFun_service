@@ -198,3 +198,33 @@ def city_add(request):
     context = {}
 
     return render(request, 'k_cityadd.html', context)
+
+def city(request):
+    context = {}
+    # context['hello'] = 'Hello World!'
+
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select pno,ptitle from place")
+    praw = dictfetchall(cursor)
+    cursor.close()
+
+
+    for item in praw:
+        cursor = connections['klook'].cursor()
+        cursor.execute("select pval from place_hot where pno = %s",(item['pno'],))
+        dic1 = dictfetchall(cursor)
+        if len(dic1) > 0:
+            item['hval'] =  dic1[0]['pval']
+        else:
+            item['hval'] = 0
+        cursor.close()
+
+
+    context['list'] = praw
+
+
+    # context['test'] = 'hello'
+
+
+    return render(request, 'k_city.html', context)
