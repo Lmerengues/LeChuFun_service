@@ -53,3 +53,15 @@ def add_city(request):
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
 
+def add_rule(request):
+
+
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_rule values(null,%s,%s,%s)",(request.POST['rdetail'],'1',request.POST['ano']))
+    cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
