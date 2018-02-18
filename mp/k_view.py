@@ -95,8 +95,9 @@ def activity_list(request):
     for item in eraw:
         cursor = connections['klook'].cursor()
         cursor.execute("select aval from activity_rank_hot where ano = %s",(item['ano'],))
-        if len(dictfetchall(cursor)) > 0:
-            item['hval'] =  dictfetchall(cursor)[0]['aval']
+        dic1 = dictfetchall(cursor)
+        if len(dic1) > 0:
+            item['hval'] =  dic1[0]['aval']
         else:
             item['hval'] = 0
         cursor.close()
