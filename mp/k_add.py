@@ -143,3 +143,14 @@ def add_prule(request):
 
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
+
+def add_pticket(request):
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_package_ticket values(null,%s,%s,%s)",(request.POST['ttitle'],request.POST['tprice'],request.POST['pno'],))
+    cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
