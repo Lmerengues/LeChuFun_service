@@ -107,6 +107,7 @@ urlpatterns = [
     url(r'^add_refund$', k_add.add_refund),
     url(r'^add_use$', k_add.add_use),
     url(r'^add_image$', k_add.add_image),
+    url(r'^add_prule$', k_add.add_prule),
 
     # url(r'^hello$', pay.test),
 

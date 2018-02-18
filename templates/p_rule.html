@@ -42,7 +42,8 @@
                                 <label class="col-md-2 control-label">注意事项</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <textarea type='text' class='form-control' id='haddress' name='haddress' placeholder="xxx"></textarea>
+                                        <textarea type='text' class='form-control' id='pdetail' name='pdetail' placeholder="xxx"></textarea>
+                                        <input type="hidden" id="pno" name="pno"/>
                                     </div>
                                 </div>
                             </div>
@@ -59,92 +60,34 @@
     </div>
     <script>
         $(document).ready(function(){
-            $('.form_date').datetimepicker({
-                weekStart: 1,
-                todayBtn:  1,
-                autoclose: 1,
-                todayHighlight: 1,
-                startView: 2,
-                minView: 2,
-                forceParse: 0
-            });
-            $("#btn-commit").click(function(){
-                var htitle1 = $("#htitle1").val();
-                var htitle2 = $("#htitle2").val();
-                var htitle3 = $("#htitle3").val();
-                var hdetail = $("#hdetail").val();
-                var haddress = $("#haddress").val();
-                var hlongitude = $("#hlongitude").val();
-                var hlatitude = $("#hlatitude").val();
-                var hprice = $("#hprice").val()
-                var hprice_old = $("#hprice_old").val();
-                var hsquare = $("#hsquare").val();
-                var htype = $("#htype").val();
-                var hlabel = $("#hlabel").val();
+             function getRequest() {
+              var url = window.location.search; //获取url中"?"符后的字串
+              var theRequest = new Object();
+              if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for(var i = 0; i < strs.length; i ++) {
 
-                console.log(!isNaN(hlongitude))
-                console.log(htitle1);
-                console.log(htitle2);
-                console.log(htitle3);
-                console.log(hdetail);
-                console.log(haddress);
-                console.log(hlongitude);
-                console.log(hlatitude);
-                console.log(hprice);
-                console.log(hprice_old);
-                console.log(hsquare);
-                console.log(htype);
-                console.log(hlabel);
-                if(!(htitle1&&htitle2&&htitle3&&hdetail&&haddress&&hlongitude&&hlatitude&&hprice&&hprice_old&&hsquare&&htype&&hlabel)){
-                    alert("遗漏了信息，请检查！");
-                    return ;
+                  theRequest[strs[i].split("=")[0]]=decodeURI(strs[i].split("=")[1]);
+
                 }
-                if(isNaN(hlongitude) || isNaN(hlatitude) || isNaN(hprice) || isNaN(hprice_old) || isNaN(hsquare) ){
-                    alert("请填入正确的数字");
-                    return ;
-                }
-                console.log(hlabel);
-                var labels = hlabel.split(/[,_;；]/);
-                for(var i = 0 ; i<labels.length ; i++){
-                    if(labels[i] == ""){
-                        labels.splice(i,1);
-                        i = -1;
-                    }
-                }
-                console.log(labels);
-                var equips = []
-                $(".equip-checkbox").each(function(){
-                    if($(this).is(':checked')){
-                        equips.push($(this).val())
-                    }
-                })
-                var icons = []
-                $(".icon-checkbox").each(function(){
-                    if($(this).is(':checked')){
-                        icons.push($(this).val())
-                    }
-                })
-                console.log(equips);
-                console.log(icons);
-                if(!(equips.length && icons.length)){
-                    alert("请勾选设备与类型");
-                    return ;
-                }
-                $("#form-house").ajaxSubmit({
-                    url:"https://mina.mapglory.com/addHouseHandle",
+              }
+              return theRequest;
+            }
+            $("#btn-commit").click(function(){
+                var pno = getRequest().pno;
+                $("#pno").val(pno);
+                $("#form-rule").ajaxSubmit({
+                    url:"https://mina.mapglory.com/add_prule",
                     type:"POST",
-                    data: {
-                        'labels':JSON.stringify(labels),
-                        'equips':equips,
-                        'icons':icons,
-                    },
-                    success:function(data){
-                        console.log(data);
-                        if(data.status == 1) {
-                            console.log('status')
+                    success:function(res){
+                        console.log(res);
+                        if(res.status == 1){
+                            alert('活动添加成功！');
+                            CAR(2);
                         }
                         else{
-                            console.log('error')
+                            alert('添加失败，请检查！');
                         }
                     }
                 });
