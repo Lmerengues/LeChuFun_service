@@ -10,7 +10,7 @@ import math
 def add_activity(request):
 
     cursor = connections['klook'].cursor()
-    cursor.execute("insert into base values(null,%s,%s)",('a','b',))
+    cursor.execute("insert into base values(null,%s,%s)",(request.POST['adate'],'b',))
     cursor.close()
 
     raw = {'status':1}
