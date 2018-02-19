@@ -30,7 +30,7 @@ def add_activity(request):
     cursor.close()
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select ano from activities where atitle1 = %s and atitle2 = %s order by ano desc")
+    cursor.execute("select ano from activities where atitle1 = %s and atitle2 = %s order by ano desc",(request.POST['atitle1'],request.POST['atitle2'],))
     ano = dictfetchall(cursor)[0]['ano']
     cursor.close()
 
