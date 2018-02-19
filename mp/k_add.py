@@ -32,7 +32,8 @@ def add_city(request):
     f = request.FILES['pimg']
 
     root_dir = '/var/www/html/mp/static/images/citys'
-    os.mkdir(root_dir)
+    if not os.path.exists(root_dir):
+        os.mkdir(root_dir)
 
 
 
