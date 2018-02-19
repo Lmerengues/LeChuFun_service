@@ -12,6 +12,13 @@ from django.core.files.storage import default_storage
 from django.conf import settings
 from django.core.files.base import ContentFile
 
+def dictfetchall(cursor):
+	desc = cursor.description
+	return [
+	dict(zip([col[0] for col in desc], row))
+    	for row in cursor.fetchall()
+    	]
+
 
 def add_activity(request):
 
@@ -21,6 +28,17 @@ def add_activity(request):
     #cursor.execute("insert into activities values(null,%s,%s,%s,%s,0,%s,%s,%s,%s,%s,%s,0,%s,sysdate())",(request.POST['atitle1'],request.POST['atitle2'],request.POST['aprice'],request.POST['aprice_old'],request.POST['adate'],request.POST['ahour'],request.POST['adetail'],request.POST['alongitude'],request.POST['alatitude'],basic_url,request.POST['pno'],))
     cursor.execute("insert into activities values(null,%s,%s,%s,%s,0,%s,%s,%s,%s,%s,%s,0,%s,sysdate())",(request.POST['atitle1'],request.POST['atitle2'],request.POST['aprice'],request.POST['aprice_old'],request.POST['adate'],request.POST['ahour'],request.POST['adetail'],request.POST['hlongitude'],request.POST['hlatitude'],basic_url,request.POST['pno'],))
     cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("select ano from activities where atitle1 = %s and atitle2 = %s order by ano desc")
+    ano = dictfetchall(cursor)[0]['ano']
+    cursor.close()
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_type values(%s,%s)",(ano,request.POST['ptype'],))
+    cursor.close()
+
+
 
     raw = {'status':1}
 
