@@ -93,8 +93,10 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute("select uno,cdetail,cscore,cdate,unickName,uavatarurl from activity_comment,Users where activity_comment.uno = Users.uid and ano = %s order by cdate desc limit 1", (ano,))
-    raw['comment'] = dictfetchall(cursor)[0]
-    raw['comment']['cdate'] = json_serial(raw['comment']['cdate'])
+    comment_dic = dictfetchall(cursor)
+    if len(comment_dic)>0:
+        raw['comment'] = dictfetchall(cursor)[0]
+        raw['comment']['cdate'] = json_serial(raw['comment']['cdate'])
     cursor.close()
 
     cursor = connections['klook'].cursor()
