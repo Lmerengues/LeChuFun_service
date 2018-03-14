@@ -15,7 +15,7 @@ Including another URLconf
 from django.conf.urls import url
  
 from . import detail,login,order,pay,index,contact,success,res,push,mail,view,\
-    qrcode,ruc,k_index,k_detail,k_place,k_order,k_ticket,k_contact,k_login,k_pay,k_list,k_food,k_view,k_add
+    qrcode,ruc,k_index,k_detail,k_place,k_order,k_ticket,k_contact,k_login,k_pay,k_list,k_food,k_view,k_add,k_del
 
 from django.contrib import admin
 import settings  
@@ -110,6 +110,9 @@ urlpatterns = [
     url(r'^add_prule$', k_add.add_prule),
     url(r'^add_pticket$', k_add.add_pticket),
     url(r'^add_package$', k_add.add_package),
+
+    url(r'^del$', k_del.del_activity),
+
 
     url(r'^hot_update$', k_add.hot_update),
     url(r'^theme_update$', k_add.theme_update),
