@@ -22,7 +22,7 @@ def dictfetchall(cursor):
 def del_activity(request):
 
     cursor = connections['klook'].cursor()
-    cursor.execute("delete from activities where ano = %s",(request.GET['ano'],))
+    cursor.execute("delete from activities where ano = %s",(request.POST['ano'],))
     cursor.close()
 
     raw = {'status': 1}

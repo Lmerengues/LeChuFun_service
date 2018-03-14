@@ -111,7 +111,7 @@ urlpatterns = [
     url(r'^add_pticket$', k_add.add_pticket),
     url(r'^add_package$', k_add.add_package),
 
-    url(r'^del$', k_del.del_activity),
+    url(r'^del_activity$', k_del.del_activity),
 
 
     url(r'^hot_update$', k_add.hot_update),

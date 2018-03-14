@@ -59,7 +59,8 @@
                                             <a href="/kpackage?ano={{ e.ano }}">套餐</a>
                                             <a href="/krefundadd?ano={{ e.ano }}">退改</a>
                                             <a href="/kuse?ano={{ e.ano }}">使用</a>
-                                            <a href="/kdel?ano={{ e.ano }}">删除</a>
+                                            <a class="btn btn_del">删除</a>
+                                            <input type="hidden" value="{{ e.ano }}" />
                                             <!--a></a-->
                                         </td>
                                         <td>
@@ -153,6 +154,20 @@
                     }
                     else{
                         alert('提交失败');
+                    }
+                })
+            })
+
+            $(".btn_del").click(function(){
+                var ano = $(this).next().val();
+                $.post("https://mina.mapglory.com/del_activity",{ano:ano},function(res){
+                    console.log(res);
+                     if(res.status == 1){
+                        alert('删除成功');
+                        CAR(1);
+                    }
+                    else{
+                        alert('删除失败');
                     }
                 })
             })
