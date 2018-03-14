@@ -30,7 +30,6 @@
 </head>
 <body>
     <div class="row">
-
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -62,6 +61,111 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    添加套餐<a href="/kadd">返回首页</a>
+                </div>
+                <div class="panel-body">
+                    <form id="form-package" enctype="multipart/form-data" method="POST">
+                        <!--div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">套餐</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <textarea type='text' class='form-control' id='rdetail' name='rdetail' placeholder="xxx"></textarea>
+                                        <input type="hidden" id="ano" name="ano"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div-->
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">套餐名</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="ptitle" name="ptitle" placeholder="香港迪士尼乐园门票">
+                                        <input type='hidden' class='form-control' id="ano" name="ano">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">原价</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="pprice_old" name="pprice_old" placeholder="香港迪士尼乐园门票">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-2 control-label">现价</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input type='text' class='form-control' id="price" name="price" placeholder="香港迪士尼乐园门票">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type='submit' class='btn btn-primary' id="btn-commit">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            function CAR(time) {
+                if (!time) {
+                    time = 0;
+                }
+                setTimeout(function() {
+                    location.reload();
+                }, time * 2000);
+            }
+             function getRequest() {
+              var url = window.location.search; //获取url中"?"符后的字串
+              var theRequest = new Object();
+              if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for(var i = 0; i < strs.length; i ++) {
+
+                  theRequest[strs[i].split("=")[0]]=decodeURI(strs[i].split("=")[1]);
+
+                }
+              }
+              return theRequest;
+            }
+            $("#btn-commit").click(function(){
+                var ano = getRequest().ano;
+                $("#ano").val(ano);
+                $("#form-package").ajaxSubmit({
+                    url:"https://mina.mapglory.com/add_package",
+                    type:"POST",
+                    success:function(res){
+                        console.log(res);
+                        if(res.status == 1){
+                            alert('活动添加成功！');
+                            CAR(1);
+                        }
+                        else{
+                            alert('添加失败，请检查！');
+                        }
+                    }
+                });
+            })
+        })
+    </script>
 
 </body>
 </html>

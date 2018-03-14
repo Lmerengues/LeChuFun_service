@@ -174,6 +174,18 @@ def add_pticket(request):
     resp = HttpResponse(json.dumps(raw), content_type="application/json")
     return resp
 
+def add_package(request):
+
+    cursor = connections['klook'].cursor()
+    cursor.execute("insert into activity_package values(null,%s,%s,%s,%s)",(request.POST['ptitle'], request.POST['pprice'], request.POST['pprice_old'],request.POST['ano']))
+    cursor.close()
+
+    raw = {'status': 1}
+
+    resp = HttpResponse(json.dumps(raw), content_type="application/json")
+    return resp
+
+
 def hot_update(request):
 
     cursor = connections['klook'].cursor()
