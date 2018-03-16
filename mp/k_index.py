@@ -60,6 +60,11 @@ def index(request):
     raw['rec_acti'] = dictfetchall(cursor)
     cursor.close()
 
+    cursor = connections['klook'].cursor()
+    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,place where activities.pno = place.pno order by aaddtime desc limit 5")
+    raw['time_acti'] = dictfetchall(cursor)
+    cursor.close()
+
 
     for item in raw['rec_acti']:
         item['adate'] = json_serial(item['adate'])
