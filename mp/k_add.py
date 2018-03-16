@@ -225,13 +225,13 @@ def theme_update(request):
 def rec_update(request):
 
     cursor = connections['klook'].cursor()
-    cursor.execute("delete from activity_rank_rec where 1")
+    cursor.execute("delete from activity_rank_recommend where 1")
     cursor.close()
 
     rec_dict = request.POST
     for key in rec_dict:
         cursor = connections['klook'].cursor()
-        cursor.execute("insert into activity_rank_rec values(%s,%s)",(key,rec_dict[key],))
+        cursor.execute("insert into activity_rank_recommend values(%s,%s)",(key,rec_dict[key],))
         cursor.close()
 
     raw = {'status': 1}
