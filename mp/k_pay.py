@@ -114,7 +114,7 @@ def index(request):
         'nonce_str': now,
         'body': 'aa-bb',
         'out_trade_no': my_out_trade_no,
-        'total_fee': int(total) ,
+        'total_fee': int(total)*100 ,
         'spbill_create_ip': '118.89.233.180',
         'notify_url': 'https://mina.mapglory.com/kpay_notify',
         'attach': '{"msg": "test"}',
