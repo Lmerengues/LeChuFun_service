@@ -98,7 +98,7 @@
                 var ano = getRequest().ano;
                 $("#ano").val(ano);
                 $("#form-image").ajaxSubmit({
-                    url:"https://mina.mapglory.com/add_image",
+                    url:"/add_image",
                     type:"POST",
                     success:function(res){
                         console.log(res);
