@@ -121,7 +121,7 @@ urlpatterns = [
     url(r'^kcity$', k_view.city),
 
     url(r'^place_hot_update$', k_add.place_hot_update),
-
+    
     # url(r'^hello$', pay.test),
 
     # url(r'^form$', form.index),
