@@ -105,6 +105,14 @@ DATABASES = {
         'PASSWORD': '233180txy',
         'HOST':'127.0.0.1',
         'PORT':'3306',
+    },
+    'mtm':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mtm',
+        'USER': 'root',
+        'PASSWORD': '233180txy',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 

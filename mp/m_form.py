@@ -13,7 +13,7 @@ def dictfetchall(cursor):
     	]
 
 def index(request):
-	cursor = connections['default'].cursor()	    
+	cursor = connections['mtm'].cursor()
     #return HttpResponse("Hello world ! ")
 	sno = request.GET['sno']
 	cursor.execute("select Seller.sno,sname,swage from Seller where Seller.sno = %s",(sno,))
@@ -30,7 +30,7 @@ def submit(request):
     	bno = request.GET['bno']
 	note = request.GET['note']
     	#bno = 7
-	scursor = connections['default'].cursor()
+	scursor = connections['mtm'].cursor()
 	scursor.execute("select ono from Orders where bno = %s and sno = %s",(bno,sno))
 	if(len(scursor.fetchall())>0):
 		data = {}
@@ -39,11 +39,11 @@ def submit(request):
         	return response
 		
 	
-    	cursor = connections['default'].cursor()
+    	cursor = connections['mtm'].cursor()
     	cursor.execute("insert into Orders values(null,%s,%s,%s,%s,%s,sysdate(),0)",(bno,sno,hour,need,note,))
     	cursor.close()
 
-    	jcursor = connections['default'].cursor()
+    	jcursor = connections['mtm'].cursor()
     	jcursor.execute("select ono from Orders where bno = %s and sno = %s",(bno,sno,))
    	data = {}
     	data['status'] = 0

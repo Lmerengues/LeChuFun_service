@@ -22,7 +22,7 @@ def dictfetchall(cursor):
     	]
 
 def index(request):
-	cursor = connections['default'].cursor()	    
+	cursor = connections['mtm'].cursor()
     #return HttpResponse("Hello world ! ")
 	bno = request.GET['bno']
 	cursor.execute("select Orders.ono,ostatus,Seller.sno,sname,simg,otime from Orders,Seller where Orders.sno = Seller.sno and Orders.bno = %s and ostatus = 1",(bno,))
