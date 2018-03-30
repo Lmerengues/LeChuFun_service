@@ -15,7 +15,9 @@ Including another URLconf
 from django.conf.urls import url
  
 from . import detail,login,order,pay,index,contact,success,res,push,mail,view,\
-    qrcode,ruc,k_index,k_detail,k_place,k_order,k_ticket,k_contact,k_login,k_pay,k_list,k_food,k_view,k_add,k_del
+    qrcode,ruc,k_index,k_detail,k_place,k_order,k_ticket,k_contact,k_login,k_pay,k_list,k_food,k_view,k_add,k_del,\
+    m_detail,m_form,m_home,m_login,m_order,m_pay,m_view
+
 
 from django.contrib import admin
 import settings  
@@ -121,6 +123,18 @@ urlpatterns = [
     url(r'^kcity$', k_view.city),
 
     url(r'^place_hot_update$', k_add.place_hot_update),
+
+    url(r'^m_hello$', m_pay.test),
+    #url(r'^admin/', admin.site.urls),
+    url(r'^m_home$', m_home.index),
+    url(r'^m_detail$', m_detail.index),
+    url(r'^m_form$', m_form.index),
+    url(r'^m_form_submit$', m_form.submit),
+    url(r'^m_login$',m_login.login),
+    url(r'^m_order$',m_order.index),
+    url(r'^m_pay$',m_pay.index),
+    url(r'^m_pay_notify$',m_pay.notify),
+    url(r'^m_like$',m_detail.like),
     
     # url(r'^hello$', pay.test),
 
