@@ -16,7 +16,7 @@ from django.conf.urls import url
  
 from . import detail,login,order,pay,index,contact,success,res,push,mail,view,\
     qrcode,ruc,k_index,k_detail,k_place,k_order,k_ticket,k_contact,k_login,k_pay,k_list,k_food,k_view,k_add,k_del,\
-    m_detail,m_form,m_home,m_login,m_order,m_pay,m_view
+    m_detail,m_form,m_home,m_login,m_order,m_pay,m_view,k_qrcode
 
 
 from django.contrib import admin
@@ -63,6 +63,7 @@ urlpatterns = [
     url(r'^res_index$', res.index),
 
     url(r'^getqrcode$', qrcode.index),
+    url(r'^kgetqrcode$', k_qrcode.index),
 
     url(r'^ruc$', ruc.home),
 
