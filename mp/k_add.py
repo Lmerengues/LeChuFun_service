@@ -65,7 +65,7 @@ def add_city(request):
     #path = default_storage.save('static/images/'+pimage.name,ContentFile(pimage.read()))
     qiniuuploader.upload('/static/images/citys/'+f.name,root_dir+'/'+f.name)
     cursor = connections['klook'].cursor()
-    cursor.execute("insert into place values(null,%s,%s,%s,%s)",(request.POST['ptitle'],'https://pic.mapglory.com/static/images/citys/'+f.name,request.POST['cityPinyin'],request.POST['cityPY'],))
+    cursor.execute("insert into place values(null,%s,%s,%s,%s)",(request.POST['ptitle'],'https://mina.mapglory.com/static/images/citys/'+f.name,request.POST['cityPinyin'],request.POST['cityPY'],))
     cursor.close()
 
     raw = {'status': 1}
@@ -140,12 +140,12 @@ def add_image(request):
 
     qiniuuploader.upload('/static/images/'+str(ano)+'/'+f.name,root_dir+'/'+f.name)
     cursor = connections['klook'].cursor()
-    cursor.execute("insert into activity_image values(null,%s,%s)",('https://pic.mapglory.com/static/images/'+str(ano)+'/'+f.name,ano))
+    cursor.execute("insert into activity_image values(null,%s,%s)",('https://mina.mapglory.com/static/images/'+str(ano)+'/'+f.name,ano))
     cursor.close()
 
     if request.POST.has_key('star'):
         cursor = connections['klook'].cursor()
-        cursor.execute("update activities set aurl = %s where ano = %s",('https://pic.mapglory.com/static/images/'+str(ano)+'/'+f.name,ano))
+        cursor.execute("update activities set aurl = %s where ano = %s",('https://mina.mapglory.com/static/images/'+str(ano)+'/'+f.name,ano))
         cursor.close()
 
     raw = {'status': 1}
