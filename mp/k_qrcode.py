@@ -25,7 +25,7 @@ from django.core.mail import EmailMultiAlternatives
 def index(request):
     hno = request.GET['ano']
     url = "https://api.weixin.qq.com/cgi-bin/token"
-    querystring = {"grant_type": "client_credential", "appid": "wxdd514a582c66e421",
+    querystring = {"grant_type": "client_credential", "appid": "wx249ce8c7c0899bfc",
                    "secret": "fd8e74092472b06caeaf209bab00bf80"}
     headers = {}
     response = requests.request("GET", url, headers=headers, params=querystring)
