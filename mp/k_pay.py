@@ -227,7 +227,7 @@ def send_order_mail(oid):
     tcursor.close()
     '''
 
-    str1 = "<p>活动："+raw[0]['tno']+"</p>"
+    str1 = "<p>活动："+str(raw[0]['tno'])+"</p>"
 
     from_email = settings.DEFAULT_FROM_EMAIL
 
