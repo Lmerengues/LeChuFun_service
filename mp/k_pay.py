@@ -251,7 +251,7 @@ def notify(request):
             llcursor.close()
 
             url = "https://api.weixin.qq.com/cgi-bin/token"
-            querystring = {"grant_type": "client_credential", "appid": "wx249ce8c7c0899bfc","secret": "e5e70d0f2e713a307c2beeb7f3eea8de"}
+            querystring = {"grant_type": "client_credential", "appid": "wx249ce8c7c0899bfc","secret": "fd8e74092472b06caeaf209bab00bf80"}
             headers = {}
             response = requests.request("GET", url, headers=headers, params=querystring)
             access_token = json.loads(response.text)['access_token']

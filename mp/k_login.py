@@ -19,7 +19,7 @@ def dictfetchall(cursor):
 def login(res):
     url = "https://api.weixin.qq.com/sns/jscode2session"
 
-    querystring = {"appid": "wx249ce8c7c0899bfc", "secret": "e5e70d0f2e713a307c2beeb7f3eea8de",
+    querystring = {"appid": "wx249ce8c7c0899bfc", "secret": "fd8e74092472b06caeaf209bab00bf80",
                    "js_code": res.GET['code'], "grant_type": "authorization_code"}
 
     headers = {
