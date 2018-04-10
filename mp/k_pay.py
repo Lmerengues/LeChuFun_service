@@ -173,6 +173,7 @@ def index(request):
 
 
 def send_order_mail(oid):
+    '''
     tcursor = connections['klook'].cursor()
     tcursor.execute("select orders.oid,orders.hno,odate,ostart,oend,otype,onum,oready,obarbecue,"
                     "ofapiao,otip,ototal,orders.ocno,otime,htitle1,htitle2,uname,uphone,uwechat,ufirm,udepartment from orders,contact,house "
@@ -201,7 +202,9 @@ def send_order_mail(oid):
     str1 += '<p>是否需要烧烤设备:' + my_is[int(raw[0]['obarbecue'])] + '</p>'
     str1 += '<p>是否需要发票:' + my_is[int(raw[0]['ofapiao'])] + '</p>'
     str1 += '<p>附言:' + raw[0]['otip'] + '</p>'
+    '''
 
+    str1 = "<p>test</p>"
     from_email = settings.DEFAULT_FROM_EMAIL
 
     msg = EmailMultiAlternatives('乐处Fun订单信息', str1, from_email,
@@ -266,7 +269,7 @@ def notify(request):
             req = urllib2.Request(url, json.dumps(tmpdata), headers={'Content-Type': 'application/json'})
             result = urllib2.urlopen(req, timeout=30).read()
 
-            # send_order_mail(dict_data['out_trade_no'])
+            send_order_mail(dict_data['out_trade_no'])
             llcursor = connections['klook'].cursor()
             llcursor.execute("insert into logs values(null,%s,sysdate())",
                              ('errcode:-2' + result + "$" + str(tmpdata),))
