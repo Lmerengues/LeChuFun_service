@@ -24,11 +24,11 @@ from django.core.mail import EmailMultiAlternatives
 
 
 def send_email():
-    str1 = "你"
+    str1 = "<p>你"
     str1 += str(time.time())
     str += "是"
     str1 += str(time.time())
-    str1  += "猹"
+    str1  += "猹</p>"
 
     from_email = settings.DEFAULT_FROM_EMAIL
 
