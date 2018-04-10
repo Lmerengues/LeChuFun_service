@@ -210,6 +210,7 @@ def send_order_mail(oid):
     raw = dictfetchall(tcursor)
     tcursor.close()
 
+    '''
     ccursor = connections['klook'].cursor()
     ccursor.execute("select * from contact where cno = %s",(raw[0]['cno']))
     craw = dictfetchall(ccursor)
@@ -224,9 +225,9 @@ def send_order_mail(oid):
     tcursor.execute("select * from activity_package_ticket where tno = %s", (raw[0]['tno']))
     traw = dictfetchall(tcursor)
     tcursor.close()
+    '''
 
-
-    str1 = "<p>活动："+araw[0]['atitle1']+"</p>"
+    str1 = "<p>活动："+raw[0]['tno']+"</p>"
 
     from_email = settings.DEFAULT_FROM_EMAIL
 
