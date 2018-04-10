@@ -227,10 +227,10 @@ def send_order_mail(oid):
     tcursor.close()
 
 
-    str1 = "<p>活动："+str(araw[0]['atitle1'])+"</p>"
+    str1 = "<p>活动："+str(raw[0]['ano'])+"</p>"
     str1 += "<p>套餐："+str(traw[0]['ttitle'])+"</p>"
     str1 += "<p>付款金额："+str(int(raw[0]['ototal'])/100)+"</p>"
-    
+
 
 
     from_email = settings.DEFAULT_FROM_EMAIL
