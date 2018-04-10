@@ -173,9 +173,10 @@ def index(request):
 
 
 def send_order_mail(oid):
+
     '''
     tcursor = connections['klook'].cursor()
-    tcursor.execute("select orders.oid,orders.hno,odate,ostart,oend,otype,onum,oready,obarbecue,"
+    tcursor.execute("select orders.oid,orders.ano,odate,ostart,oend,otype,onum,oready,obarbecue,"
                     "ofapiao,otip,ototal,orders.ocno,otime,htitle1,htitle2,uname,uphone,uwechat,ufirm,udepartment from orders,contact,house "
                     "where oid = %s and orders.ocno = contact.cno and orders.hno = house.hno", (oid,))
 
@@ -204,7 +205,29 @@ def send_order_mail(oid):
     str1 += '<p>附言:' + raw[0]['otip'] + '</p>'
     '''
 
-    str1 = "<p>test</p>"
+    tcursor = connections['klook'].cursor()
+    tcursor.execute("select ano,cno,tno,odate,ototal,otime from orders where oid = %s",(oid,))
+    raw = dictfetchall(tcursor)
+    tcursor.close()
+
+    ccursor = connections['klook'].cursor()
+    ccursor.execute("select * from contact where cno = %s",(raw[0]['cno']))
+    craw = dictfetchall(ccursor)
+    ccursor.close()
+
+    acursor = connections['klook'].cursor()
+    acursor.execute("select atitle1,atitle2 from activities where ano = %s", (raw[0]['ano']))
+    araw = dictfetchall(acursor)
+    acursor.close()
+
+    tcursor = connections['klook'].cursor()
+    tcursor.execute("select * from activity_package_ticket where tno = %s", (raw[0]['tno']))
+    traw = dictfetchall(tcursor)
+    tcursor.close()
+
+
+    str1 = "<p>活动："+araw[0]['atitle1']+"</p>"
+
     from_email = settings.DEFAULT_FROM_EMAIL
 
     msg = EmailMultiAlternatives('乐处Fun订单信息', str1, from_email,
