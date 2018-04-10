@@ -20,7 +20,7 @@ import pytz
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 
-import pay
+import k_pay
 
 
 def json_serial(obj):
@@ -39,7 +39,7 @@ def dictfetchall(cursor):
 def index(request):
 
     oid = request.GET['oid']
-    pay.send_order_mail(oid)
+    k_pay.send_order_mail(oid)
 
 
     resp = HttpResponse(json.dumps({'status':'success'}), content_type="application/json")
