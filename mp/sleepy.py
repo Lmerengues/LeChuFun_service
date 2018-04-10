@@ -33,7 +33,7 @@ def send_email():
     from_email = settings.DEFAULT_FROM_EMAIL
 
     msg = EmailMultiAlternatives('我好困', str1, from_email,
-                                 ['lechufun@163.com', '576817410@qq.com'])
+                                 ['lechufun@163.com', '2015201984@ruc.edu.cn'])
 
     msg.content_subtype = "html"
     msg.send()
