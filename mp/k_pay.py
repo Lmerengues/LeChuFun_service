@@ -234,7 +234,7 @@ def send_order_mail(oid):
 
     from_email = settings.DEFAULT_FROM_EMAIL
 
-    msg = EmailMultiAlternatives('乐处Fun订单信息', str1, from_email,
+    msg = EmailMultiAlternatives('真约体验付款信息', str1, from_email,
                                  ['lechufun@163.com', 'liruishenshui@126.com'])
 
     msg.content_subtype = "html"
