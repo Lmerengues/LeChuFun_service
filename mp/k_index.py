@@ -38,25 +38,28 @@ def index(request):
 
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select activity_rank_hot.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_hot,place where activities.ano = activity_rank_hot.ano and activities.pno = place.pno order by aval desc limit 5")
+        "select activity_rank_hot.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_hot,place where activities.ano = activity_rank_hot.ano and activities.pno = place.pno order by aval desc limit 10")
     raw['hot_acti'] = dictfetchall(cursor)
     cursor.close()
 
     for item in raw['hot_acti']:
         item['adate'] = json_serial(item['adate'])
 
+
+    '''
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_theme,place where activities.ano = activity_rank_theme.ano and activities.pno = place.pno order by aval desc limit 5")
+        "select activity_rank_theme.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_theme,place where activities.ano = activity_rank_theme.ano and activities.pno = place.pno order by aval desc limit 10")
     raw['theme_acti'] = dictfetchall(cursor)
     cursor.close()
 
     for item in raw['theme_acti']:
         item['adate'] = json_serial(item['adate'])
 
+    '''
     cursor = connections['klook'].cursor()
     cursor.execute(
-        "select activity_rank_recommend.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_recommend,place where activities.ano = activity_rank_recommend.ano and activities.pno = place.pno order by aval desc limit 5")
+        "select activity_rank_recommend.ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,activity_rank_recommend,place where activities.ano = activity_rank_recommend.ano and activities.pno = place.pno order by aval desc limit 10")
     raw['rec_acti'] = dictfetchall(cursor)
     cursor.close()
 
@@ -64,7 +67,7 @@ def index(request):
         item['adate'] = json_serial(item['adate'])
 
     cursor = connections['klook'].cursor()
-    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,place where activities.pno = place.pno order by aaddtime desc limit 5")
+    cursor.execute("select ano,atitle1,anum,ascore,aprice,aprice_old,ahour,adate,aurl,ptitle from activities,place where activities.pno = place.pno order by aaddtime desc limit 20")
     raw['time_acti'] = dictfetchall(cursor)
     cursor.close()
 

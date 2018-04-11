@@ -66,6 +66,8 @@ def list(request):
             if int(arr_item['pnum']) != 0:
                 des_str = des_str + arr_item['ttitle'] + 'x' + str(arr_item['pnum'])
         item['odes'] = des_str
+        item['ototal'] = str(int(item['ototal'])/100)
+
 
 
     response = HttpResponse(json.dumps(raw), content_type="application/json")
